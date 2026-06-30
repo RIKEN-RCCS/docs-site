@@ -31,7 +31,7 @@ site_author = "RIKEN Center for Computational Science"
 # documentation you should set this.
 # Read more: https://zensical.org/docs/setup/basics/#site_url
 #site_url = "https://www.example.com/"
-site_url = "https://docs.r-ccs.riken.jp/"
+site_url = "https://docs.r-ccs.riken.jp/rikyu"
 
 # The copyright notice appears in the page footer and can contain an HTML
 # fragment.
@@ -61,8 +61,9 @@ nav = [
     { "index" = "en/index.md" },
   ]},
   { "はじめに" = "ja/index.md" },
+  { "システム概要" = "ja/system.md" },
+  { "ソフトウェア環境" = "ja/software.md" },
   { "利用方法" = "ja/usage.md" },
-  { "お問合せ" = "ja/support.md" },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize

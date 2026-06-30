@@ -1,39 +1,31 @@
 # 利用方法
 
-## アカウントの申請
+「理究」を利用するには、「WebブラウザからOpen OnDemandを利用する方法」と「ターミナルソフトウェアからSSH接続する方法」があります。
 
-「理究」のアカウントを申請するには、下記からアカウント作成フォームを提出してください。
+## Open OnDemand
 
-[アカウント作成フォーム](https://forms.cloud.microsoft/r/M7ZdHajg9G){ .md-button .md-button--primary .registration-button }
-
-## ログイン方法
-
-「理究」にログインするには、「WebブラウザからOpen OnDemandを利用する方法」と「端末ソフトウェアからSSH接続する方法」があります。
-
-### Webブラウザ
-
-[https://ondemand.rikyu.r-ccs.riken.jp](https://ondemand.rikyu.r-ccs.riken.jp)からログインください。Open OnDemandは、Webブラウザからスーパーコンピュータを利用できるWebポータルです。下記の機能を提供しています。
+Open OnDemandはWebブラウザからスーパーコンピュータを利用できるWebポータルです。[https://ondemand.rikyu.r-ccs.riken.jp](https://ondemand.rikyu.r-ccs.riken.jp)からログインください。Open OnDemandは下記の機能を提供しています。
 
 * ファイルの送受信・編集
-* ターミナルの利用
+* Webターミナルの利用
 * 対話アプリケーション（リモートデスクトップなど）の実行と管理
 * バッチジョブの実行と管理
 
 Open OnDemandは、Google Chrome、Mozilla Firefox、Microsoft Edgeなどの主要なWebブラウザに対応しています（注：Internet Explorer 11は対応していません）。中でもChromeは、リモートデスクトップなどにおいて、文字列のコピー & ペースト機能をネイティブにサポートしていますので、Chromeのご利用をお勧めします。
 
-### 端末ソフトウェア
+## ターミナルソフトウェア
 
 SSHの公開鍵の登録を行うために、[https://ondemand.rikyu.r-ccs.riken.jp](https://ondemand.rikyu.r-ccs.riken.jp)から「SSH Public Key」を起動してください。下記の画面が表示されますので、「Add a Public Key」の中のテキストエリアにご自身のSSH公開鍵を入力し、「Add」ボタンをクリックしてください。登録が成功すると、「Registered Public Keys」に登録情報が表示されます。
 
-![SSH Public Key](../img/sshpubkey.png){ width="800" }
+![SSH public key](../img/sshpubkey.png){ width="800" }
 
-端末ソフトウェアから、下記のコマンドでSSHログインできます。以下の`USERNAME`は自分のユーザ名に置き換えてください。
+ターミナルソフトウェアから、下記のコマンドでSSHログインできます。以下の`USERNAME`は自分のユーザ名に置き換えてください。
 
 ```bash
 $ ssh USERNAME@login.rikyu.r-ccs.riken.jp
 ```
 
-## 利用方法
+### Slurmの使い方
 
 Slurmを使ってジョブを投入します。利用可能なパーティションは以下のとおりです。
 
@@ -42,43 +34,19 @@ Slurmを使ってジョブを投入します。利用可能なパーティショ
   <tbody>
     <tr>
       <th>パーティション</th>
-      <th>ノード数</th>
-      <th>GPU数/ノード</th>
-      <th>CPUコア数/ノード</th>
-      <th>メモリ量/ノード</th>
+      <th>最大ノード数</th>
+      <th>最大GPU数/ノード</th>
+      <th>最大CPUコア数/ノード</th>
+      <th>最大メモリ量/ノード</th>
       <th>実行時間</th>
     </tr>
     <tr>
-      <td>1n1gpu</td>
-      <td rowspan="3">1</td>
-      <td>1</td>
-      <td>36</td>
-      <td>400GB</td>
-      <td rowspan="5">96時間</td>
-    </tr>
-    <tr>
-      <td>1n2gpu</td>
-      <td>2</td>
-      <td>72</td>
-      <td>800GB</td>
-    </tr>
-    <tr>
-      <td>1n4gpu</td>
-      <td rowspan="4">4</td>
-      <td rowspan="4">144</td>
-      <td rowspan="4">1600GB</td>
-    </tr>
-    <tr>
-      <td>2n4gpu</td>
-      <td>2</td>
-    </tr>
-    <tr>
-      <td>4n4gpu</td>
-      <td rowspan="2">4</td>
-    </tr>
-    <tr>
-      <td>4n4gpu-p</td>
-      <td>無制限</td>
+      <td>gpu</td>
+      <td>4</td>
+      <td>4</td>
+      <td>144</td>
+      <td>1,600GB</td>
+      <td>96時間</td>
     </tr>
   </tbody>
 </table>
@@ -297,4 +265,3 @@ mpirun -n <ranks> --map-by ppr:4:node $X ./devwrap.sh ./your_app
 ```
 
 これらの設定は今後のスタック更新で不要になる可能性があります。
-
