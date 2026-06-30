@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>R-CCS RIKYU Assistant</title>
+    <style>
+      html,
+      body,
+      #askdona-chat-container {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+      }
+
+      body {
+        overflow: hidden;
+        background: #fff;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="askdona-chat-container"></div>
+
+    <script src="https://embed.askdona.com/dist/askdona-embed.js"></script>
+    <script>
+      (function () {
+        var params = new URLSearchParams(window.location.search);
+        var language = params.get("language") === "ja" ? "ja" : "en";
+
+        function initAskDona() {
+          if (window.AskDona && !window.__askDonaInitialized) {
+            window.__askDonaInitialized = true;
+            AskDona.init({
+              chatflowId: "059ee036-e64d-4399-9a37-58ce884ffa8c",
+              displayMode: "fullscreen",
+              container: "#askdona-chat-container",
+              theme: "light",
+              language: language,
+              primaryColor: "#0E2A5F",
+              chatbotTitle: "R-CCS 理究アシスタント",
+              chatbotTitle_en: "R-CCS RIKYU Assistant"
+            });
+          }
+        }
+
+        if (document.readyState !== "loading") {
+          initAskDona();
+        } else {
+          document.addEventListener("DOMContentLoaded", initAskDona);
+        }
+      })();
+    </script>
+  </body>
+</html>
