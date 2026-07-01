@@ -1,6 +1,8 @@
 # システム概要
 
-「理究」は、400台の計算ノード、物理容量10PB+2PBの共用ストレージ、これらを高速に結合するInfiniBandネットワークから構成されます。また、ログインノード、Open OnDemandサーバを備えており、SSH接続やWebブラウザからのアクセスが可能です。さらに「理究」は学術情報ネットワークSINET6を利用して、400Gbpsでインターネットに接続しています。
+「理究」は、400台の計算ノード、物理容量10 PB + 2 PBの共用ストレージ、これらを高速に結合するInfiniBandネットワークから構成されます。また、ログインノード、Open OnDemandサーバを備えており、SSH接続やWebブラウザからのアクセスが可能です。さらに「理究」は学術情報ネットワークSINET6を利用して、400Gbpsでインターネットに接続しています。
+
+システムの性能は下記の通りです。
 
 ## システム全体性能
 
@@ -9,9 +11,9 @@
 | ノード数 | 400 nodes |
 | GPU理論性能（FP64） | 64.160 PFlops (160.4 TFlops x 400 nodes) |
 | GPU理論性能（FP8）| 15.539 EFlops (38.84 PFlops x 400 nodes) |
-| GPUメモリ性能 | 270.625 TiB, 12.64 PB/s (692.8 GiB, 31.6 TB/s x 400 nodes) |
+| GPUメモリ性能 | 270.625 TiB, 12.640 PB/s (692.8 GiB, 31.60 TB/s x 400 nodes) |
 | CPUメモリ性能 | 375 TiB, 307.2 TB/s (960 GiB, 768 GB/s x 400 nodes) |
-| 共用ストレージ | DDN ES400X3-NDR200 x 2, 1.08 PB (30.72 TB TLC NVMe SSD x 23 x 2) |
+| 共用ストレージ | 1.08 PB, Theoretical throughput: 400 GB/s, Effective write throughput: 180 GB/s or higher, Effective read throughput: 260 GB/s or higher |
 
 ## 計算ノードの性能
 
