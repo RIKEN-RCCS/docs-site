@@ -64,6 +64,8 @@ nav = [
   { "システム概要" = "ja/system.md" },
   { "ソフトウェア環境" = "ja/software.md" },
   { "利用方法" = "ja/usage.md" },
+  { "Open OnDemandの使い方" = "ja/ood.md" },
+  { "Slurmの使い方" = "ja/slurm.md" },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
@@ -193,7 +195,7 @@ features = [
     # This feature turns on navigation elements in the footer that allow the
     # user to navigate to a next or previous page.
     # https://zensical.org/docs/setup/footer/#navigation
-    # "navigation.footer",
+    "navigation.footer",
 
     # When section index pages are enabled, documents can be directly attached
     # to sections, which is particularly useful for providing overview pages.
