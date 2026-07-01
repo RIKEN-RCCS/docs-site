@@ -222,6 +222,7 @@
 }
 
 .md-typeset h2 {
+  font-size: 1.35em;
   border-left: 7px solid var(--md-accent-fg-color);
   padding-left: 0.35em;
   margin-top: 1.5em;
