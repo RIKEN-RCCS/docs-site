@@ -25,6 +25,7 @@
     class="askdona-chat-frame"
     src="../askdona-frame.html?language=ja"
     title="R-CCS RIKYU Assistant"
+    sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
     allow="clipboard-write"
   ></iframe>
 </section>
