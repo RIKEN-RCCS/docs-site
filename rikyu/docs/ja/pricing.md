@@ -12,14 +12,14 @@
 
 ## 利用可能資源
 
-本システムでプログラムを実行するには、[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html)を使ってジョブを投入します。ジョブを投入する際はGPU数を指定します。<span class="text-marker">指定できるGPU数は、1、2、3、4、8、12、16</span>です。利用するGPU数によって、確保されるノード数、CPUコア数、メモリ量が異なります。
+本システムでプログラムを実行するには、[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html)を使ってジョブを投入します。ジョブを投入する際はGPU数を指定します。<span class="text-marker">指定できるGPU数は、1、2、3、4、8、12、16</span>です。GPU数によって、確保されるノード数、最大CPUコア数、最大メモリ量が異なります。
 
 <div class="spec-table">
 <table>
   <tbody>
     <tr>
       <th style="text-align: right;">GPU数</th>
-      <th>確保するノード数</th>
+      <th>確保されるノード数</th>
       <th>最大CPUコア数/ノード</th>
       <th>最大メモリ量/ノード</th>
       <th>最大実行時間</th>
