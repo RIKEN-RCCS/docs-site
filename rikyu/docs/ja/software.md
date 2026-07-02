@@ -163,11 +163,17 @@ $ spack spec /<hash>
 ジョブスクリプト例：
 
 ```bash
+
 #!/bin/bash
 #SBATCH --nodes=2
-#SBATCH --ntasks-per-node=32
+#SBATCH --ntasks-per-node=8
 
-srun /shared/software/spack/.../bin/pw.x -in qe.in
+. /shared/software/spack/share/spack/setup-env.sh
+
+spack load quantum-espresso
+
+srun pw.x -in qe.in
+
 ```
 
 ## 同一名複数パッケージの区別
