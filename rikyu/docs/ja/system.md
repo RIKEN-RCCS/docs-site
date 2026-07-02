@@ -2,19 +2,6 @@
 
 本システムは、400台の計算ノード、物理容量2 PB + 10 PBの共用ストレージ、これらを高速に結合するInfiniBandネットワークから構成されます。また、ログインノード、Open OnDemandサーバを備えており、SSH接続やWebブラウザからのアクセスが可能です。さらに学術情報ネットワークSINET6を利用して、400Gbpsでインターネットに接続しています。
 
-システムの性能は下記の通りです。
-
-## システム全体性能
-
-| 項目 | 値 |
-|------|------|
-| 計算ノード数 | 400 nodes |
-| GPU理論性能（FP64） | 64.160 PFlops (160.4 TFlops x 400 nodes) |
-| GPU理論性能（FP8）| 15.539 EFlops (38.84 PFlops x 400 nodes) |
-| GPUメモリ性能 | 270.625 TiB, 12.640 PB/s (692.8 GiB, 31.60 TB/s x 400 nodes) |
-| CPUメモリ性能 | 375 TiB, 307.2 TB/s (960 GiB, 768 GB/s x 400 nodes) |
-| 共用ストレージ | 2 PB + 10 PB |
-
 ## 計算ノードの性能
 
 | 項目 | 値 |
@@ -33,6 +20,17 @@
 CPU/GPU間の接続およびバンド幅の詳細は下図を参照してください。
 
 ![Compute node bandwidth](../img/bandwidth.png){ width="550" }
+
+## システム全体性能
+
+| 項目 | 値 |
+|------|------|
+| 計算ノード数 | 400 nodes |
+| GPU理論性能（FP64） | 64.160 PFlops (160.4 TFlops x 400 nodes) |
+| GPU理論性能（FP8）| 15.539 EFlops (38.84 PFlops x 400 nodes) |
+| GPUメモリ性能 | 270.625 TiB, 12.640 PB/s (692.8 GiB, 31.60 TB/s x 400 nodes) |
+| CPUメモリ性能 | 375 TiB, 307.2 TB/s (960 GiB, 768 GB/s x 400 nodes) |
+| 共用ストレージ | 2 PB + 10 PB |
 
 ## ネットワーク
 

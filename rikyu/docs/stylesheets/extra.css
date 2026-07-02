@@ -218,6 +218,10 @@
   margin-bottom: 0;
 }
 
+.md-typeset__table {
+  margin-bottom: 0;
+}
+
 .md-typeset .spec-table table td {
   background: var(--md-default-bg-color);
 }
