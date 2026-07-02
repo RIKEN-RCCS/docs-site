@@ -206,14 +206,14 @@
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: rgb(0, 72, 200);
+  color: rgb(94, 53, 177);
   font-weight: 700;
   margin: 0;
   padding: 0;
 }
 
 [data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
-  color: rgb(90, 170, 255);
+  color: rgb(179, 157, 219);
 }
 
 .md-typeset .highlight :is(.c1, .nv) {
