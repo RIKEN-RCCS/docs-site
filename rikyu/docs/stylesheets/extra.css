@@ -263,7 +263,7 @@
   border: 0;
   border-radius: 0;
   box-shadow: none;
-  color: rgb(123, 31, 162);
+  color: rgb(0, 72, 200);
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, Menlo, monospace;
   font-size: 0.77rem;
   font-weight: 700;
@@ -272,5 +272,5 @@
 }
 
 [data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
-  color: rgb(234, 128, 252);
+  color: rgb(90, 170, 255);
 }

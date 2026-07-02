@@ -66,13 +66,13 @@ module load nvhpc
 nvidia-smi
 ```
 
-`sbatch`で計算ノードにジョブを投入します。
+`sbatch`を使うと、計算ノードにジョブを投入できます。
 
 ```bash
 $ sbatch job.sh
 ```
 
-`squeue`で自分のジョブを確認します。
+`squeue`を使うと、自分のジョブを確認できます。
 
 ```bash
 $ squeue
@@ -125,9 +125,9 @@ exit
 $ scancel JOBID
 ```
 
-## システムの確認
+## 計算ノードの状態確認
 
-`sinfo`を使うて、システムの状態を確認できます。
+`sinfo`を使うと、計算ノードの状態を確認できます。
 
 ```bash
 $ sinfo
@@ -135,25 +135,6 @@ $ sinfo
 
 ## テンポラリ領域
 
-各計算ノードでは、約7TBのNVMe SSD上にローカルScratch領域を提供しています。ジョブからこのScratch領域にアクセスするには、`USER_SCRATCH_DIR`環境変数を使用します。
+各計算ノードでは、`/tmp`にローカルファイルシステムをマウントしています。この領域では、約7TBのNVMe SSDを利用できます。
 
-このストレージは、計算中に一時ファイル、データセット、チェックポイント、中間結果などを高速なローカルSSD上で扱いたい場合に有用です。この領域のファイルはジョブ終了後に自動的に削除されるため、保存が必要な結果はジョブ終了前に永続的なストレージへコピーしてください。
-
-```bash
-#!/bin/bash
-#SBATCH --job-name=scratch-example
-#SBATCH --partition=1n1gpu
-#SBATCH --nodes=1
-#SBATCH --gpus-per-node=1
-#SBATCH --time=00:10:00
-
-module load nvhpc
-
-echo "Scratch directory: ${USER_SCRATCH_DIR}"
-
-./my_application > ${USER_SCRATCH_DIR}/output.log
-
-# ジョブ終了後も保存が必要な結果をコピーします。
-# SLURM_SUBMIT_DIR は sbatch コマンドを実行したディレクトリです。
-cp ${USER_SCRATCH_DIR}/output.log ${SLURM_SUBMIT_DIR}/
-```
+`/tmp`は、計算中に一時ファイル、データセット、チェックポイント、中間結果などを高速なローカルSSD上で扱いたい場合に有用です。`/tmp`上のファイルはジョブ終了時にすべて削除されるため、保存が必要な結果はジョブ終了前に永続的なストレージへコピーしてください。
