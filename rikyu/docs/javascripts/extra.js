@@ -20,10 +20,14 @@ function normalizePath(pathname) {
   return pathname.replace(/\/index\.html$/, "/").replace(/\/$/, "") || "/";
 }
 
+function hasPathSegment(pathname, segment) {
+  return normalizePath(pathname).split("/").indexOf(segment) !== -1;
+}
+
 function hideOtherLanguageSection() {
   var path = window.location.pathname;
-  var isJa = path.indexOf('/ja') !== -1;
-  var isEn = path.indexOf('/en') !== -1;
+  var isJa = hasPathSegment(path, 'ja');
+  var isEn = hasPathSegment(path, 'en');
   if (!isJa && !isEn) return;
 
   // セクション（English）の表示制御
@@ -40,8 +44,8 @@ function hideOtherLanguageSection() {
     if (!link) return;
     try {
       var fullPath = new URL(link.getAttribute('href'), window.location.href).pathname;
-      if (isEn && fullPath.indexOf('/ja') !== -1) item.style.display = 'none';
-      if (isJa && fullPath.indexOf('/ja') === -1) item.style.display = 'none';
+      if (isEn && hasPathSegment(fullPath, 'ja')) item.style.display = 'none';
+      if (isJa && !hasPathSegment(fullPath, 'ja')) item.style.display = 'none';
     } catch(e) {}
   });
 }
