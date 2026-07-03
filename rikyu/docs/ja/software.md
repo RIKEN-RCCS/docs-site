@@ -197,7 +197,7 @@ $ spack uninstall openmpi
 
 ## OSSのロード
 
-例えば `cp2k` を利用可能にしたい場合は、
+例えば `cp2k` を利用にしたい場合は、
 
 ```bash
 $ spack load cp2k
@@ -291,7 +291,7 @@ Quantum ESPRESSO のジョブスクリプト例：
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=8
 
-. /shared/software/spack-v1.2.0/share/spack/setup-env.sh
+. /shared/software/spack-1.2.0/share/spack/setup-env.sh
 
 spack load quantum-espresso
 
@@ -301,7 +301,7 @@ srun pw.x -in qe.in
 ※ `qe.in` は Quantum ESPRESSO の入力ファイルです。
 ※ 実際の計算を行うには、入力ファイルおよび必要な擬ポテンシャルファイル（UPF形式）を事前に準備してください。
 
-## 同一名複数パッケージの区別
+## 同名複数パッケージの区別
 
 複数のバージョンが同時にインストールされている場合や、同一バージョンであってもログインノード向けと計算ノード向けで異なるビルドがインストールされている場合があります。
 
