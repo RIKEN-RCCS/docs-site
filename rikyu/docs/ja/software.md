@@ -19,7 +19,7 @@
 `bash` の場合：
 
 ```bash
-$ . /shared/software/spack/share/spack/setup-env.sh
+$ . /shared/software/spack-1.2.0/share/spack/setup-env.sh
 ```
 
 バッチ型ジョブで利用する場合は、ジョブスクリプトにも同様の記述を追加してください。
@@ -37,37 +37,43 @@ $ spack find -x
 以下は2026-07-06時点の例です。
 
 ```bash
-spack find -x
--- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=gcc@13.3.0 --
-cp2k@2026.1            frontistr@5.3   petsc@3.25.2
-darshan-runtime@3.5.0  julia@1.12.6    py-scipy@1.17.1
-darshan-runtime@3.5.0  paraview@6.1.1
+spack find -lx
+-- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=gcc@13.3.0 ----
+g6hpeea cp2k@2026.1            qxqrq4o parallel-netcdf@1.14.1
+gmcipc4 darshan-runtime@3.5.0  vephnns paraview@6.1.1
+q6ezzfa frontistr@5.3          e7q773o petsc@3.25.2
+dtkhf7f julia@1.12.6           kg4hkb6 py-scipy@1.17.1
 
--- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=nvhpc@26.3 --
-quantum-espresso@7.5
+-- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=nvhpc@26.3 ----
+efwm4pc quantum-espresso@7.5
 
--- linux-ubuntu24.04-neoverse_v2 / %c,cxx=gcc@13.3.0 ----------
-ffmpeg@8.1       openbabel@3.2.0       py-mpi4py@4.1.1
-gnuplot@6.0.0    openfoam@2512         py-pandas@3.0.3
-grads@2.2.3      openfoam-org@12       py-scikit-learn@1.9.0
-gromacs@2026.1   openfoam-org@12       rust@1.96.0
-gromacs@2026.1   povray@3.7.0.10
-lammps@20260211  py-matplotlib@3.11.0
+-- linux-ubuntu24.04-neoverse_v2 / %c,cxx=gcc@13.3.0 ------------
+icb2hpj ffmpeg@8.1       j25jgtt openfoam-org@12
+g4gyqaz ffmpeg@8.1       snjqbss povray@3.7.0.10
+kiylntv gnuplot@6.0.0    l2zajbr py-matplotlib@3.11.0
+teveiql grads@2.2.3      wypy6fy py-mpi4py@4.1.1
+b2zyy2l gromacs@2026.1   qpo72vu py-pandas@3.0.3
+sjduy44 lammps@20260211  esjclj6 py-scikit-learn@1.9.0
+dcheirs openbabel@3.2.0  usvgll2 rust@1.96.0
+lrbixw3 openfoam@2512
 
--- linux-ubuntu24.04-neoverse_v2 / %c,fortran=gcc@13.3.0 ------
-cpmd@4.3       openmx@3.9          scale@5.4.4
-genesis@1.6.0  salmon-tddft@2.0.0  wrf@4.7.1
+-- linux-ubuntu24.04-neoverse_v2 / %c,fortran=gcc@13.3.0 --------
+53j2h54 cpmd@4.3              t3je6ga salmon-tddft@2.0.0
+djkxpao genesis@1.6.0         4hnwin4 scale@5.4.4
+7phdib7 netcdf-fortran@4.6.2  vjefr4h wrf@4.7.1
+6trnbya openmx@3.9
 
--- linux-ubuntu24.04-neoverse_v2 / %c=gcc@13.3.0 --------------
-gsl@2.8  py-netcdf4@1.7.2  tmux@3.6a
+-- linux-ubuntu24.04-neoverse_v2 / %c=gcc@13.3.0 ----------------
+hb4jb3t gsl@2.8         djy67le py-netcdf4@1.7.2
+i7qisgo netcdf-c@4.9.2  fxzltob tmux@3.6a
 
--- linux-ubuntu24.04-neoverse_v2 / %cxx=gcc@13.3.0 ------------
-autodock-vina@1.2.6
+-- linux-ubuntu24.04-neoverse_v2 / %cxx=gcc@13.3.0 --------------
+y4boldd autodock-vina@1.2.6  kup5bkr kokkos@5.1.1
 
--- linux-ubuntu24.04-neoverse_v2 / no compilers ---------------
-py-ase@3.28.0  py-toml@0.10.2  py-xarray@2026.4.0
-
-==> 38 installed packages
+-- linux-ubuntu24.04-neoverse_v2 / no compilers -----------------
+52c5kr6 py-ase@3.28.0   us4lyh6 py-xarray@2026.4.0
+kn3r4xs py-toml@0.10.2
+==> 40 installed packages
 ```
 
 同一名称のパッケージが複数表示される場合があります。これは依存関係やビルド条件の違いによるものであり、詳細は後述の「同一名複数パッケージの区別」を参照してください。
@@ -217,6 +223,7 @@ $ spack unload cp2k
 - lammps
 - quantum-espresso
 - gromacs
+- kokkos
 
 ## hpcx-mpiを使用する場合の注意点
 
@@ -284,7 +291,7 @@ Quantum ESPRESSO のジョブスクリプト例：
 #SBATCH --nodes=2
 #SBATCH --ntasks-per-node=8
 
-. /shared/software/spack/share/spack/setup-env.sh
+. /shared/software/spack-v1.2.0/share/spack/setup-env.sh
 
 spack load quantum-espresso
 
@@ -311,10 +318,9 @@ $ spack load fftw
 ```text
 ==> Error: fftw matches multiple packages.
   Matching packages:
+    erk4i5v fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=gcc@13.3.0
     5rny4xu fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=gcc@13.3.0
-    ftaxup7 fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=gcc@13.3.0
-    nkvjfgj fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=gcc@13.3.0
-  Use a more specific spec (e.g., prepend '/' to the hash).
+    nkvjfgj fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=nvhpc@26.3
 ```
 
 のようなエラーになります。
@@ -441,6 +447,7 @@ $ spack load fftw%nvhpc@26.3
 - gsl
 - tmux
 - darshan-runtime
+- kokkos
 
 ## 最新の提供ソフトウェア一覧の確認
 
