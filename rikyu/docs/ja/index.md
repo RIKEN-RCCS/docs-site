@@ -12,7 +12,7 @@
 
 本システムのアカウントを申請するには、下記のリンクからアカウント申請を行ってください。
 
-[アカウント申請](https://forms.cloud.microsoft/r/M7ZdHajg9G){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
+[アカウント申請](https://www.google.co.jp){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
 
 ## 利用料金
 
@@ -20,4 +20,4 @@
 
 現在の利用状況を確認したい場合は、下記の請求システムを参照してください。
 
-[請求システム](#){ .md-button .md-button--primary .registration-button .billing-button }
+[請求システム](https://www.google.co.jp){ .md-button .md-button--primary .registration-button .billing-button target="_blank" rel="noopener" }
