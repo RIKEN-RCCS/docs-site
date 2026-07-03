@@ -24,8 +24,7 @@
   <iframe
     class="askdona-chat-frame"
     src="../askdona-frame.html?language=ja"
-    title="R-CCS RIKYU Assistant"
-    sandbox="allow-scripts allow-forms allow-popups allow-popups-to-escape-sandbox"
+    title="R-CCS AI for Science Assistant"
     allow="clipboard-write"
   ></iframe>
 </section>
