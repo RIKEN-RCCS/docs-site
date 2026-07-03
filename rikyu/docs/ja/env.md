@@ -10,10 +10,20 @@ NVIDIA HPC Software Development Kitを利用した複数のモジュール環境
 | `nvhpc-hpcx-cuda13` | `nvhpc-hpcx`と同様にHPC-Xを含みますが、使用するCUDAバージョンがCUDA 13に固定されています。|
 | `nvhpc-byo-compiler` | システムのGCCなど、利用者が用意したコンパイラを使うための環境です。BYOは“Bring Your Own”の略です。|
 
+## モジュールの一覧表示
+
 `module avail`を使うと、利用可能なモジュールの詳細な一覧を確認できます。
 
 ```bash
 $ module avail
+```
+
+## モジュールの初期化
+
+`module purge`を使うと、現在ロードされているすべてのモジュールをアンロードできます。ジョブスクリプトでは、必要なモジュールをロードする前に`module purge`を実行しておくと、意図しないモジュール環境の影響を避けやすくなります。
+
+```bash
+$ module purge
 ```
 
 ## モジュールのロード

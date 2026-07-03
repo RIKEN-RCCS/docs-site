@@ -63,11 +63,13 @@ nav = [
   { "はじめに" = "ja/index.md" },
   { "システム概要" = "ja/system.md" },
   { "ソフトウェア環境" = "ja/software.md" },
-  { "利用料金と利用可能資源" = "ja/pricing.md" },
+  { "利用可能資源" = "ja/resources.md" },
   { "利用方法" = "ja/usage.md" },
   { "モジュール環境" = "ja/env.md" },
   { "Open OnDemandの使い方" = "ja/ood.md" },
   { "Slurmの使い方" = "ja/slurm.md" },
+  { "Tips" = "ja/tips.md" },
+  { "お問合せ" = "ja/contact.md" },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize

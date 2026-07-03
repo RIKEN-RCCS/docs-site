@@ -2,11 +2,11 @@
 
 This guide provides basic information for using the AI4S Supercomputer during early access, including login instructions and simple Slurm job examples.
 
-For hardware information about this system, refer to [https://github.com/RIKEN-RCCS/AI-for-Science-Supercomputer](https://github.com/RIKEN-RCCS/AI-for-Science-Supercomputer).
+For hardware information about this system, refer to [https://github.com/RIKEN-RCCS/AI-for-Science-Supercomputer](https://github.com/RIKEN-RCCS/AI-for-Science-Supercomputer){ target="_blank" rel="noopener" }.
 
 To request an account for the AI4S Supercomputer early access program, submit the account registration form.
 
-[Account registration form](https://forms.cloud.microsoft/r/M7ZdHajg9G){ .md-button .md-button--primary .registration-button }
+[Account registration form](https://forms.cloud.microsoft/r/M7ZdHajg9G){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
 
 <div class="notice-warning" markdown>
 Notice: Transition to Early Access Phase 2
@@ -263,6 +263,6 @@ These settings may become unnecessary with future stack updates.
 
 Please try the AI chat support — it can answer many common questions instantly.
 
-[AI Chat Support](https://riken-rccs.github.io/ai4s_early_access/en/chat/){ .md-button .md-button--primary .chat-button }
+[AI Chat Support](https://riken-rccs.github.io/ai4s_early_access/en/chat/){ .md-button .md-button--primary .chat-button target="_blank" rel="noopener" }
 
 If your question is not resolved, contact the support team by email: `rccs-ai4s-support [at] ml.riken.jp`.

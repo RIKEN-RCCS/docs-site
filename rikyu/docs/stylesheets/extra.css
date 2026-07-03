@@ -150,48 +150,40 @@
 }
 
 .md-typeset .registration-button,
-.md-typeset .chat-button {
+.md-typeset .chat-button,
+.md-typeset .zendesk-button,
+.md-typeset .billing-button,
+.md-typeset .ood-button {
   margin: 0.1rem 0 0.2rem;
 }
 
 .md-typeset .registration-button,
 .md-typeset .chat-button,
+.md-typeset .zendesk-button,
+.md-typeset .billing-button,
+.md-typeset .ood-button,
 .md-typeset .chat-return-link {
   padding: 0.45em 0.8em;
   border-radius: 0.28rem;
 }
 
-.md-typeset .chat-button {
-  background-color: rgb(0, 150, 136);
-  border-color: rgb(0, 150, 136);
-  color: rgb(255, 255, 255) !important;
-}
-
+.md-typeset .registration-button,
+.md-typeset .chat-button,
+.md-typeset .zendesk-button,
+.md-typeset .billing-button,
 .md-typeset .ood-button {
-  background-color: rgb(0, 137, 123);
-  border-color: rgb(0, 137, 123);
+  background-color: rgb(0, 102, 255);
+  border-color: rgb(0, 102, 255);
   color: rgb(255, 255, 255) !important;
 }
 
+.md-typeset .registration-button:is(:hover, :focus),
+.md-typeset .chat-button:is(:hover, :focus),
+.md-typeset .zendesk-button:is(:hover, :focus),
+.md-typeset .billing-button:is(:hover, :focus),
 .md-typeset .ood-button:is(:hover, :focus) {
-  background-color: rgb(0, 105, 92);
-  border-color: rgb(0, 105, 92);
-}
-
-.md-typeset .chat-button:is(:hover, :focus) {
-  background-color: rgb(0, 121, 107);
-  border-color: rgb(0, 121, 107);
-}
-
-[data-md-color-scheme="slate"] .md-typeset .chat-button {
-  background-color: rgb(0, 188, 172);
-  border-color: rgb(0, 188, 172);
-  color: rgb(18, 18, 18) !important;
-}
-
-[data-md-color-scheme="slate"] .md-typeset .chat-button:is(:hover, :focus) {
-  background-color: rgb(0, 150, 136);
-  border-color: rgb(0, 150, 136);
+  background-color: rgb(0, 82, 204);
+  border-color: rgb(0, 82, 204);
 }
 
 .md-typeset .language-bash.highlight pre {
@@ -217,7 +209,7 @@
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: rgb(170, 0, 255);
+  color: rgb(20, 40, 255);
   font-weight: 700;
   margin: 0;
   padding: 0;
