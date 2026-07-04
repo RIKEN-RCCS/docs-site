@@ -66,6 +66,7 @@ nav = [
   { "利用可能資源" = "ja/resources.md" },
   { "利用方法" = "ja/usage.md" },
   { "モジュール環境" = "ja/env.md" },
+  { "Spackの使い方" = "ja/spack.md" },
   { "Open OnDemandの使い方" = "ja/ood.md" },
   { "Slurmの使い方" = "ja/slurm.md" },
   { "Tips" = "ja/tips.md" },
