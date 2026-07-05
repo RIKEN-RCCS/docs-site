@@ -4,7 +4,7 @@
 
 ## ホーム領域
 
-各ユーザは5 GBのホーム領域（`/home/[USER NAME]`）を持ちます。`[USER NAME]`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
+各ユーザは5 GBのホーム領域（`/home/USER_NAME`）を持ちます。`USER_NAME`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
 
 コマンドラインでホーム領域の利用状況を確認するには、下記のコマンドを実行してください。
 
@@ -19,12 +19,12 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 
 ## グループ領域
 
-各グループは1 TBのグループ領域（`/data1/[GROUP NAME]`）を持ちます。`[GROUP NAME]`はグループ名です。グループ領域は、同じグループのメンバが読み書きできます。グループ領域は、大規模な作業ファイルや同じグループのメンバで共同利用するデータの保存に適しています。
+各グループは1 TBのグループ領域（`/data1/GROUP_NAME`）を持ちます。`GROUP_NAME`はグループ名です。グループ領域は、同じグループのメンバが読み書きできます。グループ領域は、大規模な作業ファイルや同じグループのメンバで共同利用するデータの保存に適しています。
 
-コマンドラインでグループ領域の利用状況を確認するには、下記のコマンドを実行してください（`[GROUP NAME]`にはグループ名を指定してください）。
+コマンドラインでグループ領域の利用状況を確認するには、下記のコマンドを実行してください（`GROUP_NAME`にはグループ名を指定してください）。
 
 ```console
-$ lfs quota -h -p `lfs project -d /data1/[GROUP NAME] | awk '{print $1}'` /data1
+$ lfs quota -h -p `lfs project -d /data1/GROUP_NAME | awk '{print $1}'` /data1
 Disk quotas for prj 200013 (pid 200013):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
     /data1      4k       0k      1T       -       1        0 10000000       -
@@ -63,7 +63,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
     </tr>
     <tr>
       <td>ホーム領域</td>
-      <td><code>/home/[USER NAME]</code></td>
+      <td><code>/home/USER_NAME</code></td>
       <td>5 GB</td>
       <td rowspan="3">可能</td>
       <td>可能</td>
@@ -72,7 +72,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
     </tr>
     <tr>
       <td>グループ領域</td>
-      <td><code>/data1/[GROUP NAME]</code></td>
+      <td><code>/data1/GROUP_NAME</code></td>
       <td>最大 1 TB</td>
       <td>可能</td>
       <td>可能</td>
