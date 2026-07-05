@@ -57,8 +57,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
       <th>マウント先</th>
       <th>容量</th>
       <th>計算ノードからの利用</th>
-      <th>ログインノードからの利用</th>
-      <th>複数ノード間の共有</th>
+      <th>ログインノードからの利用と<br>複数ノード間の共有</th>
       <th>読み書きできるユーザ</th>
     </tr>
     <tr>
@@ -67,7 +66,6 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
       <td>5 GB</td>
       <td rowspan="3">可能</td>
       <td>可能</td>
-      <td>可能</td>
       <td>本人のみ</td>
     </tr>
     <tr>
@@ -75,14 +73,12 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
       <td><code>/data1/GROUP_NAME</code></td>
       <td>最大 1 TB</td>
       <td>可能</td>
-      <td>可能</td>
       <td>同じグループのメンバ</td>
     </tr>
     <tr>
       <td>スクラッチ領域</td>
       <td><code>/tmp</code></td>
       <td>約 7 TB</td>
-      <td>不可能</td>
       <td>不可能</td>
       <td>本人のみ</td>
     </tr>
