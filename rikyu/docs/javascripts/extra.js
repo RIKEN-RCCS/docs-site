@@ -32,13 +32,14 @@ function hideOtherLanguageSection() {
 
   // 言語別セクションの表示制御
   document.querySelectorAll('.md-nav--primary > .md-nav__list > .md-nav__item--section').forEach(function(item) {
-    var label = item.querySelector('.md-ellipsis');
-    if (!label) return;
-    var text = label.textContent.trim();
+    var label = item.querySelector(':scope > .md-nav__link');
+    var labelText = label ? label.querySelector('.md-ellipsis') : null;
+    if (!labelText) return;
+    var text = labelText.textContent.trim();
     if (isJa && text === 'English') item.style.display = 'none';
     if (isEn && (text === '日本語' || text === 'Japanese')) item.style.display = 'none';
     if ((isJa && text === '日本語') || (isEn && text === 'English')) {
-      label.style.display = 'none';
+      item.classList.add('md-nav__item--current-language');
       var title = item.querySelector(':scope > .md-nav > .md-nav__title');
       if (title) title.style.display = 'none';
     }
