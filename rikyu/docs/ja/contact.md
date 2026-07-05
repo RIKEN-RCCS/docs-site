@@ -2,7 +2,7 @@
 
 ## AIチャットサポート
 
-本システムの利用方法について、AIチャットで質問できます。別ページで表示したい場合は、[こちら](./chat.md){ target="_blank" rel="noopener" }からご利用ください。
+本システムの利用方法について、AIチャットで質問できます。別ページで開く場合は、[こちら](./chat.md){ target="_blank" rel="noopener" }からご利用ください。
 
 <section class="section home-section chat-window">
   <iframe

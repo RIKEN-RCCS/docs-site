@@ -1,6 +1,6 @@
 # Slurmの使い方
 
-本システムでプログラムを実行するには、[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }を使ってジョブを投入します。ジョブ実行には、<span class="text-marker">バッチジョブ</span>と<span class="text-marker">対話ジョブ</span>があります。バッチジョブは、あらかじめジョブスクリプトを作成しジョブを投入する方法で、長時間実行する場合などに適しています。一方、対話ジョブでは、ユーザがコマンドを対話的に実行できるため、バッチジョブ投入前のデバッグ等に適しています。
+本システムでプログラムを実行するには、[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }を使ってジョブを投入します。ジョブの実行方法には、<span class="text-marker">バッチジョブ</span>と<span class="text-marker">対話ジョブ</span>があります。バッチジョブは、あらかじめジョブスクリプトを作成して投入する方法で、長時間実行する場合などに適しています。一方、対話ジョブでは、ユーザがコマンドを対話的に実行できるため、バッチジョブ投入前のデバッグ等に適しています。
 
 本ページでは、コマンドラインによるジョブの投入方法について説明します。
 
@@ -21,23 +21,23 @@
       <td style="text-align: right;">1</td>
       <td rowspan="4">1</td>
       <td>36</td>
-      <td>400GB</td>
+      <td>400 GB</td>
       <td rowspan="7">96時間</td>
     </tr>
     <tr>
       <td style="text-align: right;">2</td>
       <td>72</td>
-      <td>800GB</td>
+      <td>800 GB</td>
     </tr>
     <tr>
       <td style="text-align: right;">3</td>
       <td>108</td>
-      <td>1,200GB</td>
+      <td>1,200 GB</td>
     </tr>
     <tr>
       <td style="text-align: right;">4</td>
       <td rowspan="4">144</td>
-      <td rowspan="4">1,600GB</td>
+      <td rowspan="4">1,600 GB</td>
     </tr>
      <tr>
       <td style="text-align: right;">8</td>
@@ -130,7 +130,7 @@ $ squeue
 
 ### 対話ジョブ用の計算資源確保
 
-対話ジョブ用の計算資源を`salloc`コマンドで確保します。次の例では、2GPUを10分間要求します。出力メッセージの`2081`はジョブIDです。
+対話ジョブ用の計算資源を`salloc`コマンドで確保します。次の例では、2 GPUを10分間要求します。出力メッセージの`2081`はジョブIDです。
 
 ```bash
 $ salloc --gpus=2 --time=00:10:00
@@ -156,7 +156,7 @@ salloc: Relinquishing job allocation 2081
 
 ### 対話ジョブの実行
 
-対話ジョブを`srun --pty bash`コマンドで開始します。次の例では、4GPUを10分間要求します。
+対話ジョブを`srun --pty bash`コマンドで開始します。次の例では、4 GPUを10分間要求します。
 
 ```bash
 $ srun --gpus=4 --time=00:10:00 --pty bash

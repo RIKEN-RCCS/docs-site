@@ -12,4 +12,4 @@ Open OnDemandは次の機能を提供しています。
 * 対話アプリケーション（リモートデスクトップなど）の実行と管理
 * ジョブの投入と管理
 
-Open OnDemandは、Google Chrome、Mozilla Firefox、Microsoft Edgeなどの主要なWebブラウザに対応しています（注：Internet Explorer 11は対応していません）。中でもChromeは、リモートデスクトップなどにおいて、文字列のコピー & ペースト機能をネイティブにサポートしていますので、Chromeのご利用をお勧めします。
+Open OnDemandは、Google Chrome、Mozilla Firefox、Microsoft Edgeなどの主要なWebブラウザに対応しています（注：Internet Explorer 11は対応していません）。中でもChromeは、リモートデスクトップなどで文字列のコピー & ペースト機能をネイティブにサポートしています。そのため、Chromeの利用を推奨します。

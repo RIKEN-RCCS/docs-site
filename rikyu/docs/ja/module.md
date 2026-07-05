@@ -19,7 +19,7 @@
 | `module list`               | ロード済みのモジュールの一覧表示 |
 | `module load MODULE_NAME`   | モジュールをロード |
 | `module unload MODULE_NAME` | モジュールをアンロード |
-| `module purge`              | 全てのモジュールをアンロード |
+| `module purge`              | すべてのモジュールをアンロード |
 | `module show MODULE_NAME`   | モジュールの設定内容を表示 |
 
 ## コマンドの使用例
@@ -67,7 +67,7 @@ $ module load nvhpc
 $ module unload nvhpc
 ```
 
-### 全てのモジュールをアンロード
+### すべてのモジュールをアンロード
 
 ```bash
 $ module purge
