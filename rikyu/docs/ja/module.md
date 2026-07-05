@@ -15,12 +15,12 @@
 
 | コマンド | 説明 |
 | -------- | ---- |
-| `module avail`           | 利用可能なモジュールの一覧表示 |
-| `module list`            | ロード済みのモジュールの一覧表示 |
-| `module load [module]`   | モジュールをロード |
-| `module unload [module]` | モジュールをアンロード |
-| `module purge`           | 全てのモジュールをアンロード |
-| `module show [module]`   | モジュールの設定内容を表示 |
+| `module avail`              | 利用可能なモジュールの一覧表示 |
+| `module list`               | ロード済みのモジュールの一覧表示 |
+| `module load MODULE_NAME`   | モジュールをロード |
+| `module unload MODULE_NAME` | モジュールをアンロード |
+| `module purge`              | 全てのモジュールをアンロード |
+| `module show MODULE_NAME`   | モジュールの設定内容を表示 |
 
 ## コマンドの使用例
 ### 利用可能なモジュールの一覧表示

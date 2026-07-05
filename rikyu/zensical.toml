@@ -62,7 +62,6 @@ nav = [
   { "ストレージ" = "ja/storage.md" },
   { "ソフトウェア環境" = "ja/software.md" },
   { "ログイン方法" = "ja/login.md" },
-  { "ジョブ実行資源" = "ja/resource.md" },
   { "モジュール環境" = "ja/module.md" },
   { "Spackの使い方" = "ja/spack.md" },
   { "Open OnDemandの使い方" = "ja/ood.md" },
