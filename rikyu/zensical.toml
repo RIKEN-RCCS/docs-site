@@ -66,7 +66,7 @@ nav = [
   { "Spackの使い方" = "ja/spack.md" },
   { "Open OnDemandの使い方" = "ja/ood.md" },
   { "Slurmの使い方" = "ja/slurm.md" },
-  { "お問合せ" = "ja/contact.md" },
+  { "お問い合わせ" = "ja/contact.md" },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
