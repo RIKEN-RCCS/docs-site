@@ -7,7 +7,7 @@
 <section class="section home-section chat-window">
   <iframe
     class="askdona-chat-frame"
-    src="../askdona-frame.html?language=ja"
+    src="./askdona-frame.html?language=ja"
     title="R-CCS AI for Science Assistant"
     allow="clipboard-write"
   ></iframe>

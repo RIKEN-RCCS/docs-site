@@ -4,13 +4,13 @@ hide:
   - toc
 ---
 
-# AI Chat Support
+# AIチャットサポート
 
 <section class="section home-section chat-window">
-  <p>You can ask questions about how to use this system through AI chat.</p>
+  <p>本システムの利用方法について、AIチャットで質問できます。</p>
   <iframe
     class="askdona-chat-frame"
-    src="../askdona-frame.html?language=en"
+    src="./askdona-frame.html?language=ja"
     title="R-CCS AI for Science Assistant"
     allow="clipboard-write"
   ></iframe>

@@ -7,7 +7,7 @@ You can ask questions about how to use this system through AI chat. To use it on
 <section class="section home-section chat-window">
   <iframe
     class="askdona-chat-frame"
-    src="../askdona-frame.html?language=en"
+    src="./askdona-frame.html?language=en"
     title="R-CCS AI for Science Assistant"
     allow="clipboard-write"
   ></iframe>

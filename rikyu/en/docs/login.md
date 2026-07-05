@@ -2,7 +2,7 @@
 
 This system provides two login methods: <span class="text-marker">connecting to the Open OnDemand server over HTTPS from a web browser</span> and <span class="text-marker">connecting to a login node over SSH from terminal software</span>. After logging in with either method, submit jobs from the login destination server to compute nodes through the [Slurm job scheduler](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }. Place data on shared storage for use.
 
-![How to use](../img/howtouse.png){ width="500" }
+![How to use](img/howtouse.png){ width="500" }
 
 ## Open OnDemand
 
@@ -20,7 +20,7 @@ Before connecting over SSH from terminal software, you need to register your SSH
 
 Launch "SSH Public Key". The following screen appears. Enter your SSH public key in the text area under "Add a Public Key", then click the "Add" button. When registration succeeds, the registration information appears under "Registered Public Keys".
 
-![SSH public key](../img/sshpubkey.png){ width="800" }
+![SSH public key](img/sshpubkey.png){ width="800" }
 
 After registering your public key, you can log in over SSH from terminal software with the following command. Replace `USERNAME` with your user name.
 

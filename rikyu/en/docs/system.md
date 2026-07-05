@@ -19,7 +19,7 @@ This system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, share
 
 For details on CPU/GPU connections and bandwidth, see the following figure.
 
-![Compute node bandwidth](../img/bandwidth.png){ width="550" }
+![Compute node bandwidth](img/bandwidth.png){ width="550" }
 
 ## Overall System Performance
 
@@ -36,6 +36,6 @@ For details on CPU/GPU connections and bandwidth, see the following figure.
 
 The network is a two-layer Fat Tree composed of 6 Spine switches and 17 Leaf switches. Of the 17 Leaf switches, 16 are connected to 24 compute nodes each, and the remaining Leaf switch is connected to 16 compute nodes (16 &times; 24 nodes + 1 &times; 16 nodes = 400 nodes). Communication between compute nodes under the same Leaf switch is fast, but communication that crosses Spine switches may experience somewhat lower performance depending on the communication path and the amount of simultaneous traffic.
 
-![Network topology](../img/network.png){ width="700" }
+![Network topology](img/network.png){ width="700" }
 
 <!-- The bisection bandwidth of all compute nodes is 326.4 Tbps (48 Spine switch downlink ports &times; 17 switches &times; 800 Gbps / 2). In contrast, the total injection bandwidth of the compute nodes is 1,280 Tbps (400 nodes &times; 800 Gbps &times; 4). Therefore, the bisection bandwidth is 25.5% of the total injection bandwidth (326.4 / 1,280 = 0.255). -->
