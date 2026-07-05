@@ -62,7 +62,7 @@
 
 各ユーザは5 GBのホーム領域（`/home/[USER NAME]`）を持ちます。`[USER NAME]`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
 
-コマンドラインでホーム領域の利用状況を確認するには、下記のコマンドを実行ください。
+コマンドラインでホーム領域の利用状況を確認するには、下記のコマンドを実行してください。
 
 ```console
 $ lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
@@ -77,7 +77,7 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 
 各グループは1 TBのグループ領域（`/data1/[GROUP NAME]`）を持ちます。`[GROUP NAME]`はグループ名です。グループ領域は、同じグループのメンバが読み書きできます。グループ領域は、大規模な作業ファイルや同じグループのメンバで共同利用するデータの保存に適しています。
 
-コマンドラインでグループ領域の利用状況を確認するには、下記のコマンドを実行ください（`[GROUP NAME]`にはグループ名を指定ください）。
+コマンドラインでグループ領域の利用状況を確認するには、下記のコマンドを実行してください（`[GROUP NAME]`にはグループ名を指定してください）。
 
 ```console
 $ lfs quota -h -p `lfs project -d /data1/[GROUP NAME] | awk '{print $1}'` /data1
@@ -89,7 +89,7 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 `used`は使用済み容量、`blimit`は容量の上限、`files`は使用中のファイル数、`ilimit`はファイル数の上限です。
 
 !!! note
-    コマンドラインでグループ名を知りたい場合は、`id`コマンドを実行し、`groups=...`に表示される`rkp`で始まる文字列を確認ください。なお、1人のユーザは複数のグループを持つことがあります。
+    コマンドラインでグループ名を知りたい場合は、`id`コマンドを実行し、`groups=...`に表示される`rkp`で始まる文字列を確認してください。なお、1人のユーザは複数のグループを持つことがあります。
 
 ### スクラッチ領域
 
@@ -141,7 +141,7 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 
 ### 増量申請
 
-ホーム領域もしくはグループ領域の容量を追加する場合は、下記のリンクからチケットを生成してください。
+ホーム領域もしくはグループ領域の容量を追加する場合は、下記のリンクからチケットを作成してください。
 
 [チケット作成](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .registration-button .zendesk-button target="_blank" rel="noopener" }
 
