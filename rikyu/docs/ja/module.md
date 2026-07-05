@@ -5,24 +5,26 @@
 | モジュール名   | 説明                                     |
 | -------------- | ---------------------------------------- |
 | `nvhpc`        | MPIを含む標準的なNVIDIA HPC SDK環境です。|
-| `nvhpc-nompi`  | MPIを含まないNVIDIA HPC SDK環境です。別のMPIを自分で用意して使用する場合に使います。 |
+| `nvhpc-nompi`  | MPIを含まないNVIDIA HPC SDK環境です。別のMPIを自分で用意して使用する場合に適しています。 |
 | `nvhpc-hpcx`   | `nvhpc`にHPC-Xを組み合わせた環境です。InfiniBand/RDMA環境でHPC-XのMPIを使う場合に適しています。 |
 | `nvhpc-hpcx-cuda13` | `nvhpc-hpcx`と同様にHPC-Xを含みますが、使用するCUDAバージョンがCUDA 13に固定されています。|
 | `nvhpc-byo-compiler` | システムのGCCなど、利用者が用意したコンパイラを使うための環境です。BYOは“Bring Your Own”の略です。|
 
 ## `module`コマンド
+
 `module`コマンドにより、必要な環境設定を動的に切り替えて利用できます。主な`module`コマンドは次のとおりです。
 
 | コマンド | 説明 |
 | -------- | ---- |
 | `module avail`              | 利用可能なモジュールの一覧表示 |
 | `module list`               | ロード済みのモジュールの一覧表示 |
-| `module load MODULE_NAME`   | モジュールをロード |
-| `module unload MODULE_NAME` | モジュールをアンロード |
-| `module purge`              | すべてのモジュールをアンロード |
+| `module load MODULE_NAME`   | モジュールのロード |
+| `module unload MODULE_NAME` | モジュールのアンロード |
+| `module purge`              | すべてのモジュールのアンロード |
 | `module show MODULE_NAME`   | モジュールの設定内容を表示 |
 
 ## コマンドの使用例
+
 ### 利用可能なモジュールの一覧表示
 
 ```bash
@@ -55,19 +57,19 @@ Currently Loaded Modules:
   1) nvhpc/26.3
 ```
 
-### モジュールをロード
+### モジュールのロード
 
 ```bash
 $ module load nvhpc
 ```
 
-### モジュールをアンロード
+### モジュールのアンロード
 
 ```bash
 $ module unload nvhpc
 ```
 
-### すべてのモジュールをアンロード
+### すべてのモジュールのアンロード
 
 ```bash
 $ module purge

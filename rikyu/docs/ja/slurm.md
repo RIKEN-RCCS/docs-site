@@ -1,10 +1,11 @@
 # Slurmの使い方
 
-本システムでプログラムを実行するには、[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }を使ってジョブを投入します。ジョブの実行方法には、<span class="text-marker">バッチジョブ</span>と<span class="text-marker">対話ジョブ</span>があります。バッチジョブは、あらかじめジョブスクリプトを作成して投入する方法で、長時間実行する場合などに適しています。一方、対話ジョブでは、ユーザがコマンドを対話的に実行できるため、バッチジョブ投入前のデバッグ等に適しています。
+本システムでプログラムを実行するには、[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }を使ってジョブを投入します。ジョブの実行方法には、<span class="text-marker">バッチジョブ</span>と<span class="text-marker">対話ジョブ</span>があります。バッチジョブは、あらかじめジョブスクリプトを作成して投入する方法で、長時間実行する場合などに適しています。一方、対話ジョブでは、ユーザがコマンドを対話的に実行できるため、バッチジョブ投入前のデバッグなどに適しています。
 
 本ページでは、コマンドラインによるジョブの投入方法について説明します。
 
 ## ジョブ実行資源
+
 ジョブを投入する際はGPU数を指定します。<span class="text-marker">指定できるGPU数は、1、2、3、4、8、12、16</span>です。GPU数によって、確保されるノード数、最大CPUコア数、最大メモリ量が異なります。
 
 <div class="spec-table">
@@ -89,12 +90,12 @@ module load nvhpc   # モジュールの読み込み
 export OMP_NUM_THREADS=1     # スレッド数
 
 module load nvhpc            # モジュールの読み込み
-mpiexec ./a.out	             # 実行コマンド
+mpiexec ./a.out              # 実行コマンド
 ```
 
 ## Slurmのコマンド
 
-Slurmの機能により、ジョブの投入、状態確認、キャンセルを行うことができます。主なSlurmのコマンドは次のとおりです。
+Slurmでは、ジョブの投入、状態確認、キャンセルを行うことができます。主なSlurmコマンドは次のとおりです。
 
 | コマンド | 説明 |
 | -------- | ---- |
@@ -106,7 +107,7 @@ Slurmの機能により、ジョブの投入、状態確認、キャンセルを
 | `sinfo`             | 計算ノードの状態表示 |
 
 !!! note
-    各Slurmのコマンドの詳細については、次のURLを参照してください。
+    各Slurmコマンドの詳細については、次のURLを参照してください。
     https://slurm.schedmd.com/documentation.html
  
 ### バッチジョブの投入
