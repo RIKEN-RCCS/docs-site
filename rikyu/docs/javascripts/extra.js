@@ -30,12 +30,18 @@ function hideOtherLanguageSection() {
   var isEn = hasPathSegment(path, 'en');
   if (!isJa && !isEn) return;
 
-  // セクション（English）の表示制御
+  // 言語別セクションの表示制御
   document.querySelectorAll('.md-nav--primary > .md-nav__list > .md-nav__item--section').forEach(function(item) {
     var label = item.querySelector('.md-ellipsis');
     if (!label) return;
     var text = label.textContent.trim();
     if (isJa && text === 'English') item.style.display = 'none';
+    if (isEn && (text === '日本語' || text === 'Japanese')) item.style.display = 'none';
+    if ((isJa && text === '日本語') || (isEn && text === 'English')) {
+      label.style.display = 'none';
+      var title = item.querySelector(':scope > .md-nav > .md-nav__title');
+      if (title) title.style.display = 'none';
+    }
   });
 
   // 個別ページ項目の表示制御
@@ -46,6 +52,14 @@ function hideOtherLanguageSection() {
       var fullPath = new URL(link.getAttribute('href'), window.location.href).pathname;
       if (isEn && hasPathSegment(fullPath, 'ja')) item.style.display = 'none';
       if (isJa && !hasPathSegment(fullPath, 'ja')) item.style.display = 'none';
+    } catch(e) {}
+  });
+
+  document.querySelectorAll('.md-footer__link').forEach(function(link) {
+    try {
+      var fullPath = new URL(link.getAttribute('href'), window.location.href).pathname;
+      if (isEn && !hasPathSegment(fullPath, 'en')) link.style.display = 'none';
+      if (isJa && !hasPathSegment(fullPath, 'ja')) link.style.display = 'none';
     } catch(e) {}
   });
 }

@@ -56,17 +56,30 @@ Copyright &copy; RIKEN Center for Computational Science
 #   { "Markdown in 5min" = "markdown.md" },
 # ]
 nav = [
-  { "Welcome" = "en/index.md" },
-  { "はじめに" = "ja/index.md" },
-  { "システム概要" = "ja/system.md" },
-  { "ストレージ" = "ja/storage.md" },
-  { "ソフトウェア環境" = "ja/software.md" },
-  { "ログイン方法" = "ja/login.md" },
-  { "モジュール環境" = "ja/module.md" },
-  { "Spackの使い方" = "ja/spack.md" },
-  { "Open OnDemandの使い方" = "ja/ood.md" },
-  { "Slurmの使い方" = "ja/slurm.md" },
-  { "お問い合わせ" = "ja/contact.md" },
+  { "English" = [
+    { "Welcome" = "en/index.md" },
+    { "System Overview" = "en/system.md" },
+    { "Storage" = "en/storage.md" },
+    { "Software Environment" = "en/software.md" },
+    { "Login" = "en/login.md" },
+    { "Modules" = "en/module.md" },
+    { "Spack" = "en/spack.md" },
+    { "Open OnDemand" = "en/ood.md" },
+    { "Slurm" = "en/slurm.md" },
+    { "Contact" = "en/contact.md" },
+  ] },
+  { "日本語" = [
+    { "はじめに" = "ja/index.md" },
+    { "システム概要" = "ja/system.md" },
+    { "ストレージ" = "ja/storage.md" },
+    { "ソフトウェア環境" = "ja/software.md" },
+    { "ログイン方法" = "ja/login.md" },
+    { "モジュール環境" = "ja/module.md" },
+    { "Spackの使い方" = "ja/spack.md" },
+    { "Open OnDemandの使い方" = "ja/ood.md" },
+    { "Slurmの使い方" = "ja/slurm.md" },
+    { "お問い合わせ" = "ja/contact.md" },
+  ] },
 ]
 
 # With the "extra_css" option you can add your own CSS styling to customize
