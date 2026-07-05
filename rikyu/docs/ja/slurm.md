@@ -78,7 +78,7 @@ module load nvhpc   # モジュールの読み込み
 
 ### 並列ジョブ
 
-並列ジョブのジョブスクリプト例です。プロセス数（`--ntasks=`）とスレッド数（`OMP_NUM_THREADS`）は必要に応じて指定してください。
+並列ジョブのジョブスクリプト例です。プロセス数（`--ntasks=`）とスレッド数（`export OMP_NUM_THREADS=`）は必要に応じて指定してください。
 
 ```bash
 #!/bin/bash
@@ -92,9 +92,9 @@ module load nvhpc            # モジュールの読み込み
 mpiexec ./a.out	             # 実行コマンド
 ```
 
-## Slurmコマンド
+## Slurmのコマンド
 
-ジョブの投入、状態確認、キャンセルなどには、次のSlurmコマンドを使用します。
+Slurmの機能により、ジョブの投入、状態確認、キャンセルを行うことができます。主なSlurmのコマンドは次のとおりです。
 
 | コマンド | 説明 |
 | -------- | ---- |
@@ -106,7 +106,7 @@ mpiexec ./a.out	             # 実行コマンド
 | `sinfo`             | 計算ノードの状態表示 |
 
 !!! note
-    各Slurmコマンドの詳細については、次のURLを参照してください。
+    各Slurmのコマンドの詳細については、次のURLを参照してください。
     https://slurm.schedmd.com/documentation.html
  
 ### バッチジョブの投入
