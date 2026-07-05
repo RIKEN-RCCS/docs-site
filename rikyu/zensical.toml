@@ -56,10 +56,7 @@ Copyright &copy; RIKEN Center for Computational Science
 #   { "Markdown in 5min" = "markdown.md" },
 # ]
 nav = [
-  { "Welcome" = "index.md" },
-  { "English" = [
-    { "index" = "en/index.md" },
-  ]},
+  { "Welcome" = "en/index.md" },
   { "はじめに" = "ja/index.md" },
   { "システム概要" = "ja/system.md" },
   { "ソフトウェア環境" = "ja/software.md" },
@@ -69,7 +66,6 @@ nav = [
   { "モジュール環境" = "ja/module.md" },
   { "Spackの使い方" = "ja/spack.md" },
   { "Slurmの使い方" = "ja/slurm.md" },
-  { "Tips" = "ja/tips.md" },
   { "お問合せ" = "ja/contact.md" },
 ]
 

@@ -17,15 +17,13 @@
 | -------- | ---- |
 | `module avail`           | 利用可能なモジュールの一覧表示 |
 | `module list`            | ロード済みのモジュールの一覧表示 |
-| `module load [module]`   | `[module]`をロード |
-| `module unload [module]` | `[module]`をアンロード |
+| `module load [module]`   | モジュールをロード |
+| `module unload [module]` | モジュールをアンロード |
 | `module purge`           | 全てのモジュールをアンロード |
-| `module show [module]`   | `[module]`の設定内容を表示 |
+| `module show [module]`   | モジュールの設定内容を表示 |
 
 ## コマンドの使用例
-### `module avail`
-
-利用可能なモジュールの一覧を表示します。
+### 利用可能なモジュールの一覧表示
 
 ```bash
 $ module avail
@@ -48,9 +46,7 @@ Use "module spider" to find all possible modules and extensions.
 Use "module keyword key1 key2 ..." to search for all possible modules matching any of the "keys".
 ```
 
-### `module list`
-
-ロード済みのモジュールの一覧を表示します。
+### ロード済みのモジュールの一覧表示
 
 ```bash
 $ module list
@@ -59,25 +55,19 @@ Currently Loaded Modules:
   1) nvhpc/26.3
 ```
 
-### `module load`
-
-利用したいモジュールをロードします。
+### モジュールをロード
 
 ```bash
 $ module load nvhpc
 ```
 
-### `module unload`
-
-ロード済のモジュールをアンロードします。
+### モジュールをアンロード
 
 ```bash
 $ module unload nvhpc
 ```
 
-### `module purge`
-
-現在ロード済みの全てのモジュールをアンロードします。
+### 全てのモジュールをアンロード
 
 ```bash
 $ module purge
@@ -87,9 +77,7 @@ $ module purge
     
     必要なモジュールをロードする前に`module purge`を実行しておくと、意図しないモジュール環境の影響を避けやすくなります。
 
-### `module show`
-
-モジュールの設定内容を表示します。
+### モジュールの設定内容を表示
 
 ```bash
 $ module show nvhpc

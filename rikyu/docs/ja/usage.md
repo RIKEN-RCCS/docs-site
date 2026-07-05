@@ -1,6 +1,6 @@
 # 利用方法
 
-ユーザが本システムに接続するには、<span class="text-marker">WebブラウザからHTTPSでOpen OnDemandサーバに接続する</span>か、<span class="text-marker">端末ソフトウェアからSSHでログインノードに接続します</span>。そして、それぞれサーバから[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }を介してジョブを投入し、割り当てられた計算ノード上でプログラムを実行します。データは共用ストレージ上に配置して利用できます。
+本システムにログインする方法として、<span class="text-marker">WebブラウザからHTTPSでOpen OnDemandサーバに接続する方法</span>と<span class="text-marker">端末ソフトウェアからSSHでログインノードに接続する方法</span>を提供しています。どちらかの方法でログインした後、そのサーバから[Slurmジョブスケジューラ](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }を介して計算ノードにジョブを投入します。データは共用ストレージ上に配置して利用します。
 
 ![How to use](../img/howtouse.png){ width="500" }
 
