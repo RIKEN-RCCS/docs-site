@@ -12,7 +12,7 @@ This user guide explains how to use the Supercomputer RIKYU.
 
 To apply for an account on this system, use the RIKYU Account Application System (RAAS) below.
 
-[Account Application](https://raas.rikyu.r-ccs.riken.jp/language/en){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
+[Account Application](https://raas.rikyu.r-ccs.riken.jp/language/en){ .md-button .md-button--primary .registration-button target="_blank" referrerpolicy="no-referrer" rel="noreferrer" }
 
 ## Usage Fees
 
