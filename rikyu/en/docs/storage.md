@@ -92,7 +92,7 @@ The home area uses 2 PB of high-speed storage (SSD), while the group area uses 1
 
 To request additional capacity for the home area or group area, create a ticket using the link below.
 
-[Create a Ticket](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .registration-button .zendesk-button target="_blank" rel="noopener" }
+[Create a Ticket](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 !!! note
 

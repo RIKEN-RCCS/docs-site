@@ -8,7 +8,7 @@ This system provides two login methods: <span class="text-marker">connecting to 
 
 Open OnDemand is a web portal that lets you use the supercomputer from a web browser. Log in to Open OnDemand from the link below.
 
-[Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .registration-button .ood-button target="_blank" rel="noopener" }
+[Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 For details, see [Using Open OnDemand](ood.md).
 
@@ -16,7 +16,7 @@ For details, see [Using Open OnDemand](ood.md).
 
 Before connecting over SSH from terminal software, you need to register your SSH public key with this system from Open OnDemand. Log in to Open OnDemand from the link below.
 
-[Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .registration-button .ood-button target="_blank" rel="noopener" }
+[Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 Launch "SSH Public Key". The following screen appears. Enter your SSH public key in the text area under "Add a Public Key", then click the "Add" button. When registration succeeds, the registration information appears under "Registered Public Keys".
 

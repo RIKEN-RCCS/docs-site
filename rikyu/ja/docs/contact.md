@@ -17,7 +17,7 @@
 
 AIチャットサポートで解決できない場合は、以下のリンクからチケットサービスをご利用ください。まず検索機能で類似する問い合わせがないかご確認ください。該当する問い合わせが見つからない場合は、画面上部の「リクエストを送信」をクリックして、お問い合わせチケットを作成してください。
 
-[チケットサービス](https://support.r-ccs.riken.jp/hc/ja?brand_id=5378545411486){ .md-button .md-button--primary .registration-button .zendesk-button target="_blank" rel="noopener" }
+[チケットサービス](https://support.r-ccs.riken.jp/hc/ja?brand_id=5378545411486){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## メール
 

@@ -12,7 +12,7 @@
 
 本システムのアカウントを申請するには、以下の理究アカウント管理システムRAAS（RIKYU Account Application System）から手続きしてください。
 
-[アカウント申請](https://raas.rikyu.r-ccs.riken.jp/language/ja){ .md-button .md-button--primary .registration-button target="_blank" referrerpolicy="no-referrer" rel="noreferrer" }
+[アカウント申請](https://raas.rikyu.r-ccs.riken.jp/language/ja){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## 利用料金
 
@@ -20,4 +20,4 @@
 
 現在の利用状況を確認したい場合は、以下の請求システムを参照してください。
 
-[請求システム](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .registration-button .billing-button target="_blank" rel="noopener" }
+[請求システム](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }

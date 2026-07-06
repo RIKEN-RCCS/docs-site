@@ -12,7 +12,7 @@ This user guide explains how to use the Supercomputer RIKYU.
 
 To apply for an account on this system, use the RIKYU Account Application System (RAAS) below.
 
-[Account Application](https://raas.rikyu.r-ccs.riken.jp/language/en){ .md-button .md-button--primary .registration-button target="_blank" referrerpolicy="no-referrer" rel="noreferrer" }
+[Account Application](https://raas.rikyu.r-ccs.riken.jp/language/en){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## Usage Fees
 
@@ -20,4 +20,4 @@ The usage fee for this system is 300 yen per GPU hour. For example, using 4 GPUs
 
 To check your current usage, refer to the billing system below.
 
-[Billing System](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .registration-button .billing-button target="_blank" rel="noopener" }
+[Billing System](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
