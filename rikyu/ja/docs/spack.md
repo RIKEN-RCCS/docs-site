@@ -199,8 +199,6 @@ srun pw.x -in qe.in
 
 - `quantum-espresso`
 - `gromacs`
-- `openfoam-org`
-- `darshan-runtime`
 
 ### 4.2 hpcx-mpi対応か確認する
 

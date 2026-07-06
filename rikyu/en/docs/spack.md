@@ -200,8 +200,6 @@ The following applications and libraries are currently provided with `hpcx-mpi` 
 
 - `quantum-espresso`
 - `gromacs`
-- `openfoam-org`
-- `darshan-runtime`
 
 ### 4.2 Check Whether a Package Supports hpcx-mpi
 
