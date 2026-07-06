@@ -8,10 +8,6 @@ Software is managed with **Spack**.
 To use software that has already been built by the system, first read **Chapters 1 and 2, and Chapters 5 and 6 as needed**.
 Read the private instance instructions in **Chapter 7** only if you need to build OSS yourself.
 
-!!! note
-
-    The `$` and `%` characters at the beginning of command examples are prompts. Do not type them.
-
 | Purpose | Chapters to read |
 |---|---|
 | Use prebuilt software | Chapters 1, 2, 3, 5, and 6 |
@@ -19,7 +15,6 @@ Read the private instance instructions in **Chapter 7** only if you need to buil
 | Use MPI applications | Chapters 1, 2, 3, 4, 5, and 6 |
 | Resolve multiple packages with the same name | Chapter 6 |
 | Build software yourself | Chapters 1, 7, and 8 |
-
 
 ## 1. Terminology
 

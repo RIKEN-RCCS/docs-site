@@ -8,6 +8,10 @@ The Supercomputer RIKYU is a system installed at the [RIKEN Center for Computati
 
 This user guide explains how to use the Supercomputer RIKYU.
 
+!!! note
+
+    This user guide includes various command examples. The leading `$` or `%` in these examples represents the command prompt and should not be typed. Unless otherwise noted, Bash is used as the shell.
+
 ## Account Application
 
 To apply for an account on this system, use the RIKYU Account Application System (RAAS) below.

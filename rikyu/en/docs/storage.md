@@ -4,7 +4,7 @@ The storage areas of this system are divided into three types: <span class="text
 
 ## Home Area
 
-Each user has a 5 GB home area (`/home/USER_NAME`). `USER_NAME` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
+Each user has a 5 GB home area (`/home/USER`). `USER` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
 
 To check home area usage from the command line, run the following command.
 
@@ -19,12 +19,12 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 
 ## Group Area
 
-Each group has a 1 TB group area (`/data1/GROUP_NAME`). `GROUP_NAME` is the group name. Members of the same group can read and write to the group area. The group area is suitable for storing large work files and data shared among members of the same group.
+Each group has a 1 TB group area (`/data1/GROUP`). `GROUP` is the group name. Members of the same group can read and write to the group area. The group area is suitable for storing large work files and data shared among members of the same group.
 
-To check group area usage from the command line, run the following command (`GROUP_NAME` should be replaced with the group name).
+To check group area usage from the command line, run the following command (`GROUP` should be replaced with the group name).
 
 ```console
-$ lfs quota -h -p `lfs project -d /data1/GROUP_NAME | awk '{print $1}'` /data1
+$ lfs quota -h -p `lfs project -d /data1/GROUP | awk '{print $1}'` /data1
 Disk quotas for prj 200013 (pid 200013):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
     /data1      4k       0k      1T       -       1        0 10000000       -
@@ -47,7 +47,7 @@ Files in the scratch area are deleted when the job finishes. Copy any results th
 
 ## Comparison of Storage Areas
 
-The home area and group area are on shared storage, so they can be used from both compute nodes and login nodes. Data can also be shared among multiple compute nodes. The scratch area is a temporary area on the compute node where the job is running and can be used only by processes running on that node. The users who can read and write differ by area: only the user can access the home area and scratch area, while members of the same group can access the group area.
+The home area and group area are on shared storage, so they can be used from both compute nodes and login nodes. Data can also be shared among multiple compute nodes. The scratch area is a temporary area on the compute node where the job is running and can be used only by processes running on that node. The home area and group area use Lustre as their file system, and the scratch area uses xfs. The users who can read and write differ by area: only the user can access the home area and scratch area, while members of the same group can access the group area.
 
 <div class="spec-table">
 <table>
@@ -56,21 +56,21 @@ The home area and group area are on shared storage, so they can be used from bot
       <th>Name</th>
       <th>Mount point</th>
       <th>Capacity</th>
-      <th>Use from compute nodes</th>
       <th>Use from login nodes and<br>sharing among multiple nodes</th>
+      <th>File system</th>
       <th>Users with read/write access</th>
     </tr>
     <tr>
       <td>Home area</td>
-      <td><code>/home/USER_NAME</code></td>
+      <td><code>/home/USER</code></td>
       <td>5 GB</td>
-      <td rowspan="3">Available</td>
       <td rowspan="2">Available</td>
+      <td rowspan="2">Lustre</td>
       <td>Owner only</td>
     </tr>
     <tr>
       <td>Group area</td>
-      <td><code>/data1/GROUP_NAME</code></td>
+      <td><code>/data1/GROUP</code></td>
       <td>1 TB per group</td>
       <td>Members of the same group</td>
     </tr>
@@ -79,6 +79,7 @@ The home area and group area are on shared storage, so they can be used from bot
       <td><code>/tmp</code></td>
       <td>1.5 TB per GPU</td>
       <td>Not available</td>
+      <td>xfs</td>
       <td>Owner only</td>
     </tr>
   </tbody>

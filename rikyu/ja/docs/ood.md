@@ -2,7 +2,6 @@
 
     このページは作成中です。
 
-
 # Open OnDemandの使い方
 
 Open OnDemandでは、次の機能を利用できます。
