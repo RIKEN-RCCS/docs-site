@@ -1,6 +1,6 @@
 !!! info
 
-    Early Access Phase 2 is scheduled to begin in the afternoon of Tuesday, July 7, 2026 (JST).
+    Early Access Phase 2 is scheduled to run from the afternoon of Tuesday, July 7, 2026 (JST) through the end of September 2026.
 
 # Welcome
 
@@ -10,14 +10,14 @@ This user guide explains how to use the Supercomputer RIKYU.
 
 ## Account Application
 
-To apply for an account on this system, use the link below.
+To apply for an account on this system, use the RIKYU Account Application System (RAAS) below.
 
-[Account Application](https://www.google.co.jp){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
+[Account Application](https://raas.rikyu.r-ccs.riken.jp/language/en){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
 
 ## Usage Fees
 
-The usage fee for this system is 300 yen per GPU hour. For example, using 4 GPUs for 5 hours costs 4 GPU &times; 5 hours &times; 300 yen = 6,000 yen. Consumption tax is charged separately. Usage fees are billed in arrears at the end of the following month.
+The usage fee for this system is 300 yen per GPU hour. For example, using 4 GPUs for 5 hours costs 4 GPUs &times; 5 hours &times; 300 yen = 6,000 yen. Consumption tax is charged separately. Usage fees are billed in arrears as a lump sum after the end of Early Access Phase 2.
 
 To check your current usage, refer to the billing system below.
 
-[Billing System](https://www.google.co.jp){ .md-button .md-button--primary .registration-button .billing-button target="_blank" rel="noopener" }
+[Billing System](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .registration-button .billing-button target="_blank" rel="noopener" }

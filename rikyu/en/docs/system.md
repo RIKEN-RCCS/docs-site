@@ -1,6 +1,6 @@
 # System Overview
 
-This system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, shared storage composed of 2 PB of high-speed storage (SSD) and 10 PB of large-capacity storage (HDD), and an InfiniBand XDR network that connects them at high speed. It is also connected to the Internet at 400 Gbps through the SINET6 academic information network.
+This system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, shared storage composed of 2 PB of high-speed storage (SSD) and 10 PB of large-capacity storage (HDD), and an InfiniBand XDR network that connects them at high speed. 
 
 ## Compute Node Performance
 

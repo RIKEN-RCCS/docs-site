@@ -41,7 +41,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 
 ## Scratch Area
 
-Each compute node has an approximately 7 TB scratch area (`/tmp`) backed by local SSDs. Only the user running the job can read and write to the scratch area. The scratch area is suitable when you want to handle intermediate results and similar data on fast local SSDs during computation.
+Each compute node has a scratch area (`/tmp`) backed by local SSDs. 1.5 TB is available per GPU. Only the user running the job can read and write to the scratch area. The scratch area is suitable when you want to handle intermediate results and similar data on fast local SSDs during computation.
 
 Files in the scratch area are deleted when the job finishes. Copy any results that need to be preserved to the home area or group area before the job ends.
 
@@ -71,14 +71,14 @@ The home area and group area are on shared storage, so they can be used from bot
     <tr>
       <td>Group area</td>
       <td><code>/data1/GROUP_NAME</code></td>
-      <td>Up to 1 TB</td>
+      <td>1 TB per group</td>
       <td>Available</td>
       <td>Members of the same group</td>
     </tr>
     <tr>
       <td>Scratch area</td>
       <td><code>/tmp</code></td>
-      <td>Approx. 7 TB</td>
+      <td>1.5 TB per GPU</td>
       <td>Not available</td>
       <td>Owner only</td>
     </tr>
