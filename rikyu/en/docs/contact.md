@@ -17,7 +17,7 @@ You can ask questions about how to use this system through AI chat. To use it on
 
 If AI chat support does not resolve your issue, use the ticket service from the link below. First, use the search function to check whether a similar inquiry already exists. If you cannot find a relevant inquiry, click "Submit a request" at the top of the screen to create an inquiry ticket.
 
-[Ticket Service](https://support.r-ccs.riken.jp/hc/ja?brand_id=5378545411486){ .md-button .md-button--primary .registration-button .zendesk-button target="_blank" rel="noopener" }
+[Ticket Service](https://support.r-ccs.riken.jp/hc/ja?brand_id=5378545411486){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## Email
 

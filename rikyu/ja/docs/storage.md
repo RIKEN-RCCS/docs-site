@@ -65,14 +65,13 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
       <td><code>/home/USER_NAME</code></td>
       <td>5 GB</td>
       <td rowspan="3">可能</td>
-      <td>可能</td>
+      <td rowspan="2">可能</td>
       <td>本人のみ</td>
     </tr>
     <tr>
       <td>グループ領域</td>
       <td><code>/data1/GROUP_NAME</code></td>
       <td>グループごとに1 TB</td>
-      <td>可能</td>
       <td>同じグループのメンバ</td>
     </tr>
     <tr>
@@ -92,7 +91,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 
 ホーム領域またはグループ領域の容量を追加する場合は、以下のリンクからチケットを作成してください。
 
-[チケット作成](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .registration-button .zendesk-button target="_blank" rel="noopener" }
+[チケット作成](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 !!! note
 

@@ -150,39 +150,23 @@
   background: #fff;
 }
 
-.md-typeset .registration-button,
-.md-typeset .chat-button,
-.md-typeset .zendesk-button,
-.md-typeset .billing-button,
-.md-typeset .ood-button {
+.md-typeset .action-button {
   margin: 0.1rem 0 0.2rem;
 }
 
-.md-typeset .registration-button,
-.md-typeset .chat-button,
-.md-typeset .zendesk-button,
-.md-typeset .billing-button,
-.md-typeset .ood-button,
+.md-typeset .action-button,
 .md-typeset .chat-return-link {
   padding: 0.45em 0.8em;
   border-radius: 0.28rem;
 }
 
-.md-typeset .registration-button,
-.md-typeset .chat-button,
-.md-typeset .zendesk-button,
-.md-typeset .billing-button,
-.md-typeset .ood-button {
+.md-typeset .action-button {
   background-color: rgb(0, 102, 255);
   border-color: rgb(0, 102, 255);
   color: rgb(255, 255, 255) !important;
 }
 
-.md-typeset .registration-button:is(:hover, :focus),
-.md-typeset .chat-button:is(:hover, :focus),
-.md-typeset .zendesk-button:is(:hover, :focus),
-.md-typeset .billing-button:is(:hover, :focus),
-.md-typeset .ood-button:is(:hover, :focus) {
+.md-typeset .action-button:is(:hover, :focus) {
   background-color: rgb(0, 82, 204);
   border-color: rgb(0, 82, 204);
 }

@@ -12,12 +12,12 @@ nav = [
   { "Welcome" = "index.md" },
   { "System Overview" = "system.md" },
   { "Storage" = "storage.md" },
-  { "Software Environment" = "software.md" },
   { "Login" = "login.md" },
-  { "Modules" = "module.md" },
-  { "Spack" = "spack.md" },
+  { "Module Environment" = "module.md" },
+  { "Job Resources" = "resources.md" },
   { "Open OnDemand" = "ood.md" },
   { "Slurm" = "slurm.md" },
+  { "Spack" = "spack.md" },
   { "Contact" = "contact.md" },
 ]
 

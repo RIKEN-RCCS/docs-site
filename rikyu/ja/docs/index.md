@@ -1,6 +1,6 @@
 !!! info
 
-    早期アクセスフェーズ2の期間は、2026年7月7日（火）午後（JST）から2026年9月末の予定です。
+    早期アクセスフェーズ2の期間は、2026年7月7日（火）午後から2026年9月末の予定です。
 
 # はじめに
 
@@ -12,7 +12,7 @@
 
 本システムのアカウントを申請するには、以下の理究アカウント管理システムRAAS（RIKYU Account Application System）から手続きしてください。
 
-[アカウント申請](https://raas.rikyu.r-ccs.riken.jp/language/ja){ .md-button .md-button--primary .registration-button target="_blank" rel="noopener" }
+[アカウント申請](https://raas.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## 利用料金
 
@@ -20,4 +20,4 @@
 
 現在の利用状況を確認したい場合は、以下の請求システムを参照してください。
 
-[請求システム](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .registration-button .billing-button target="_blank" rel="noopener" }
+[請求システム](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
