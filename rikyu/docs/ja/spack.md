@@ -216,10 +216,6 @@ srun pw.x -in qe.in
 - `gromacs`
 - `openfoam-org`
 - `darshan-runtime`
-- `scotch`
-- `fftw`
-- `hdf5`
-- `nvpl-scalapack`
 
 ### 4.2 hpcx-mpi対応か確認する
 
@@ -281,7 +277,7 @@ $ spack find -x
 | 可視化・画像・動画処理 | `paraview`, `povray`, `gnuplot`, `grads`, `ffmpeg` |
 | Python関連ライブラリ | `py-scipy`, `py-pandas`, `py-matplotlib`, `py-scikit-learn`, `py-netcdf4`, `py-mpi4py`, `py-ase`, `py-xarray`, `py-toml` |
 | 化学・創薬関連 | `openbabel`, `autodock-vina` |
-| 開発・その他 | `julia`, `rust`, `gsl`, `tmux`, `darshan-runtime`, `kokkos` |
+| 開発・その他 | `julia`, `rust`, `gsl`, `tmux`, `darshan-runtime`, `kokkos` ,`petsc`,`parallel-netcdf` ,`netcdf-c` ,`netcdf-fortran`|
 
 ### 5.2 `spack find -lx` の出力例
 
