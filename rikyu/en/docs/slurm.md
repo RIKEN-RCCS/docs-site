@@ -1,0 +1,191 @@
+# Using Slurm
+
+To run programs on this system, submit jobs using the [Slurm job scheduler](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }. There are two ways to run jobs: <span class="text-marker">batch jobs</span> and <span class="text-marker">interactive jobs</span>. Batch jobs are submitted by creating a job script in advance and are suitable for long-running jobs. Interactive jobs let users run commands interactively and are suitable for debugging before submitting batch jobs.
+
+This page explains how to submit jobs from the command line.
+
+## Job Resources
+
+Specify the number of GPUs when submitting a job. <span class="text-marker">The supported GPU counts are 1, 2, 3, 4, 8, 12, and 16</span>. The number of allocated nodes, the maximum number of CPU cores, and the maximum memory amount depend on the number of GPUs.
+
+<div class="spec-table">
+<table>
+  <tbody>
+    <tr>
+      <th style="text-align: right;">Number of GPUs</th>
+      <th>Allocated nodes</th>
+      <th>Maximum CPU cores/node</th>
+      <th>Maximum memory/node</th>
+      <th>Maximum wall time</th>
+    </tr>
+    <tr>
+      <td style="text-align: right;">1</td>
+      <td rowspan="4">1</td>
+      <td>36</td>
+      <td>400 GB</td>
+      <td rowspan="7">96 hours</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">2</td>
+      <td>72</td>
+      <td>800 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">3</td>
+      <td>108</td>
+      <td>1,200 GB</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">4</td>
+      <td rowspan="4">144</td>
+      <td rowspan="4">1,600 GB</td>
+    </tr>
+     <tr>
+      <td style="text-align: right;">8</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">12</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td style="text-align: right;">16</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+!!! note
+
+    The maximum memory amount in the table is an estimate of the combined usable GPU memory and CPU memory. GPU memory is 173.2 GiB per GPU. In GB200 NVL4, the CPU and GPU are connected through NVLink-C2C with cache coherency, so the CPU and GPU can access each other's memory. Note that CPU memory and GPU memory have different performance characteristics.
+
+
+## Job Script Examples
+
+### Serial Job
+
+This is an example job script for a serial job, meaning a job that is not parallelized with MPI or OpenMP. The number of GPUs specified by `--gpus=` is available to the job.
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=test-job # Job name
+#SBATCH --time=00:10:00     # Time limit
+#SBATCH --gpus=2            # Number of GPUs
+
+module load nvhpc   # Load module
+./a.out             # Execution command
+```
+
+### Parallel Job
+
+This is an example job script for a parallel job. Specify the number of processes (`--ntasks=`) and the number of threads (`export OMP_NUM_THREADS=`) as needed.
+
+```bash
+#!/bin/bash
+#SBATCH --job-name=test-job  # Job name
+#SBATCH --time=00:10:00      # Time limit
+#SBATCH --gpus=8             # Number of GPUs
+#SBATCH --ntasks=32          # Number of processes
+export OMP_NUM_THREADS=1     # Number of threads
+
+module load nvhpc            # Load module
+mpiexec ./a.out              # Execution command
+```
+
+## Slurm Commands
+
+Slurm lets you submit jobs, check job status, and cancel jobs. The main Slurm commands are as follows.
+
+| Command | Description |
+| ------- | ----------- |
+| `sbatch JOB_SCRIPT` | Submit a batch job |
+| `squeue` | Show job status |
+| `salloc` | Allocate compute resources for an interactive job |
+| `srun` | Run an interactive job |
+| `scancel JOB_ID` | Cancel a job |
+| `sinfo` | Show compute node status |
+
+!!! note
+    For details on each Slurm command, see the following URL.
+    https://slurm.schedmd.com/documentation.html
+
+### Submitting a Batch Job
+
+Create a job script (`job.sh`) and run the `sbatch` command on a login node.
+
+```bash
+$ sbatch job.sh
+Submitted batch job 2080
+```
+
+The `2080` in the output message is the job ID. Use it to specify the target job when checking job status, canceling a job, and so on.
+
+### Showing Job Status
+
+```bash
+$ squeue
+   JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
+    2080       gpu test-job rku00011  R       0:05      1 c072
+```
+
+### Allocating Compute Resources for an Interactive Job
+
+Allocate compute resources for an interactive job with the `salloc` command. The following example requests 2 GPUs for 10 minutes. The `2081` in the output message is the job ID.
+
+```bash
+$ salloc --gpus=2 --time=00:10:00
+salloc: Granted job allocation 2081
+salloc: Waiting for resource configuration
+salloc: Nodes c072 are ready for job
+```
+
+After the allocation starts, use the `srun` command to run a command on the allocated node.
+
+```bash
+$ srun hostname
+c072
+```
+
+When you are finished, run `exit` to release the allocation.
+
+```bash
+$ exit
+exit
+salloc: Relinquishing job allocation 2081
+```
+
+### Running an Interactive Job
+
+Start an interactive job with the `srun --pty bash` command. The following example requests 4 GPUs for 10 minutes.
+
+```bash
+$ srun --gpus=4 --time=00:10:00 --pty bash
+$ hostname
+c072
+```
+
+When you are finished, run `exit` to leave the shell and end the `srun` job.
+
+```bash
+$ exit
+exit
+```
+
+### Canceling a Job
+
+Specify the job ID and cancel a submitted or running job with the `scancel` command.
+
+```bash
+$ scancel 2081
+```
+
+### Checking Compute Node Status
+
+Check compute node status with `sinfo`.
+
+```bash
+$ sinfo
+PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
+gpu          up 4-00:00:00    400   idle c[000-399]
+```

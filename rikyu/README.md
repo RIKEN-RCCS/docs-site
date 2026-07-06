@@ -24,22 +24,26 @@ pip install zensical
 Run a local dev server with live reload:
 
 ```bash
-zensical serve
+zensical serve -f en/zensical.toml
 ```
 
-Open http://127.0.0.1:8000 in your browser. The page refreshes automatically whenever you save a file.
+Open http://127.0.0.1:8000 in your browser. To preview the Japanese site, run `zensical serve -f ja/zensical.toml -a localhost:8001` and open http://127.0.0.1:8001.
 
 ### Build static files
 
 To generate the static HTML under `site/`:
 
 ```bash
-zensical build
+zensical build -f en/zensical.toml
+zensical build -f ja/zensical.toml
 ```
 
 ## Contributing
 
-Edit the Markdown files under `docs/` and open a pull request against `main`.
+Edit the Markdown files under `en/docs/` or `ja/docs/` and open a pull request against `main`.
 
 The published pages are updated within a few minutes of a push to `main`.
 
+## Note
+
+The English and Japanese sites are built independently because the current search engine does not support searching each language separately within a single multilingual build. If Zensical supports language-scoped search in the future, merging the configuration back into a single build would be more convenient.

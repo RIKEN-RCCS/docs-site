@@ -1,0 +1,54 @@
+[project]
+site_name = "RIKYU User Guide"
+site_author = "RIKEN Center for Computational Science"
+site_url = "https://docs.r-ccs.riken.jp/rikyu/ja/"
+site_dir = "site"
+docs_dir = "docs"
+copyright = """
+Copyright &copy; RIKEN Center for Computational Science
+"""
+
+nav = [
+  { "はじめに" = "index.md" },
+  { "システム概要" = "system.md" },
+  { "ストレージ" = "storage.md" },
+  { "ソフトウェア環境" = "software.md" },
+  { "ログイン方法" = "login.md" },
+  { "モジュール環境" = "module.md" },
+  { "Spackの使い方" = "spack.md" },
+  { "Open OnDemandの使い方" = "ood.md" },
+  { "Slurmの使い方" = "slurm.md" },
+  { "お問い合わせ" = "contact.md" },
+]
+
+extra_css = ["extra.css"]
+extra_javascript = ["extra.js"]
+
+[project.theme]
+language = "ja"
+features = [
+  "announce.dismiss",
+  "content.code.annotate",
+  "content.code.copy",
+  "content.code.select",
+  "content.footnote.tooltips",
+  "content.tabs.link",
+  "content.tooltips",
+  "navigation.footer",
+  "navigation.instant",
+  "navigation.instant.prefetch",
+  "navigation.sections",
+  "navigation.top",
+  "search.highlight",
+  "toc.integrate",
+]
+
+[[project.theme.palette]]
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "ダークモードに切り替え"
+
+[[project.theme.palette]]
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "ライトモードに切り替え"
