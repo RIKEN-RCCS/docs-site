@@ -8,7 +8,9 @@ Software is managed with **Spack**.
 To use software that has already been built by the system, first read **Chapters 1 and 2, and Chapters 5 and 6 as needed**.
 Read the private instance instructions in **Chapter 7** only if you need to build OSS yourself.
 
-Note: The `$` and `%` characters at the beginning of command examples are prompts. Do not type them.
+!!! note
+
+    The `$` and `%` characters at the beginning of command examples are prompts. Do not type them.
 
 | Purpose | Chapters to read |
 |---|---|
@@ -51,8 +53,6 @@ If you use `csh` or `tcsh`, run the following.
 ```
 
 When using software in a batch job, include the same setup command in the job script.
-
-> Note: The `/shared/software/spack-1.2.0` path may change when the system is updated. If administrators announce a different path, use that path.
 
 ### 2.2 Confirm That Spack Is Available
 
@@ -153,8 +153,6 @@ srun bash -c 'echo CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES'
 srun <application execution command> <input file, etc.>
 ```
 
-How to specify the number of GPUs, GPU type, and partition name depends on the system's Slurm configuration. Follow the job submission method announced by administrators.
-
 ### 3.2 Main GPU-Enabled Software Provided
 
 The following software is currently provided as GPU-enabled builds.
@@ -173,7 +171,7 @@ $ spack find -x
 
 ### 3.3 Example Quantum ESPRESSO Job Script
 
-The following is an example using `quantum-espresso`. Adjust the actual number of nodes, task count, GPU options, account, and partition for your environment.
+The following is an example using `quantum-espresso`.
 
 ```bash
 #!/bin/bash
@@ -479,7 +477,9 @@ After installation, check it with the following.
 $ spack find -lx openmpi
 ```
 
-> Note: Build packages for compute nodes from an interactive job on a compute node or by submitting an installation job. Do not run long builds on login nodes.
+!!! note
+
+    Build packages for compute nodes from an interactive job on a compute node or by submitting an installation job. Do not run long builds on login nodes.
 
 ### 7.7 Uninstall Packages
 
@@ -494,8 +494,9 @@ $ spack find -lx openmpi
 $ spack uninstall /<hash>
 ```
 
-> Note: Do not delete packages in the public instance. Delete only packages that you installed in your private instance.
+!!! note
 
+    Do not delete packages in the public instance. Delete only packages that you installed in your private instance.
 
 ## 8. Troubleshooting
 
@@ -504,7 +505,6 @@ $ spack uninstall /<hash>
 | `spack: command not found` is displayed | The Spack environment has not been loaded | Run `. /shared/software/spack-1.2.0/share/spack/setup-env.sh`. The same setup is required inside jobs. |
 | `matches multiple packages` is displayed | Multiple packages have the same name | Check candidates with `spack find -lx <package name>` and load the package with `spack load /<hash>`. |
 | The execution command is still not found after `spack load` | The executable name differs from the package name, or the package is a library package | Check the application's executable command name. Ask administrators if needed. |
-| GPU-enabled software cannot see GPUs | GPU resources were not requested for the job | Specify `--gpus-per-node=<number of GPUs>` or `--gres=gpu:<number of GPUs>` in Slurm, and run `srun nvidia-smi` inside the job. |
 | An MPI job does not start or has a communication error | The MPI implementation or build configuration does not match the runtime environment | Check whether the package has an `hpcx-mpi` configuration with `spack find -lv <package name>` and `spack spec /<hash>`. |
 | Builds in a private instance are very slow | Dependencies are also being built from scratch | Configure chaining with the public instance and reuse existing prebuilt packages. |
 | The application works in a login shell but not in a job script | The Spack environment is not loaded in the job script | Explicitly write the `setup-env.sh` load command and `spack load` command in the job script. |
