@@ -202,10 +202,6 @@ The following applications and libraries are currently provided with `hpcx-mpi` 
 - `gromacs`
 - `openfoam-org`
 - `darshan-runtime`
-- `scotch`
-- `fftw`
-- `hdf5`
-- `nvpl-scalapack`
 
 ### 4.2 Check Whether a Package Supports hpcx-mpi
 
@@ -267,7 +263,7 @@ $ spack find -x
 | Visualization, image processing, and video processing | `paraview`, `povray`, `gnuplot`, `grads`, `ffmpeg` |
 | Python-related libraries | `py-scipy`, `py-pandas`, `py-matplotlib`, `py-scikit-learn`, `py-netcdf4`, `py-mpi4py`, `py-ase`, `py-xarray`, `py-toml` |
 | Chemistry and drug discovery | `openbabel`, `autodock-vina` |
-| Development and other tools | `julia`, `rust`, `gsl`, `tmux`, `darshan-runtime`, `kokkos` |
+| Development and other tools | `julia`, `rust`, `gsl`, `tmux`, `darshan-runtime`, `kokkos`, `petsc`, `parallel-netcdf`, `netcdf-c`, `netcdf-fortran`|
 
 ### 5.2 Example Output of `spack find -lx`
 
