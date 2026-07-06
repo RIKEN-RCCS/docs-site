@@ -12,7 +12,6 @@ nav = [
   { "はじめに" = "index.md" },
   { "システム概要" = "system.md" },
   { "ストレージ" = "storage.md" },
-  { "ソフトウェア環境" = "software.md" },
   { "ログイン方法" = "login.md" },
   { "モジュール環境" = "module.md" },
   { "ジョブ実行資源" = "resources.md" },

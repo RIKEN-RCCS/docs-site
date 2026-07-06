@@ -12,7 +12,6 @@ nav = [
   { "Welcome" = "index.md" },
   { "System Overview" = "system.md" },
   { "Storage" = "storage.md" },
-  { "Software Environment" = "software.md" },
   { "Login" = "login.md" },
   { "Modules" = "module.md" },
   { "Job Resources" = "resources.md" },
