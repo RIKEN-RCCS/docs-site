@@ -15,9 +15,10 @@ nav = [
   { "ソフトウェア環境" = "software.md" },
   { "ログイン方法" = "login.md" },
   { "モジュール環境" = "module.md" },
-  { "Spackの使い方" = "spack.md" },
+  { "ジョブ実行資源" = "resources.md" },
   { "Open OnDemandの使い方" = "ood.md" },
   { "Slurmの使い方" = "slurm.md" },
+  { "Spackの使い方" = "spack.md" },
   { "お問い合わせ" = "contact.md" },
 ]
 

@@ -15,9 +15,10 @@ nav = [
   { "Software Environment" = "software.md" },
   { "Login" = "login.md" },
   { "Modules" = "module.md" },
-  { "Spack" = "spack.md" },
+  { "Job Resources" = "resources.md" },
   { "Open OnDemand" = "ood.md" },
   { "Slurm" = "slurm.md" },
+  { "Spack" = "spack.md" },
   { "Contact" = "contact.md" },
 ]
 
