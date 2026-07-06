@@ -7,10 +7,10 @@ This system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, share
 | Item | Value |
 |------|------|
 | CPU/GPU model | NVIDIA GB200 NVL4 (Grace CPU &times; 2, B200 GPU &times; 4) |
-| GPU theoretical performance (FP64) | 160.4 TFLOPS (40.1 TFLOPS &times; 4 GPU) |
-| GPU theoretical performance (FP8) | 38.84 PFLOPS (9.712 PFLOPS &times; 4 GPU) |
-| CPU memory performance | LPDDR5X, 960 GiB, 768 GB/s (480 GiB, 384 GB/s &times; 2 CPU) |
-| GPU memory performance | HBM3e, 692.8 GiB, 31.6 TB/s (173.2 GiB, 7.9 TB/s &times; 4 GPU) |
+| GPU theoretical performance (FP64) | 160.4 TFLOPS (40.1 TFLOPS &times; 4 GPUs) |
+| GPU theoretical performance (FP8) | 38.84 PFLOPS (9.712 PFLOPS &times; 4 GPUs) |
+| CPU memory performance | LPDDR5X, 960 GiB, 768 GB/s (480 GiB, 384 GB/s &times; 2 CPUs) |
+| GPU memory performance | HBM3e, 692.8 GiB, 31.6 TB/s (173.2 GiB, 7.9 TB/s &times; 4 GPUs) |
 | GPU-GPU bandwidth (bidirectional) | NVLink, 600 GB/s (300 GB/s &times; 2 (bidirectional)) |
 | CPU-GPU bandwidth (bidirectional) | NVLink-C2C, 450 GB/s (225 GB/s &times; 2 (bidirectional)) |
 | CPU-CPU bandwidth (bidirectional) | CLink, 300 GB/s (150 GB/s &times; 2 (bidirectional)) |

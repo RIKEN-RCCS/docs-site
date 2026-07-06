@@ -65,14 +65,13 @@ The home area and group area are on shared storage, so they can be used from bot
       <td><code>/home/USER_NAME</code></td>
       <td>5 GB</td>
       <td rowspan="3">Available</td>
-      <td>Available</td>
+      <td rowspan="2">Available</td>
       <td>Owner only</td>
     </tr>
     <tr>
       <td>Group area</td>
       <td><code>/data1/GROUP_NAME</code></td>
       <td>1 TB per group</td>
-      <td>Available</td>
       <td>Members of the same group</td>
     </tr>
     <tr>

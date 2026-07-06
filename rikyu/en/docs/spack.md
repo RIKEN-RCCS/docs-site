@@ -1,4 +1,4 @@
-# Using Spack
+# Spack
 
 ## 0. How to Read This Manual
 

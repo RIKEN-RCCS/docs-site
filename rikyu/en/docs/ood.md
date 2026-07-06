@@ -3,7 +3,7 @@
     This page is under construction.
 
 
-# Using Open OnDemand
+# Open OnDemand
 
 Open OnDemand provides the following features.
 

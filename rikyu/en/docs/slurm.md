@@ -1,4 +1,4 @@
-# Using Slurm
+# Slurm
 
 To run programs on this system, submit jobs using the [Slurm job scheduler](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }. There are two ways to run jobs: <span class="text-marker">batch jobs</span> and <span class="text-marker">interactive jobs</span>. Batch jobs are submitted by creating a job script in advance and are suitable for long-running jobs. Interactive jobs let users run commands interactively and are suitable for debugging before submitting batch jobs.
 
