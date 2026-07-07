@@ -18,6 +18,10 @@ To apply for an account on this system, use the RIKYU Account Application System
 
 [Account Application](https://raas.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
+!!! note
+
+    Users continuing from Early Access Phase 1 must also submit a new account application. Early Access Phase 2 is available to ARiSE users, members of accepted SPReAD1000 projects, and RIKEN members. To use this system, users must register their personal information, and the project representative must register the project, add project members, and complete the required project procedures.
+
 ## Usage Fees
 
 The usage fee for this system is 300 yen per GPU hour. For example, using 4 GPUs for 5 hours costs 4 GPUs &times; 5 hours &times; 300 yen = 6,000 yen. Consumption tax is charged separately. Usage fees are billed in arrears as a lump sum after the end of Early Access Phase 2.
