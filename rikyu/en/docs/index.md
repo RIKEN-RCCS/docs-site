@@ -1,6 +1,6 @@
 !!! info
 
-    Early Access Phase 2 is scheduled to run from the afternoon of Tuesday, July 7, 2026 (JST) through the end of September 2026.
+    Early Access Phase 2 for production operation is currently underway. Production operation is scheduled to begin in October 2026.
 
 # Welcome
 
