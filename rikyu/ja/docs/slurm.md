@@ -18,8 +18,8 @@
 #SBATCH --time=00:10:00     # 時間指定
 #SBATCH --gpus=2            # GPU数
 
-module load nvhpc   # モジュールの読み込み
-./a.out             # 実行コマンド
+module load nvhpc           # モジュールの読み込み
+./a.out                     # 実行コマンド
 ```
 
 ### 並列ジョブ

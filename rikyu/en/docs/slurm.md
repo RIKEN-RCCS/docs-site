@@ -18,8 +18,8 @@ This is an example job script for a serial job, meaning a job that is not parall
 #SBATCH --time=00:10:00     # Time limit
 #SBATCH --gpus=2            # Number of GPUs
 
-module load nvhpc   # Load module
-./a.out             # Execution command
+module load nvhpc           # Load module
+./a.out                     # Execution command
 ```
 
 ### Parallel Job
