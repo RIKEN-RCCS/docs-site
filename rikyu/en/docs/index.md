@@ -1,6 +1,6 @@
 !!! info
 
-    Early Access Phase 2 for production operation is currently underway. Production operation is scheduled to begin in October 2026.
+    Early Access Phase 2 for production operation is currently underway. Early Access Phase 2 is scheduled to continue until the end of September 2026.
 
 # Welcome
 
@@ -20,7 +20,7 @@ To apply for an account on this system, use the RIKYU Account Application System
 
 !!! note
 
-    Users continuing from Early Access Phase 1 must also submit a new account application. Early Access Phase 2 is available to ARiSE users, members of accepted SPReAD1000 projects, and RIKEN members. To use this system, users must register their personal information, and the project representative must register the project, add project members, and complete the required project procedures.
+    Users continuing from Early Access Phase 1 must also submit a new account application. Early Access Phase 2 is available to ARiSE users, members of accepted SPReAD1000 projects, and RIKEN members. To use this system, users must register their personal information, and the project representative must register the project, add project members, and complete the required project procedures. Early Access Phase 1 accounts will be maintained for the time being for data migration, but cannot be used to run jobs or perform similar operations.
 
 ## Usage Fees
 
