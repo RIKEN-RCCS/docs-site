@@ -34,7 +34,7 @@ This section explains how to generate a key pair from a terminal.
 
 The following example shows the `ssh-keygen` command for generating an Ed25519 key pair (on Windows, use the `ssh-keygen.exe` command). After running the command, a private key (`id_ed25519`) and a public key (`id_ed25519.pub`) are created as a key pair in the `.ssh` directory under your home directory.
 
-```console
+```bash
 $ ssh-keygen -t ed25519
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/home/username/.ssh/id_ed25519):

@@ -42,7 +42,7 @@ $ . /shared/software/spack-1.2.0/share/spack/setup-env.sh
 
 `csh` または `tcsh` を使っている場合は、次を実行します。
 
-```csh
+```bash
 % source /shared/software/spack-1.2.0/share/spack/setup-env.csh
 ```
 
@@ -217,7 +217,7 @@ $ spack spec /<hash>
 
 依存関係ツリー内に次の表示があれば、その構成は `hpcx-mpi` を利用しています。
 
-```text
+```bash
 ^hpcx-mpi
 ```
 
@@ -261,7 +261,7 @@ $ spack find -x
 
 以下は出力例です。ハッシュ値、バージョン、パッケージ数はシステム更新により変わります。
 
-```text
+```bash
 $ spack find -lx
 -- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=gcc@13.3.0 ----
 g6hpeea cp2k@2026.1            qxqrq4o parallel-netcdf@1.14.1
@@ -316,7 +316,7 @@ $ spack load fftw
 
 候補が複数ある場合、次のようなエラーになります。
 
-```text
+```bash
 ==> Error: fftw matches multiple packages.
   Matching packages:
     erk4i5v fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=gcc@13.3.0

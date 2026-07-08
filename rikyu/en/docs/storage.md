@@ -8,7 +8,7 @@ Each user has a 5 GB home area (`/home/USER`). `USER` is the user name. Only the
 
 To check home area usage from the command line, run the following command.
 
-```console
+```bash
 $ lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
 Disk quotas for prj 100010 (pid 100010):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
@@ -23,7 +23,7 @@ Each group has a 1 TB group area (`/data1/GROUP`). `GROUP` is the group name. Me
 
 To check group area usage from the command line, run the following command (`GROUP` should be replaced with the group name).
 
-```console
+```bash
 $ lfs quota -h -p `lfs project -d /data1/GROUP | awk '{print $1}'` /data1
 Disk quotas for prj 200013 (pid 200013):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
@@ -34,7 +34,7 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 
 To find your group name from the command line, run the `id` command and check the string beginning with `rkp` shown in `groups=...`. An example is shown below. A single user may belong to multiple groups.
 
-```console
+```bash
 rku00011@c000:~$ id
 uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 ```
