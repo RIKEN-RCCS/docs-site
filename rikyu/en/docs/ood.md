@@ -123,16 +123,17 @@ See [SSH Public Key Registration](https://docs.r-ccs.riken.jp/rikyu/en/login/#ss
 
 Interactive applications let users interactively operate applications running on compute nodes.
 
-| Name                                                      | Description                                                         |
-| --------------------------------------------------------- | ------------------------------------------------------------------- |
-| Desktop ([Xfce](https://www.xfce.org/))                   | Lightweight desktop environment running on X Window System          |
-| [JupyterLab](https://jupyter.org/) (planned)              | Interactive programming environment in a web browser                |
-| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd)) | Tool for operating terminal sessions from a web browser             |
-| [VSCode](https://code.visualstudio.com/)                  | Code editor developed by [Microsoft](https://www.microsoft.com/)    |
+| Name                                                      | Description                                                                        |
+| --------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| Desktop ([Xfce](https://www.xfce.org/))                   | Lightweight desktop environment running on X Window System                         |
+| [JupyterLab](https://jupyter.org/) (planned)              | Interactive programming environment in a web browser                               |
+| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd)) | Tool for operating terminal sessions from a web browser                            |
+| [VSCode](https://code.visualstudio.com/)                  | Code editor developed by [Microsoft](https://www.microsoft.com/)                   |
 | NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute) and [NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems) |
-| [Gnuplot](http://www.gnuplot.info/)                       | Command-line driven graphing program                                |
-| [ParaView](https://www.paraview.org/)                     | Scientific and technical data visualization program                 |
-| [PyMOL](https://www.pymol.org/)                           | Program for visualizing and analyzing 3D structures of biomolecules |
+| [Gnuplot](http://www.gnuplot.info/)                       | Command-line driven graphing program                                               |
+| [OVITO](https://www.ovito.org)                            | Scientific data visualization and analysis solution for particle-based simulations |
+| [ParaView](https://www.paraview.org/)                     | Scientific and technical data visualization program                                |
+| [PyMOL](https://www.pymol.org/)                           | Program for visualizing and analyzing 3D structures of biomolecules                |
 
 The following example explains how to use Desktop. Click <span class="text-marker">Desktop</span> from <span class="text-marker">Interactive Apps</span> in the menu bar to open a web form for specifying compute resources and other settings. After entering the required information, click <span class="text-marker">Launch</span> to submit a job to RIKYU.
 
