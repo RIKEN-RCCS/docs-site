@@ -129,6 +129,7 @@ Interactive applications let users interactively operate applications running on
 | [JupyterLab](https://jupyter.org/) (planned)              | Interactive programming environment in a web browser                |
 | Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd)) | Tool for operating terminal sessions from a web browser             |
 | [VSCode](https://code.visualstudio.com/)                  | Code editor developed by [Microsoft](https://www.microsoft.com/)    |
+| NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute) and [NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems) |
 | [Gnuplot](http://www.gnuplot.info/)                       | Command-line driven graphing program                                |
 | [ParaView](https://www.paraview.org/)                     | Scientific and technical data visualization program                 |
 | [PyMOL](https://www.pymol.org/)                           | Program for visualizing and analyzing 3D structures of biomolecules |
