@@ -54,7 +54,7 @@ Slurmでは、ジョブの投入、状態確認、キャンセルを行うこと
 !!! note
     各Slurmコマンドの詳細については、次のURLを参照してください。
     https://slurm.schedmd.com/documentation.html
- 
+
 ### バッチジョブの投入
 
 ジョブスクリプト（`job.sh`）を作成し、ログインノード上で`sbatch`コマンドを実行します。
@@ -65,6 +65,18 @@ Submitted batch job 2080
 ```
 
 出力メッセージの`2080`はジョブIDであり、ジョブの状態確認やキャンセルなどで対象のジョブを指定するために使用します。
+
+複数の課題に所属している場合は、Slurmの`-A`または`--account`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT_NAME`には、利用する課題名を指定してください。
+
+```bash
+#SBATCH -A PROJECT_NAME
+```
+
+または、`sbatch`コマンドの実行時に指定します。
+
+```bash
+$ sbatch -A PROJECT_NAME job.sh
+```
 
 ### ジョブの状態表示
 
@@ -108,6 +120,12 @@ salloc: Relinquishing job allocation 2081
 $ srun --gpus=4 --time=00:10:00 --pty bash
 $ hostname
 c072 
+```
+
+複数の課題に所属している場合は、Slurmの`-A`または`--account`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT_NAME`には、利用する課題名を指定してください。
+
+```bash
+$ srun -A PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
 ```
 
 終了したら、`exit`を実行してシェルを抜け、`srun`ジョブを終了します。
