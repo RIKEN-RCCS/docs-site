@@ -1,21 +1,47 @@
+:root {
+  /* Site palette, harmonized around Sencha-iro (煎茶色).
+     Roughly a 70 / 25 / 5 split: base for primary UI (links, headings,
+     nav), main as a warm supporting tone, accent for small CTAs/pops. */
+
+  /* Base (70%) — Sencha-iro (煎茶色) */
+  --md-primary-fg-color: #3C6E47;
+  --md-primary-fg-color--light: #779A7E;
+  --md-primary-fg-color--dark: #2A4D32;
+
+  /* Main (25%) — Rikyucha (利休茶), a warm olive-gold that pairs with tea green */
+  --md-accent-fg-color: #8A7B4F;
+  --md-accent-fg-color--transparent: #8a7b4f1a;
+  --site-main-color--light: #C4B78F;
+  --site-main-color--dark: #5E5236;
+
+  /* Accent (5%) — Kaki-iro (柿色), for CTAs and small highlights only */
+  --site-accent-color: #ED6D3D;
+  --site-accent-color--dark: #C1512A;
+}
+
 .md-typeset {
   color: rgb(33, 33, 33);
   font-size: 0.825rem;
   line-height: 1.45;
-  --spec-table-border: rgba(82, 108, 254, 0.6);
-  --spec-table-head-bg: rgb(227, 232, 255);
-  --spec-code-bg: rgb(242, 244, 255);
+  --spec-table-border: rgba(60, 110, 71, 0.5);
+  --spec-table-head-bg: rgb(237, 231, 214);
+  --spec-code-bg: rgb(236, 243, 237);
   --spec-code-fg: rgb(0, 0, 0);
-  --spec-slurm-directive-color: rgb(198, 40, 40);
+  --spec-slurm-directive-color: var(--site-accent-color--dark);
 }
 
 [data-md-color-scheme="slate"] .md-typeset {
   color: rgb(255, 255, 255);
-  --spec-table-border: rgba(82, 108, 254, 0.48);
-  --spec-table-head-bg: rgb(45, 50, 86);
-  --spec-code-bg: rgb(38, 42, 62);
+  --spec-table-border: rgba(119, 154, 126, 0.45);
+  --spec-table-head-bg: rgb(43, 48, 38);
+  --spec-code-bg: rgb(30, 38, 32);
   --spec-code-fg: rgb(255, 255, 255);
-  --spec-slurm-directive-color: rgb(255, 138, 128);
+  --spec-slurm-directive-color: var(--site-accent-color);
+}
+
+[data-md-color-scheme="slate"] {
+  --md-accent-fg-color: var(--site-main-color--light);
+  --md-accent-fg-color--transparent: #c4b78f26;
 }
 
 .md-typeset table:not([class]) {
@@ -81,7 +107,7 @@
 
 .md-typeset h2 {
   font-size: 1.35em;
-  border-left: 7px solid var(--md-accent-fg-color);
+  border-left: 7px solid var(--md-primary-fg-color);
   padding-left: 0.35em;
   margin-top: 1.5em;
 }
@@ -113,22 +139,22 @@
 }
 
 .md-typeset .text-marker {
-  background: rgba(255, 183, 77, 0.5);
+  background: rgba(237, 109, 61, 0.32);
   font-weight: 700;
   padding: 0.0em 0.12em;
 }
 
 [data-md-color-scheme="slate"] .md-typeset .text-marker {
-  background: rgba(255, 167, 38, 0.36);
+  background: rgba(237, 143, 102, 0.3);
 }
 
 .md-typeset .notice-warning {
-  color: rgb(211, 47, 47);
+  color: var(--site-accent-color--dark);
   font-weight: 600;
 }
 
 [data-md-color-scheme="slate"] .md-typeset .notice-warning {
-  color: rgb(255, 138, 128);
+  color: var(--site-accent-color);
 }
 
 .md-typeset .chat-window p {
@@ -161,14 +187,14 @@
 }
 
 .md-typeset .action-button {
-  background-color: rgb(0, 102, 255);
-  border-color: rgb(0, 102, 255);
+  background-color: var(--site-accent-color);
+  border-color: var(--site-accent-color);
   color: rgb(255, 255, 255) !important;
 }
 
 .md-typeset .action-button:is(:hover, :focus) {
-  background-color: rgb(0, 82, 204);
-  border-color: rgb(0, 82, 204);
+  background-color: var(--site-accent-color--dark);
+  border-color: var(--site-accent-color--dark);
 }
 
 .md-typeset .language-bash.highlight pre {
@@ -194,14 +220,14 @@
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: rgb(20, 40, 255);
+  color: var(--md-primary-fg-color--dark);
   font-weight: 700;
   margin: 0;
   padding: 0;
 }
 
 [data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
-  color: rgb(234, 128, 252);
+  color: var(--md-primary-fg-color--light);
 }
 
 .md-typeset .highlight :is(.c1, .nv) {
@@ -246,14 +272,14 @@
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: rgb(20, 40, 255);
+  color: var(--md-primary-fg-color--dark);
   font-weight: 700;
   margin: 0;
   padding: 0;
 }
 
 [data-md-color-scheme="slate"] .md-nav :not(pre) > code {
-  color: rgb(234, 128, 252);
+  color: var(--md-primary-fg-color--light);
 }
 
 [dir="ltr"] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
