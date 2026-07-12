@@ -3,10 +3,11 @@
      Roughly a 70 / 25 / 5 split: base for primary UI (links, headings,
      nav), main as a warm supporting tone, accent for small CTAs/pops. */
 
-  /* Base (70%) — Sencha-iro (煎茶色) */
-  --md-primary-fg-color: #3C6E47;
-  --md-primary-fg-color--light: #779A7E;
-  --md-primary-fg-color--dark: #2A4D32;
+  /* Base (70%) — Sencha-iro (煎茶色), midpoint between #4C7A56 and #46704F */
+  --md-primary-fg-color: #497553;
+  --md-primary-fg-color--light: #809E87;
+  --md-primary-fg-color--dark: #33523A;
+  --md-primary-fg-color--transparent: #4975531f;
 
   /* Main (25%) — Rikyucha (利休茶), a warm olive-gold that pairs with tea green */
   --md-accent-fg-color: #8A7B4F;
@@ -19,13 +20,53 @@
   --site-accent-color--dark: #C1512A;
 }
 
+/* Header and footer bars — kept a fixed Sencha-iro tone in both schemes,
+   rather than following the lighter slate-mode primary variant, so the
+   brand bar stays consistent and legible with white text/icons. */
+.md-header {
+  background-color: var(--md-primary-fg-color);
+  color: rgb(255, 255, 255);
+}
+
+.md-header--shadow {
+  box-shadow: 0 0.05rem 0 rgba(0, 0, 0, 0.2);
+}
+
+/* The search pill has a low-opacity fill meant for a neutral header;
+   on a solid green header that reads as barely-there, so give it a
+   solid light background of its own. */
+.md-header .md-search__button {
+  background-color: rgba(255, 255, 255, 0.92);
+  color: rgb(33, 33, 33);
+}
+
+/* Only the bottom copyright strip is colored — the prev/next nav row
+   above it stays on the default background so the two rows read as
+   one footer instead of two different greens stacked together. */
+.md-footer-meta {
+  background-color: var(--md-primary-fg-color);
+  color: rgb(255, 255, 255);
+}
+
+.md-footer-meta .md-copyright,
+.md-footer-meta .md-copyright__highlight {
+  color: rgb(255, 255, 255);
+}
+
+/* Material's own footer link rule (html .md-footer-meta.md-typeset
+   a:not(:focus, :hover)) outranks a plain ".md-footer-meta a", so
+   match its specificity here instead of reaching for !important. */
+html .md-footer-meta.md-typeset a:not(:focus, :hover) {
+  color: rgb(255, 255, 255);
+}
+
 .md-typeset {
   color: rgb(33, 33, 33);
   font-size: 0.825rem;
   line-height: 1.45;
   --spec-table-border: rgba(60, 110, 71, 0.5);
   --spec-table-head-bg: rgb(237, 231, 214);
-  --spec-code-bg: rgb(236, 243, 237);
+  --spec-code-bg: rgb(241, 239, 234);
   --spec-code-fg: rgb(0, 0, 0);
   --spec-slurm-directive-color: var(--site-accent-color--dark);
 }
@@ -34,7 +75,7 @@
   color: rgb(255, 255, 255);
   --spec-table-border: rgba(119, 154, 126, 0.45);
   --spec-table-head-bg: rgb(43, 48, 38);
-  --spec-code-bg: rgb(30, 38, 32);
+  --spec-code-bg: rgb(24, 21, 14);
   --spec-code-fg: rgb(255, 255, 255);
   --spec-slurm-directive-color: var(--site-accent-color);
 }
@@ -42,6 +83,7 @@
 [data-md-color-scheme="slate"] {
   --md-accent-fg-color: var(--site-main-color--light);
   --md-accent-fg-color--transparent: #c4b78f26;
+  --md-primary-fg-color--transparent: #809e872e;
 }
 
 .md-typeset table:not([class]) {
@@ -113,10 +155,14 @@
 }
 
 .md-typeset h3 {
-  border-bottom: 2px solid var(--md-accent-fg-color);
+  border-bottom: 2px solid rgb(0, 0, 0);
   padding-bottom: 0.1em;
   margin-top: 0.8em;
   margin-bottom: 0.5em;
+}
+
+[data-md-color-scheme="slate"] .md-typeset h3 {
+  border-bottom-color: rgb(255, 255, 255);
 }
 
 .md-typeset :is(h1, h2, h3) + p {
@@ -187,14 +233,14 @@
 }
 
 .md-typeset .action-button {
-  background-color: var(--site-accent-color);
-  border-color: var(--site-accent-color);
+  background-color: var(--md-primary-fg-color);
+  border-color: var(--md-primary-fg-color);
   color: rgb(255, 255, 255) !important;
 }
 
 .md-typeset .action-button:is(:hover, :focus) {
-  background-color: var(--site-accent-color--dark);
-  border-color: var(--site-accent-color--dark);
+  background-color: var(--md-primary-fg-color--dark);
+  border-color: var(--md-primary-fg-color--dark);
 }
 
 .md-typeset .language-bash.highlight pre {
@@ -251,6 +297,12 @@
   padding-bottom: 0.04rem;
 }
 
+/* Left-hand TOC/nav uses the base color, not the main/accent color */
+.md-nav--primary .md-nav__item .md-nav__link--active {
+  color: var(--md-primary-fg-color);
+  background: var(--md-primary-fg-color--transparent);
+}
+
 .md-nav--primary > .md-nav__list > .md-nav__item--current-language {
   margin-top: 0;
 }
@@ -283,5 +335,5 @@
 }
 
 [dir="ltr"] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
-  border-left: 2px solid var(--md-accent-fg-color);
+  border-left: 2px solid var(--md-primary-fg-color);
 }
