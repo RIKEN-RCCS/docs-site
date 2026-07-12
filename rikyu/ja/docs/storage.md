@@ -4,7 +4,7 @@
 
 ## ホーム領域
 
-各ユーザは5 GBのホーム領域（`/home/USER`）を持ちます。`USER`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
+各ユーザは50 GBのホーム領域（`/home/USER`）を持ちます。`USER`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
 
 コマンドラインでホーム領域の利用状況を確認するには、以下のコマンドを実行してください。
 
@@ -12,7 +12,7 @@
 $ lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
 Disk quotas for prj 100010 (pid 100010):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
-     /home   2.42G       0k      5G       -     511        0 1000000       -
+     /home   2.42G       0k     50G       -     511        0 1000000       -
 ```
 
 `used`は使用済み容量、`blimit`は容量の上限、`files`は使用中のファイル数、`ilimit`はファイル数の上限です。
@@ -63,7 +63,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
     <tr>
       <td>ホーム領域</td>
       <td><code>/home/USER</code></td>
-      <td>5 GB</td>
+      <td>50 GB</td>
       <td rowspan="2">可能</td>
       <td rowspan="2">Lustre</td>
       <td>本人のみ</td>

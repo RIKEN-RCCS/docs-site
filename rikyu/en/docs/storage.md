@@ -4,7 +4,7 @@ The storage areas of this system are divided into three types: <span class="text
 
 ## Home Area
 
-Each user has a 5 GB home area (`/home/USER`). `USER` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
+Each user has a 50 GB home area (`/home/USER`). `USER` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
 
 To check home area usage from the command line, run the following command.
 
@@ -12,7 +12,7 @@ To check home area usage from the command line, run the following command.
 $ lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
 Disk quotas for prj 100010 (pid 100010):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
-     /home   2.42G       0k      5G       -     511        0 1000000       -
+     /home   2.42G       0k     50G       -     511        0 1000000       -
 ```
 
 `used` is the used capacity, `blimit` is the capacity limit, `files` is the number of files in use, and `ilimit` is the file count limit.
@@ -63,7 +63,7 @@ The home area and group area are on shared storage, so they can be used from bot
     <tr>
       <td>Home area</td>
       <td><code>/home/USER</code></td>
-      <td>5 GB</td>
+      <td>50 GB</td>
       <td rowspan="2">Available</td>
       <td rowspan="2">Lustre</td>
       <td>Owner only</td>
