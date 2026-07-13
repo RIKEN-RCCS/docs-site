@@ -77,7 +77,7 @@ The functions in Home Directory are as follows. To perform operations on individ
 | Name                    | Description                         |
 | ----------------------- | ----------------------------------- |
 | Active Jobs             | Job monitoring                      |
-| Open Composer (planned) | Batch job creation and submission   |
+| Slurm                   | Batch job creation and submission   |
 
 ### Active Jobs
 
@@ -85,7 +85,7 @@ You can view and delete job information. Click the button on the left side of th
 
 <img width="800" alt="Active Jobs" src="img/activejobs.png" style="border: 1px solid #000;">
 
-### Open Composer
+### Slurm
 
 (Planned)
 
@@ -95,7 +95,7 @@ You can view and delete job information. Click the button on the left side of th
 | ------------------------ | ---------------------------- |
 | RIKYU Shell Access       | Web terminal                 |
 | SSH Public Key           | SSH public key registration  |
-| Delete Passkey (planned) | Delete passkeys              |
+| Delete Passkey           | Delete passkeys              |
 | System Status (planned)  | Check cluster usage status   |
 
 ### RIKYU Shell Access
@@ -110,10 +110,9 @@ See [SSH Public Key Registration](https://docs.r-ccs.riken.jp/rikyu/en/login/#ss
 
 ### Delete Passkey
 
-(Planned)
+You can delete registered passkeys. Click the "Delete" button.
 
-<!-- You can delete registered passkeys. Click the "Delete" button. -->
-<!--  <img width="600" alt="Delete Passkey" src="img/passkey.png"> -->
+<img width="800" alt="Delete Passkey" src="img/passkey.png" style="border: 1px solid #000;">
 
 ### System Status
 
