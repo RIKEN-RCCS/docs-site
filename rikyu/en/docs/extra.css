@@ -1,26 +1,29 @@
 :root {
-  /* Site palette, harmonized around Sencha-iro (煎茶色).
+  /* Site palette, harmonized around the base tea green (千歳緑).
      Roughly a 70 / 25 / 5 split: base for primary UI (links, headings,
      nav), main as a warm supporting tone, accent for small CTAs/pops. */
 
-  /* Base (70%) — Sencha-iro (煎茶色), midpoint between #4C7A56 and #46704F */
-  --md-primary-fg-color: #497553;
-  --md-primary-fg-color--light: #809E87;
-  --md-primary-fg-color--dark: #33523A;
-  --md-primary-fg-color--transparent: #4975531f;
+  /* Base (70%) — deep tea green (千歳緑) */
+  --md-primary-fg-color: #366E4C;
+  --md-primary-fg-color--light: #729A82;
+  --md-primary-fg-color--dark: #264D35;
+  --md-primary-fg-color--transparent: #366e4c1f;
 
   /* Main (25%) — Rikyucha (利休茶), a warm olive-gold that pairs with tea green */
-  --md-accent-fg-color: #8A7B4F;
-  --md-accent-fg-color--transparent: #8a7b4f1a;
-  --site-main-color--light: #C4B78F;
-  --site-main-color--dark: #5E5236;
+  --md-accent-fg-color: #A59564;
+  --md-accent-fg-color--transparent: #a595641a;
+  --site-main-color--light: #CBC2A5;
+  --site-main-color--dark: #706544;
 
   /* Accent (5%) — Kaki-iro (柿色), for CTAs and small highlights only */
   --site-accent-color: #ED6D3D;
   --site-accent-color--dark: #C1512A;
+
+  /* Inline <code> — vivid green so module names like nvhpc-nompi stand out. */
+  --spec-inline-code-color: #148C3D;
 }
 
-/* Header and footer bars — kept a fixed Sencha-iro tone in both schemes,
+/* Header and footer bars — kept a fixed tea-green tone in both schemes,
    rather than following the lighter slate-mode primary variant, so the
    brand bar stays consistent and legible with white text/icons. */
 .md-header {
@@ -64,8 +67,8 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
   color: rgb(33, 33, 33);
   font-size: 0.825rem;
   line-height: 1.45;
-  --spec-table-border: rgba(60, 110, 71, 0.5);
-  --spec-table-head-bg: rgb(237, 231, 214);
+  --spec-table-border: #A59564;
+  --spec-table-head-bg: #A59564;
   --spec-code-bg: rgb(241, 239, 234);
   --spec-code-fg: rgb(0, 0, 0);
   --spec-slurm-directive-color: var(--site-accent-color--dark);
@@ -73,29 +76,33 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
 
 [data-md-color-scheme="slate"] .md-typeset {
   color: rgb(255, 255, 255);
-  --spec-table-border: rgba(119, 154, 126, 0.45);
-  --spec-table-head-bg: rgb(43, 48, 38);
+  --spec-table-border: #A59564;
+  --spec-table-head-bg: #A59564;
   --spec-code-bg: rgb(24, 21, 14);
   --spec-code-fg: rgb(255, 255, 255);
   --spec-slurm-directive-color: var(--site-accent-color);
 }
 
+[data-md-color-scheme="default"] {
+  /* Material sets --md-typeset-a-color on [data-md-color-scheme] (body), which
+     beats a :root (html) override, so the link color must be set at this scope. */
+  --md-typeset-a-color: #1F6EB2;
+}
+
 [data-md-color-scheme="slate"] {
   --md-accent-fg-color: var(--site-main-color--light);
-  --md-accent-fg-color--transparent: #c4b78f26;
-  --md-primary-fg-color--transparent: #809e872e;
+  --md-accent-fg-color--transparent: #cbc2a526;
+  --md-primary-fg-color--transparent: #729a822e;
+  --md-typeset-a-color: #85AFD4;
+  --spec-inline-code-color: #3FCB70;
 }
 
 .md-typeset table:not([class]) {
   display: table;
   width: 100%;
   margin: 0.3rem 0 0;
-  overflow: hidden;
   border: 1px solid var(--spec-table-border);
   border-collapse: collapse;
-  border-radius: 0.25rem;
-  outline: 1px solid var(--spec-table-border);
-  outline-offset: -1px;
   background: var(--md-default-bg-color);
   font-size: 0.75rem;
 }
@@ -109,7 +116,10 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
 
 .md-typeset table:not([class]) th {
   background: var(--spec-table-head-bg);
-  color: var(--md-default-fg-color);
+  color: #fff;
+  /* Keep every edge the same color so the header looks flat rather than
+     like it has a light inset groove between cells. */
+  border-color: var(--spec-table-border);
   font-weight: 700;
   min-width: 0;
 }
@@ -266,14 +276,14 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: var(--md-primary-fg-color--dark);
+  color: var(--spec-inline-code-color);
   font-weight: 700;
   margin: 0;
   padding: 0;
 }
 
 [data-md-color-scheme="slate"] .md-typeset :not(pre) > code {
-  color: var(--md-primary-fg-color--light);
+  color: var(--spec-inline-code-color);
 }
 
 .md-typeset .highlight :is(.c1, .nv) {
@@ -324,14 +334,14 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
   background: transparent;
   border-radius: 0;
   box-shadow: none;
-  color: var(--md-primary-fg-color--dark);
+  color: var(--spec-inline-code-color);
   font-weight: 700;
   margin: 0;
   padding: 0;
 }
 
 [data-md-color-scheme="slate"] .md-nav :not(pre) > code {
-  color: var(--md-primary-fg-color--light);
+  color: var(--spec-inline-code-color);
 }
 
 [dir="ltr"] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
