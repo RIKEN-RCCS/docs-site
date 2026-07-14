@@ -93,10 +93,9 @@ You can view and delete job information. Click the button on the left side of th
 
 | Name                     | Description                  |
 | ------------------------ | ---------------------------- |
+| Delete Passkey           | Delete passkeys              |
 | RIKYU Shell Access       | Web terminal                 |
 | SSH Public Key           | SSH public key registration  |
-| Delete Passkey           | Delete passkeys              |
-| System Status (planned)  | Check cluster usage status   |
 
 ### RIKYU Shell Access
 
@@ -113,10 +112,6 @@ See [SSH Public Key Registration](https://docs.r-ccs.riken.jp/rikyu/en/login/#ss
 You can delete registered passkeys. Click the "Delete" button.
 
 <img width="800" alt="Delete Passkey" src="img/passkey.png" style="border: 1px solid #000;">
-
-### System Status
-
-(Planned)
 
 ## Interactive Applications
 
