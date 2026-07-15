@@ -1,5 +1,9 @@
 # Slurm
 
+!!! note
+
+    Job scripts used in Early Access Phase 1 differ from the current environment, for example in their environment variables. Users who are still using scripts carried over from Early Access Phase 1 may experience unexpected behavior or other adverse effects, so we recommend recreating your job scripts.
+
 To run programs on this system, submit jobs using the [Slurm job scheduler](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }. There are two ways to run jobs: <span class="text-marker">batch jobs</span> and <span class="text-marker">interactive jobs</span>. Batch jobs are submitted by creating a job script in advance and are suitable for long-running jobs. Interactive jobs let users run commands interactively and are suitable for debugging before submitting batch jobs.
 
 This page explains how to submit jobs from the command line.
