@@ -18,6 +18,7 @@ nav = [
   { "Containers" = "container.md" },
   { "Job Resources" = "resources.md" },
   { "Open OnDemand" = "ood.md" },
+  { "Open Composer" = "composer.md" },
   { "Slurm" = "slurm.md" },
   { "Spack" = "spack.md" },
   { "Contact" = "contact.md" },

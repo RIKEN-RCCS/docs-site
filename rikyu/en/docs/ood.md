@@ -63,7 +63,7 @@ The functions in Home Directory are as follows. To perform operations on individ
 | Path Bar        | Description                            |
 | --------------- | -------------------------------------- |
 | &uarr;          | Move to the parent directory           |
-| Change directry | Change directory                       |
+| Change directory | Change directory                       |
 | Copy path       | Copy the current path to the clipboard |
 
 | Display Option  | Description                 |
@@ -87,7 +87,7 @@ You can view and delete job information. Click the button on the left side of th
 
 ### Slurm
 
-(Planned)
+See [Open Composer](composer.md).
 
 ## Cluster Operations
 

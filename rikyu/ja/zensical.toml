@@ -18,6 +18,7 @@ nav = [
   { "コンテナの使い方" = "container.md" },
   { "ジョブ実行資源" = "resources.md" },
   { "Open OnDemandの使い方" = "ood.md" },
+  { "Open Composerの使い方" = "composer.md" },
   { "Slurmの使い方" = "slurm.md" },
   { "Spackの使い方" = "spack.md" },
   { "お問い合わせ" = "contact.md" },
