@@ -117,11 +117,17 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
 .md-typeset table:not([class]) th {
   background: var(--spec-table-head-bg);
   color: #fff;
-  /* Keep every edge the same color so the header looks flat rather than
-     like it has a light inset groove between cells. */
-  border-color: var(--spec-table-border);
   font-weight: 700;
   min-width: 0;
+}
+
+/* --spec-table-head-bg and --spec-table-border are the same color, so
+   without this the dividers between header cells vanish into the
+   background. Only the inner divider is touched — the outer table
+   border (top/left/right) is left alone so it stays flush with the
+   border around the body rows below it. */
+.md-typeset table:not([class]) th:not(:last-child) {
+  border-right-color: rgba(255, 255, 255, 0.4);
 }
 
 .md-typeset table:not([class]) tbody tr:hover {
