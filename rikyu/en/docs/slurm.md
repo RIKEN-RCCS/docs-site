@@ -1,6 +1,6 @@
 # Slurm
 
-!!! note
+!!! warning
 
     Job scripts used in Early Access Phase 1 differ from the current environment, for example in their environment variables. Users who are still using scripts carried over from Early Access Phase 1 may experience unexpected behavior or other adverse effects, so we recommend recreating your job scripts.
 
