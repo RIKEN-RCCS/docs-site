@@ -22,10 +22,9 @@ To apply for an account on this system, use the RIKYU Account Application System
 
     Users continuing from Early Access Phase 1 must also submit a new account application. Early Access Phase 2 is available to ARiSE users, members of accepted SPReAD1000 projects, and RIKEN members. To use this system, users must register their personal information, and the project representative must register the project, add project members, and complete the required project procedures.
 
-
 !!! note
 
-    Early Access Phase 1 accounts will be maintained for the time being only during the data migration period. However, they cannot be used to run jobs or use other compute resources. Data will not be migrated automatically, so users must transfer any necessary data to the Early Access Phase 2 environment themselves.
+    Early Access Phase 1 accounts will be maintained for the time being only during the data migration period. However, they cannot be used to run jobs or use other compute resources. Data will not be migrated automatically, so users must transfer any necessary data to the Early Access Phase 2 environment themselves. Note that Early Access Phase 2 accounts and data are expected to remain available for continued use in the subsequent production operation.
 
 ## Usage Fees
 
