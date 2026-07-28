@@ -88,11 +88,35 @@ The home area and group area are on shared storage, so they can be used from bot
 
 The home area uses 2 PB of high-speed storage (SSD), while the group area uses 10 PB of large-capacity storage (HDD). Note that the home area and group area therefore have different performance characteristics.
 
-## Capacity Increase Requests
+## Changing Capacity
 
-To request additional capacity for the home area or group area, create a ticket using the link below.
+### Group Area
+
+The capacity of the group area can be changed in the RIKYU Portal by the project's principal investigator (PI) or sub-principal investigator (SubPI). It can be set in units of 1 TB, up to 100 TB.
+
+[RIKYU Portal](https://portal.rikyu.r-ccs.riken.jp/en/usage/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+
+Sign in to the portal and select <span class="text-marker">Usage</span> at the top of the page. Under <span class="text-marker">Storage</span>, click <span class="text-marker">CHANGE QUOTA</span> for the project, enter a <span class="text-marker">New quota (TB)</span>, and click <span class="text-marker">SAVE</span>.
+
+<img width="700" alt="Changing the group area capacity" src="img/storage_quota.svg" style="border: 1px solid #000;">
+
+An increase takes about 5 to 10 minutes to take effect. A decrease takes effect on the first day of the following month. Each project can have one scheduled decrease at a time; setting another one replaces it, and setting the value back to the current capacity cancels it.
+
+!!! note
+
+    Only a PI or SubPI can change the capacity. Other project members can view the current usage and capacity.
+
+!!! note
+
+    The file count (inode) limit cannot be changed in the portal. If you need it changed, request it with a ticket.
+
+If you need more than 100 TB, the PI or SubPI should request it with a ticket using the link below.
 
 [Create a Ticket](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+
+### Home Area
+
+The capacity of the home area cannot be changed. Store large data in the group area.
 
 !!! note
 
