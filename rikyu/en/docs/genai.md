@@ -10,11 +10,14 @@ This system provides a generative AI service based on large language models (LLM
 
 ## Available Models
 
-| Model         | Context length | Description                                       |
-| ------------- | -------------- | ------------------------------------------------- |
-| `qwen3.6-35b` | 256K           | Standard model. Fast responses for general use    |
-| `kimi-k2.6`   | 128K           | Large-scale model                                 |
-| `glm-5.2`     | 1M             | Model for long contexts                           |
+| Model         | Parameters | Context length | Description                                    | Model card |
+| ------------- | ---------- | -------------- | ---------------------------------------------- | ---------- |
+| `qwen3.6-35b` | 35B        | 256K           | Standard model. Fast responses for general use | [Qwen/Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B){ target="_blank" rel="noopener" } |
+| `kimi-k2.6`   | 1T         | 128K           | Large-scale model                              | [moonshotai/Kimi-K2.6](https://huggingface.co/moonshotai/Kimi-K2.6){ target="_blank" rel="noopener" } |
+| `glm-5.2`     | 743B       | 1M             | Model for long contexts                        | [zai-org/GLM-5.2](https://huggingface.co/zai-org/GLM-5.2){ target="_blank" rel="noopener" } |
+| `kimi-k3`     | 2.8T       | 928K           | Largest model                                  | [moonshotai/Kimi-K3](https://huggingface.co/moonshotai/Kimi-K3){ target="_blank" rel="noopener" } |
+
+Parameters are total parameter counts. All of these are MoE (Mixture of Experts) models, so the number of parameters actually used to generate a token is smaller. Context length is the maximum number of input tokens accepted by this service, which may differ from the model's native limit.
 
 All models support reasoning and function calling.
 

@@ -10,11 +10,14 @@
 
 ## 利用できるモデル
 
-| モデル名      | コンテキスト長 | 説明                                     |
-| ------------- | -------------- | ---------------------------------------- |
-| `qwen3.6-35b` | 256K           | 標準モデル。応答が速く、汎用的に利用できます |
-| `kimi-k2.6`   | 128K           | 大規模モデル                             |
-| `glm-5.2`     | 1M             | 長いコンテキストを扱えるモデル           |
+| モデル名      | パラメータ数 | コンテキスト長 | 説明                                     | モデルカード |
+| ------------- | ------------ | -------------- | ---------------------------------------- | ------------ |
+| `qwen3.6-35b` | 35B          | 256K           | 標準モデル。応答が速く、汎用的に利用できます | [Qwen/Qwen3.6-35B-A3B](https://huggingface.co/Qwen/Qwen3.6-35B-A3B){ target="_blank" rel="noopener" } |
+| `kimi-k2.6`   | 1T           | 128K           | 大規模モデル                             | [moonshotai/Kimi-K2.6](https://huggingface.co/moonshotai/Kimi-K2.6){ target="_blank" rel="noopener" } |
+| `glm-5.2`     | 743B         | 1M             | 長いコンテキストを扱えるモデル           | [zai-org/GLM-5.2](https://huggingface.co/zai-org/GLM-5.2){ target="_blank" rel="noopener" } |
+| `kimi-k3`     | 2.8T         | 928K           | 最大規模のモデル                         | [moonshotai/Kimi-K3](https://huggingface.co/moonshotai/Kimi-K3){ target="_blank" rel="noopener" } |
+
+パラメータ数は総パラメータ数です。いずれもMoE（Mixture of Experts）モデルであるため、1トークンの生成に実際に使われるパラメータ数はこれより少なくなります。コンテキスト長は、本サービスで入力に指定できるトークン数の上限であり、モデル本来の上限とは異なる場合があります。
 
 いずれのモデルも、推論（reasoning）とFunction Callingに対応しています。
 
