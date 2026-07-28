@@ -21,6 +21,7 @@ nav = [
   { "Open Composer" = "composer.md" },
   { "Slurm" = "slurm.md" },
   { "Spack" = "spack.md" },
+  { "Generative AI Service" = "genai.md" },
   { "Contact" = "contact.md" },
 ]
 
