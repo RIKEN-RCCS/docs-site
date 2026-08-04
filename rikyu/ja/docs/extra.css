@@ -331,6 +331,15 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
   font-size: 0.7rem;
 }
 
+/* Integrated TOC: list <h2> and <h3> only. Two levels of nested .md-nav inside
+   the TOC means <h4> or deeper, which on pages like compile.md are per-language
+   variants (C / C++ / Fortran) repeated under every section — they bloat the
+   sidebar without helping navigation. The headings keep their anchors, so
+   direct links to them still work. */
+.md-nav--secondary .md-nav .md-nav {
+  display: none;
+}
+
 .md-nav code {
   font-family: "JetBrains Mono", "SFMono-Regular", Consolas, Menlo, monospace;
   font-size: inherit;
