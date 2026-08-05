@@ -64,7 +64,12 @@ Slurm lets you submit jobs, check job status, and cancel jobs. The main Slurm co
 Create a job script (`job.sh`) and run the `sbatch` command on a login node.
 
 ```bash
-$ sbatch job.sh
+sbatch job.sh
+```
+
+Example output:
+
+```text
 Submitted batch job 2080
 ```
 
@@ -79,13 +84,18 @@ If you belong to multiple projects, you can specify the project to charge for th
 Alternatively, specify it when running the `sbatch` command.
 
 ```bash
-$ sbatch --account=PROJECT_NAME job.sh
+sbatch --account=PROJECT_NAME job.sh
 ```
 
 ### Showing Job Status
 
 ```bash
-$ squeue
+squeue
+```
+
+Example output:
+
+```text
    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
     2080       gpu test-job rku00011  R       0:05      1 c072
 ```
@@ -95,7 +105,12 @@ $ squeue
 Allocate compute resources for an interactive job with the `salloc` command. The following example requests 2 GPUs for 10 minutes. The `2081` in the output message is the job ID.
 
 ```bash
-$ salloc --gpus=2 --time=00:10:00
+salloc --gpus=2 --time=00:10:00
+```
+
+Example output:
+
+```text
 salloc: Granted job allocation 2081
 salloc: Waiting for resource configuration
 salloc: Nodes c072 are ready for job
@@ -104,15 +119,24 @@ salloc: Nodes c072 are ready for job
 After the allocation starts, use the `srun` command to run a command on the allocated node.
 
 ```bash
-$ srun hostname
+srun hostname
+```
+
+Example output:
+
+```text
 c072
 ```
 
 When you are finished, run `exit` to release the allocation.
 
 ```bash
-$ exit
 exit
+```
+
+Example output:
+
+```text
 salloc: Relinquishing job allocation 2081
 ```
 
@@ -121,21 +145,30 @@ salloc: Relinquishing job allocation 2081
 Start an interactive job with the `srun --pty bash` command. The following example requests 4 GPUs for 10 minutes.
 
 ```bash
-$ srun --gpus=4 --time=00:10:00 --pty bash
-$ hostname
+srun --gpus=4 --time=00:10:00 --pty bash
+```
+
+A shell starts on the allocated node. Run the `hostname` command to check the node name.
+
+```bash
+hostname
+```
+
+Example output:
+
+```text
 c072
 ```
 
 If you belong to multiple projects, you can specify the project to charge for the job with the Slurm `--account=` or `-A` option. Specify the project name to use for `PROJECT_NAME`.
 
 ```bash
-$ srun --account=PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
+srun --account=PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
 ```
 
 When you are finished, run `exit` to leave the shell and end the `srun` job.
 
 ```bash
-$ exit
 exit
 ```
 
@@ -144,7 +177,7 @@ exit
 Specify the job ID and cancel a submitted or running job with the `scancel` command.
 
 ```bash
-$ scancel 2081
+scancel 2081
 ```
 
 ### Checking Compute Node Status
@@ -152,7 +185,12 @@ $ scancel 2081
 Check compute node status with `sinfo`.
 
 ```bash
-$ sinfo
+sinfo
+```
+
+Example output:
+
+```text
 PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
 gpu          up 4-00:00:00    400   idle c[000-399]
 ```

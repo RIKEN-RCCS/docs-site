@@ -37,13 +37,13 @@
 `bash` または `zsh` を使っている場合は、ログイン後に次を実行します。
 
 ```bash
-$ . /shared/software/spack-1.2.0/share/spack/setup-env.sh
+. /shared/software/spack-1.2.0/share/spack/setup-env.sh
 ```
 
 `csh` または `tcsh` を使っている場合は、次を実行します。
 
 ```bash
-% source /shared/software/spack-1.2.0/share/spack/setup-env.csh
+source /shared/software/spack-1.2.0/share/spack/setup-env.csh
 ```
 
 バッチジョブ内でソフトウェアを使う場合も、ジョブスクリプト内に同じ設定を入れてください。
@@ -53,8 +53,8 @@ $ . /shared/software/spack-1.2.0/share/spack/setup-env.sh
 環境を読み込んだら、次を実行します。
 
 ```bash
-$ spack --version
-$ which spack
+spack --version
+which spack
 ```
 
 `spack: command not found` と表示される場合は、2.1の環境読み込みができていません。同じシェルで、もう一度 `setup-env.sh` を読み込んでください。
@@ -64,13 +64,13 @@ $ which spack
 システム側で明示的に提供されているビルド済みソフトウェアを確認します。
 
 ```bash
-$ spack find -x
+spack find -x
 ```
 
 ハッシュ値も表示したい場合は、次を使います。
 
 ```bash
-$ spack find -lx
+spack find -lx
 ```
 
 よく使う確認コマンドは次のとおりです。
@@ -90,7 +90,7 @@ $ spack find -lx
 例として `cp2k` を使う場合は、次を実行します。
 
 ```bash
-$ spack load cp2k
+spack load cp2k
 ```
 
 ロードすると、`PATH` などの環境変数が設定され、そのシェルまたはジョブの中でアプリケーションを実行できるようになります。
@@ -98,7 +98,7 @@ $ spack load cp2k
 実行ファイルが見えるか確認します。
 
 ```bash
-$ which <実行コマンド>
+which <実行コマンド>
 ```
 
 アプリケーションによっては、パッケージ名と実行コマンド名が異なります。
@@ -108,7 +108,7 @@ $ which <実行コマンド>
 現在ロードされているパッケージは、次で確認できます。
 
 ```bash
-$ spack find --loaded
+spack find --loaded
 ```
 
 ### 2.5 使い終わったらアンロードする
@@ -116,7 +116,7 @@ $ spack find --loaded
 利用後に現在のシェルから外す場合は、次を実行します。
 
 ```bash
-$ spack unload cp2k
+spack unload cp2k
 ```
 
 別のビルド条件の同名パッケージを試す場合は、古いパッケージをアンロードしてから新しいパッケージをロードしてください。
@@ -160,7 +160,7 @@ srun <アプリケーションの実行コマンド> <入力ファイルなど>
 提供内容は更新されることがあります。最新の一覧は次で確認してください。
 
 ```bash
-$ spack find -x
+spack find -x
 ```
 
 ### 3.3 Quantum ESPRESSOのジョブスクリプト例
@@ -200,19 +200,19 @@ srun pw.x -in qe.in
 まず、対象パッケージのハッシュ値を確認します。
 
 ```bash
-$ spack find -lv <パッケージ名>
+spack find -lv <パッケージ名>
 ```
 
 例:
 
 ```bash
-$ spack find -lv quantum-espresso
+spack find -lv quantum-espresso
 ```
 
 ハッシュ値が分かったら、そのハッシュを使ってビルド構成を確認します。
 
 ```bash
-$ spack spec /<hash>
+spack spec /<hash>
 ```
 
 依存関係ツリー内に次の表示があれば、その構成は `hpcx-mpi` を利用しています。
@@ -241,7 +241,7 @@ MPI通信エラーが発生した場合は、8章のトラブルシューティ�
 提供ソフトウェアは更新されることがあります。最新の一覧は、必ずシステム上で確認してください。
 
 ```bash
-$ spack find -x
+spack find -x
 ```
 
 ### 5.1 主な提供ソフトウェア
@@ -262,7 +262,12 @@ $ spack find -x
 以下は出力例です。ハッシュ値、バージョン、パッケージ数はシステム更新により変わります。
 
 ```bash
-$ spack find -lx
+spack find -lx
+```
+
+出力例：
+
+```text
 -- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=gcc@13.3.0 ----
 g6hpeea cp2k@2026.1            qxqrq4o parallel-netcdf@1.14.1
 gmcipc4 darshan-runtime@3.5.0  vephnns paraview@6.1.1
@@ -311,7 +316,7 @@ Spackでは、同じソフトウェアであっても、バージョン、コン
 例えば、`fftw` が複数ビルドされている状態で次を実行するとします。
 
 ```bash
-$ spack load fftw
+spack load fftw
 ```
 
 候補が複数ある場合、次のようなエラーになります。
@@ -329,21 +334,21 @@ $ spack load fftw
 同名パッケージが複数ある場合は、まず短縮ハッシュ値を確認します。
 
 ```bash
-$ spack find -lx fftw
+spack find -lx fftw
 ```
 
 その後、利用したいビルドの短縮ハッシュ値を使ってロードします。
 
 ```bash
-$ spack load /5rny4xu
+spack load /5rny4xu
 ```
 
 出力例の候補であれば、次のように指定できます。
 
 ```bash
-$ spack load /erk4i5v
-$ spack load /5rny4xu
-$ spack load /nkvjfgj
+spack load /erk4i5v
+spack load /5rny4xu
+spack load /nkvjfgj
 ```
 
 ハッシュ値は環境更新により変わる可能性があります。説明書中のハッシュ値を固定値として覚えるのではなく、実行時に `spack find -lx <パッケージ名>` で確認してください。
@@ -353,21 +358,21 @@ $ spack load /nkvjfgj
 バージョン番号で指定することもできます。
 
 ```bash
-$ spack load fftw@3.3.11
+spack load fftw@3.3.11
 ```
 
 ただし、同じバージョンのビルドが複数ある場合は、これだけでは区別できません。その場合は、コンパイラを含めて指定します。
 
 ```bash
-$ spack load fftw%gcc
-$ spack load fftw%nvhpc
+spack load fftw%gcc
+spack load fftw%nvhpc
 ```
 
 さらに詳細に指定する場合は、次のように書けます。
 
 ```bash
-$ spack load fftw%gcc@13.3.0
-$ spack load fftw%nvhpc@26.3
+spack load fftw%gcc@13.3.0
+spack load fftw%nvhpc@26.3
 ```
 
 それでも候補が複数残る場合は、ハッシュ値での指定を使ってください。
@@ -391,10 +396,10 @@ $ spack load fftw%nvhpc@26.3
 以下は、ホームディレクトリ配下に自分用のSpackインスタンスを作成する例です。
 
 ```bash
-$ cd $HOME
-$ git clone <SpackリポジトリURL> spack
-$ cd spack
-$ git checkout <ブランチ名>
+cd $HOME
+git clone <SpackリポジトリURL> spack
+cd spack
+git checkout <ブランチ名>
 ```
 
 利用するリポジトリURLとブランチ名は、管理者の案内に従ってください。
@@ -402,7 +407,7 @@ $ git checkout <ブランチ名>
 ### 7.3 プライベート・インスタンスの環境を読み込む
 
 ```bash
-$ . $HOME/spack/share/spack/setup-env.sh
+. $HOME/spack/share/spack/setup-env.sh
 ```
 
 同じシェルでパブリック・インスタンスとプライベート・インスタンスの `setup-env.sh` を重ねて読み込むと、どちらのSpackを使っているか分かりにくくなります。プライベート・インスタンスを使う場合は、新しいシェルでプライベート側の `setup-env.sh` を読み込むことを推奨します。
@@ -414,8 +419,8 @@ $ . $HOME/spack/share/spack/setup-env.sh
 標準的な構成例は次のとおりです。
 
 ```bash
-$ mkdir -p ~/.spack
-$ cat > ~/.spack/upstreams.yaml <<'EOF'
+mkdir -p ~/.spack
+cat > ~/.spack/upstreams.yaml <<'EOF'
 upstreams:
   gb200-public:
     install_tree: /shared/software/spack-1.2.0/opt/spack
@@ -427,7 +432,7 @@ EOF
 設定後、パブリック・インスタンス側のパッケージが見えるか確認します。
 
 ```bash
-$ spack find -lx
+spack find -lx
 ```
 
 ### 7.5 パッケージを検索する
@@ -435,14 +440,14 @@ $ spack find -lx
 Spackで利用可能なパッケージ名を検索します。
 
 ```bash
-$ spack list
-$ spack list mpi
+spack list
+spack list mpi
 ```
 
 パッケージのバージョンやビルドオプションを確認します。
 
 ```bash
-$ spack info openmpi
+spack info openmpi
 ```
 
 ### 7.6 パッケージをインストールする
@@ -450,19 +455,19 @@ $ spack info openmpi
 例として `openmpi` をインストールする場合は次を実行します。
 
 ```bash
-$ spack install openmpi
+spack install openmpi
 ```
 
 バージョン指定も可能です。
 
 ```bash
-$ spack install openmpi@4.1.1
+spack install openmpi@4.1.1
 ```
 
 インストール後は、次で確認できます。
 
 ```bash
-$ spack find -lx openmpi
+spack find -lx openmpi
 ```
 
 !!! note
@@ -472,14 +477,14 @@ $ spack find -lx openmpi
 ### 7.7 パッケージをアンインストールする
 
 ```bash
-$ spack uninstall openmpi
+spack uninstall openmpi
 ```
 
 同名パッケージが複数存在する場合は、誤削除を防ぐため、ハッシュ値で対象を確認してから実行してください。
 
 ```bash
-$ spack find -lx openmpi
-$ spack uninstall /<hash>
+spack find -lx openmpi
+spack uninstall /<hash>
 ```
 
 !!! note
@@ -502,13 +507,13 @@ $ spack uninstall /<hash>
 管理者へ問い合わせる場合は、可能であれば次の情報を添えてください。
 
 ```bash
-$ hostname
-$ date
-$ echo $SHELL
-$ which spack
-$ spack --version
-$ spack find --loaded
-$ spack find -lx <利用したいパッケージ名>
+hostname
+date
+echo $SHELL
+which spack
+spack --version
+spack find --loaded
+spack find -lx <利用したいパッケージ名>
 ```
 
 ジョブで問題が出る場合は、ジョブID、ジョブスクリプト、標準出力、標準エラーも添えてください。

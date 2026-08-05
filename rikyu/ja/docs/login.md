@@ -35,7 +35,12 @@ Open OnDemandは、Webブラウザからスーパーコンピュータを利用�
 Ed25519の鍵ペアを生成する`ssh-keygen`コマンドの例を以下に示します（Windowsの場合は`ssh-keygen.exe`コマンドになります）。コマンド実行後に、ホームディレクトリ配下の`.ssh`ディレクトリに秘密鍵（`id_ed25519`）と公開鍵（`id_ed25519.pub`）の鍵ペアが作成されます。
 
 ```bash
-$ ssh-keygen -t ed25519
+ssh-keygen -t ed25519
+```
+
+出力例：
+
+```text
 Generating public/private ed25519 key pair.
 Enter file in which to save the key (/home/username/.ssh/id_ed25519):
 Enter passphrase (empty for no passphrase):  # パスフレーズを入力
@@ -74,7 +79,7 @@ SSH公開鍵をOpen OnDemandから本システムに登録します。Open OnDem
 公開鍵の登録後、端末ソフトウェアから以下のコマンドでSSHログインできます。`USERNAME`は自分のユーザ名に置き換えてください。
 
 ```bash
-$ ssh USERNAME@login.rikyu.r-ccs.riken.jp
+ssh USERNAME@login.rikyu.r-ccs.riken.jp
 ```
 
 コマンドラインによるジョブの投入方法などについては、[Slurmの使い方](slurm.md)を参照してください。

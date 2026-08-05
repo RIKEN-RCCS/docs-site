@@ -9,7 +9,12 @@
 コマンドラインでホーム領域の利用状況を確認するには、以下のコマンドを実行してください。
 
 ```bash
-$ lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
+lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
+```
+
+出力例：
+
+```text
 Disk quotas for prj 100010 (pid 100010):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
      /home   2.42G       0k     50G       -     511        0 1000000       -
@@ -24,7 +29,12 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 コマンドラインでグループ領域の利用状況を確認するには、以下のコマンドを実行してください（`GROUP`にはグループ名を指定してください）。
 
 ```bash
-$ lfs quota -h -p `lfs project -d /data1/GROUP | awk '{print $1}'` /data1
+lfs quota -h -p `lfs project -d /data1/GROUP | awk '{print $1}'` /data1
+```
+
+出力例：
+
+```text
 Disk quotas for prj 200013 (pid 200013):
 Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
     /data1      4k       0k      1T       -       1        0 10000000       -

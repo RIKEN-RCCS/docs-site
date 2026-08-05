@@ -50,20 +50,20 @@ APIキーは課題ごとに1つ発行できます。APIの利用量は、キー�
 発行したAPIキーを環境変数に設定します。`OPENAI_API_KEY`は、OpenAI SDKや多くの互換ツールが既定で参照する環境変数名です。
 
 ```bash
-$ export OPENAI_API_KEY=発行したAPIキー
+export OPENAI_API_KEY=発行したAPIキー
 ```
 
 利用できるモデルの一覧を取得します。
 
 ```bash
-$ curl https://api.rikyu.r-ccs.riken.jp/v1/models \
+curl https://api.rikyu.r-ccs.riken.jp/v1/models \
     -H "Authorization: Bearer $OPENAI_API_KEY"
 ```
 
 テキストを生成します。`model`には利用するモデル名を指定します。
 
 ```bash
-$ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
+curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -H "Content-Type: application/json" \
     -d '{
@@ -77,7 +77,7 @@ $ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
 生成結果を逐次受け取る場合は、`stream`に`true`を指定します。
 
 ```bash
-$ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
+curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -H "Content-Type: application/json" \
     -d '{
@@ -94,7 +94,7 @@ $ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
 OpenAIのPythonライブラリをインストールします。
 
 ```bash
-$ pip install openai
+pip install openai
 ```
 
 `base_url`にエンドポイント、`api_key`に発行したAPIキーを指定します。

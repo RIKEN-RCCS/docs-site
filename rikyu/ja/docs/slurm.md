@@ -64,7 +64,12 @@ Slurmでは、ジョブの投入、状態確認、キャンセルを行うこと
 ジョブスクリプト（`job.sh`）を作成し、ログインノード上で`sbatch`コマンドを実行します。
 
 ```bash
-$ sbatch job.sh
+sbatch job.sh
+```
+
+出力例：
+
+```text
 Submitted batch job 2080
 ```
 
@@ -79,13 +84,18 @@ Submitted batch job 2080
 または、`sbatch`コマンドの実行時に指定します。
 
 ```bash
-$ sbatch --account=PROJECT_NAME job.sh
+sbatch --account=PROJECT_NAME job.sh
 ```
 
 ### ジョブの状態表示
 
 ```bash
-$ squeue
+squeue
+```
+
+出力例：
+
+```text
    JOBID PARTITION     NAME     USER ST       TIME  NODES NODELIST(REASON)
     2080       gpu test-job rku00011  R       0:05      1 c072
 ```
@@ -95,7 +105,12 @@ $ squeue
 対話ジョブ用の計算資源を`salloc`コマンドで確保します。次の例では、2 GPUを10分間要求します。出力メッセージの`2081`はジョブIDです。
 
 ```bash
-$ salloc --gpus=2 --time=00:10:00
+salloc --gpus=2 --time=00:10:00
+```
+
+出力例：
+
+```text
 salloc: Granted job allocation 2081
 salloc: Waiting for resource configuration
 salloc: Nodes c072 are ready for job
@@ -104,15 +119,24 @@ salloc: Nodes c072 are ready for job
 割り当てが開始されたら、`srun`コマンドを使って割り当てられたノード上でコマンドを実行します。
 
 ```bash
-$ srun hostname
+srun hostname
+```
+
+出力例：
+
+```text
 c072
 ```
 
 終了したら、`exit`を実行して割り当てを解放します。
 
 ```bash
-$ exit
 exit
+```
+
+出力例：
+
+```text
 salloc: Relinquishing job allocation 2081
 ```
 
@@ -121,21 +145,30 @@ salloc: Relinquishing job allocation 2081
 対話ジョブを`srun --pty bash`コマンドで開始します。次の例では、4 GPUを10分間要求します。
 
 ```bash
-$ srun --gpus=4 --time=00:10:00 --pty bash
-$ hostname
-c072 
+srun --gpus=4 --time=00:10:00 --pty bash
+```
+
+割り当てられたノード上でシェルが起動します。`hostname`コマンドを実行すると、ノード名を確認できます。
+
+```bash
+hostname
+```
+
+出力例：
+
+```text
+c072
 ```
 
 複数の課題に所属している場合は、Slurmの`--account=`または`-A`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT_NAME`には、利用する課題名を指定してください。
 
 ```bash
-$ srun --account=PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
+srun --account=PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
 ```
 
 終了したら、`exit`を実行してシェルを抜け、`srun`ジョブを終了します。
 
 ```bash
-$ exit
 exit
 ```
 
@@ -144,7 +177,7 @@ exit
 ジョブIDを指定して、投入済みまたは実行中のジョブを`scancel`コマンドでキャンセルします。
 
 ```bash
-$ scancel 2081
+scancel 2081
 ```
 
 ### 計算ノードの状態確認
@@ -152,7 +185,12 @@ $ scancel 2081
 計算ノードの状態を`sinfo`で確認します。
 
 ```bash
-$ sinfo
+sinfo
+```
+
+出力例：
+
+```text
 PARTITION AVAIL  TIMELIMIT  NODES  STATE NODELIST
 gpu          up 4-00:00:00    400   idle c[000-399]
 ```

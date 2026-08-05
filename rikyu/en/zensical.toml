@@ -26,7 +26,6 @@ nav = [
 ]
 
 extra_css = ["extra.css"]
-extra_javascript = ["extra.js"]
 
 [project.theme]
 language = "en"

@@ -28,7 +28,12 @@
 ### 利用可能なモジュールの一覧表示
 
 ```bash
-$ module avail
+module avail
+```
+
+出力例：
+
+```text
 ------------------------ /shared/software/modulefiles ------------------------
    nvhpc-byo-compiler/26.3    nvhpc-hpcx-cuda13/26.3    nvhpc-hpcx/26.3
    nvhpc-nompi/26.3    nvhpc/26.3
@@ -51,8 +56,12 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 ### ロード済みのモジュールの一覧表示
 
 ```bash
-$ module list
+module list
+```
 
+出力例：
+
+```text
 Currently Loaded Modules:
   1) nvhpc/26.3
 ```
@@ -60,19 +69,19 @@ Currently Loaded Modules:
 ### モジュールのロード
 
 ```bash
-$ module load nvhpc
+module load nvhpc
 ```
 
 ### モジュールのアンロード
 
 ```bash
-$ module unload nvhpc
+module unload nvhpc
 ```
 
 ### すべてのモジュールのアンロード
 
 ```bash
-$ module purge
+module purge
 ```
 
 !!! tip
@@ -82,7 +91,12 @@ $ module purge
 ### モジュールの設定内容を表示
 
 ```bash
-$ module show nvhpc
+module show nvhpc
+```
+
+出力例：
+
+```text
 ---------------------------------------------------
    /shared/software/modulefiles/nvhpc/26.3:
 ---------------------------------------------------

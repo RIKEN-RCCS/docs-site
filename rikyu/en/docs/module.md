@@ -28,7 +28,12 @@ The `module` command lets you dynamically switch the required environment settin
 ### Listing Available Modules
 
 ```bash
-$ module avail
+module avail
+```
+
+Example output:
+
+```text
 ------------------------ /shared/software/modulefiles ------------------------
    nvhpc-byo-compiler/26.3    nvhpc-hpcx-cuda13/26.3    nvhpc-hpcx/26.3
    nvhpc-nompi/26.3    nvhpc/26.3
@@ -51,8 +56,12 @@ Use "module keyword key1 key2 ..." to search for all possible modules matching a
 ### Listing Loaded Modules
 
 ```bash
-$ module list
+module list
+```
 
+Example output:
+
+```text
 Currently Loaded Modules:
   1) nvhpc/26.3
 ```
@@ -60,19 +69,19 @@ Currently Loaded Modules:
 ### Loading a Module
 
 ```bash
-$ module load nvhpc
+module load nvhpc
 ```
 
 ### Unloading a Module
 
 ```bash
-$ module unload nvhpc
+module unload nvhpc
 ```
 
 ### Unloading All Modules
 
 ```bash
-$ module purge
+module purge
 ```
 
 !!! tip
@@ -82,7 +91,12 @@ $ module purge
 ### Showing Module Settings
 
 ```bash
-$ module show nvhpc
+module show nvhpc
+```
+
+Example output:
+
+```text
 ---------------------------------------------------
    /shared/software/modulefiles/nvhpc/26.3:
 ---------------------------------------------------

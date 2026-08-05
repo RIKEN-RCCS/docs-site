@@ -10,7 +10,7 @@ This user guide explains how to use the Supercomputer RIKYU.
 
 !!! note
 
-    This user guide includes various command examples. The leading `$` or `%` in these examples represents the command prompt and should not be typed. Unless otherwise noted, Bash is used as the shell.
+    This user guide includes various command examples. Unless otherwise noted, Bash is used as the shell.
 
 ## Account Application
 

@@ -38,13 +38,13 @@ Use the procedure in this chapter when using software that has already been buil
 If you use `bash` or `zsh`, run the following after logging in.
 
 ```bash
-$ . /shared/software/spack-1.2.0/share/spack/setup-env.sh
+. /shared/software/spack-1.2.0/share/spack/setup-env.sh
 ```
 
 If you use `csh` or `tcsh`, run the following.
 
 ```bash
-% source /shared/software/spack-1.2.0/share/spack/setup-env.csh
+source /shared/software/spack-1.2.0/share/spack/setup-env.csh
 ```
 
 When using software in a batch job, include the same setup command in the job script.
@@ -54,8 +54,8 @@ When using software in a batch job, include the same setup command in the job sc
 After loading the environment, run the following.
 
 ```bash
-$ spack --version
-$ which spack
+spack --version
+which spack
 ```
 
 If `spack: command not found` is displayed, the environment in 2.1 has not been loaded. In the same shell, load `setup-env.sh` again.
@@ -65,13 +65,13 @@ If `spack: command not found` is displayed, the environment in 2.1 has not been 
 Check the prebuilt software explicitly provided by the system.
 
 ```bash
-$ spack find -x
+spack find -x
 ```
 
 To also display hashes, use the following.
 
 ```bash
-$ spack find -lx
+spack find -lx
 ```
 
 Common check commands are as follows.
@@ -91,7 +91,7 @@ If you run `spack find` without `-x`, packages installed as dependencies are als
 For example, to use `cp2k`, run the following.
 
 ```bash
-$ spack load cp2k
+spack load cp2k
 ```
 
 Loading a package sets environment variables such as `PATH`, making the application available in that shell or job.
@@ -99,7 +99,7 @@ Loading a package sets environment variables such as `PATH`, making the applicat
 Check that the executable is visible.
 
 ```bash
-$ which <execution command>
+which <execution command>
 ```
 
 For some applications, the package name and executable command name are different.
@@ -109,7 +109,7 @@ If you do not know the executable command, check the application's official manu
 You can check currently loaded packages with the following.
 
 ```bash
-$ spack find --loaded
+spack find --loaded
 ```
 
 ### 2.5 Unload Software When Finished
@@ -117,7 +117,7 @@ $ spack find --loaded
 To remove a package from the current shell after use, run the following.
 
 ```bash
-$ spack unload cp2k
+spack unload cp2k
 ```
 
 When trying another package with the same name but different build conditions, unload the old package before loading the new one.
@@ -161,7 +161,7 @@ The following software is currently provided as GPU-enabled builds.
 The provided software may be updated. Check the latest list with the following.
 
 ```bash
-$ spack find -x
+spack find -x
 ```
 
 ### 3.3 Example Quantum ESPRESSO Job Script
@@ -201,19 +201,19 @@ The following applications and libraries are currently provided with `hpcx-mpi` 
 First, check the hash of the target package.
 
 ```bash
-$ spack find -lv <package name>
+spack find -lv <package name>
 ```
 
 Example:
 
 ```bash
-$ spack find -lv quantum-espresso
+spack find -lv quantum-espresso
 ```
 
 After finding the hash, use it to check the build configuration.
 
 ```bash
-$ spack spec /<hash>
+spack spec /<hash>
 ```
 
 If the dependency tree contains the following entry, that configuration uses `hpcx-mpi`.
@@ -242,7 +242,7 @@ If an MPI communication error occurs, see the troubleshooting section in Chapter
 The provided software may be updated. Always check the latest list on the system.
 
 ```bash
-$ spack find -x
+spack find -x
 ```
 
 ### 5.1 Main Provided Software
@@ -263,7 +263,12 @@ $ spack find -x
 The following is example output. Hashes, versions, and package counts may change when the system is updated.
 
 ```bash
-$ spack find -lx
+spack find -lx
+```
+
+Example output:
+
+```text
 -- linux-ubuntu24.04-neoverse_v2 / %c,cxx,fortran=gcc@13.3.0 ----
 g6hpeea cp2k@2026.1            qxqrq4o parallel-netcdf@1.14.1
 gmcipc4 darshan-runtime@3.5.0  vephnns paraview@6.1.1
@@ -312,7 +317,7 @@ Spack can manage multiple builds of the same software at the same time, with dif
 For example, suppose you run the following when multiple builds of `fftw` are installed.
 
 ```bash
-$ spack load fftw
+spack load fftw
 ```
 
 If there are multiple candidates, an error like the following is shown.
@@ -330,21 +335,21 @@ If there are multiple candidates, an error like the following is shown.
 When multiple packages have the same name, first check the short hashes.
 
 ```bash
-$ spack find -lx fftw
+spack find -lx fftw
 ```
 
 Then load the build you want by using its short hash.
 
 ```bash
-$ spack load /5rny4xu
+spack load /5rny4xu
 ```
 
 For the candidates in the example output, you can specify them as follows.
 
 ```bash
-$ spack load /erk4i5v
-$ spack load /5rny4xu
-$ spack load /nkvjfgj
+spack load /erk4i5v
+spack load /5rny4xu
+spack load /nkvjfgj
 ```
 
 Hashes may change when the environment is updated. Do not memorize the hashes in this manual as fixed values. Check them at runtime with `spack find -lx <package name>`.
@@ -354,21 +359,21 @@ Hashes may change when the environment is updated. Do not memorize the hashes in
 You can also specify a version number.
 
 ```bash
-$ spack load fftw@3.3.11
+spack load fftw@3.3.11
 ```
 
 However, if multiple builds have the same version, this alone cannot distinguish them. In that case, include the compiler.
 
 ```bash
-$ spack load fftw%gcc
-$ spack load fftw%nvhpc
+spack load fftw%gcc
+spack load fftw%nvhpc
 ```
 
 For more detailed specification, write the compiler version as follows.
 
 ```bash
-$ spack load fftw%gcc@13.3.0
-$ spack load fftw%nvhpc@26.3
+spack load fftw%gcc@13.3.0
+spack load fftw%nvhpc@26.3
 ```
 
 If multiple candidates still remain, specify the package by hash.
@@ -392,10 +397,10 @@ Use a private instance in the following cases.
 The following example creates a personal Spack instance under your home directory.
 
 ```bash
-$ cd $HOME
-$ git clone <Spack repository URL> spack
-$ cd spack
-$ git checkout <branch name>
+cd $HOME
+git clone <Spack repository URL> spack
+cd spack
+git checkout <branch name>
 ```
 
 Follow administrator guidance for the repository URL and branch name to use.
@@ -403,7 +408,7 @@ Follow administrator guidance for the repository URL and branch name to use.
 ### 7.3 Load the Private Instance Environment
 
 ```bash
-$ . $HOME/spack/share/spack/setup-env.sh
+. $HOME/spack/share/spack/setup-env.sh
 ```
 
 If you load both the public instance and private instance `setup-env.sh` files in the same shell, it becomes difficult to tell which Spack is being used. When using a private instance, we recommend opening a new shell and loading the private-side `setup-env.sh`.
@@ -415,8 +420,8 @@ In a private instance, you can refer to prebuilt packages in the public instance
 A standard configuration example is as follows.
 
 ```bash
-$ mkdir -p ~/.spack
-$ cat > ~/.spack/upstreams.yaml <<'EOF'
+mkdir -p ~/.spack
+cat > ~/.spack/upstreams.yaml <<'EOF'
 upstreams:
   gb200-public:
     install_tree: /shared/software/spack-1.2.0/opt/spack
@@ -428,7 +433,7 @@ The `install_tree` path depends on the actual public instance configuration. If 
 After configuring it, check whether packages from the public instance are visible.
 
 ```bash
-$ spack find -lx
+spack find -lx
 ```
 
 ### 7.5 Search for Packages
@@ -436,14 +441,14 @@ $ spack find -lx
 Search for package names available in Spack.
 
 ```bash
-$ spack list
-$ spack list mpi
+spack list
+spack list mpi
 ```
 
 Check package versions and build options.
 
 ```bash
-$ spack info openmpi
+spack info openmpi
 ```
 
 ### 7.6 Install Packages
@@ -451,19 +456,19 @@ $ spack info openmpi
 For example, to install `openmpi`, run the following.
 
 ```bash
-$ spack install openmpi
+spack install openmpi
 ```
 
 You can also specify a version.
 
 ```bash
-$ spack install openmpi@4.1.1
+spack install openmpi@4.1.1
 ```
 
 After installation, check it with the following.
 
 ```bash
-$ spack find -lx openmpi
+spack find -lx openmpi
 ```
 
 !!! note
@@ -473,14 +478,14 @@ $ spack find -lx openmpi
 ### 7.7 Uninstall Packages
 
 ```bash
-$ spack uninstall openmpi
+spack uninstall openmpi
 ```
 
 If multiple packages have the same name, prevent accidental deletion by checking the target by hash before running the uninstall command.
 
 ```bash
-$ spack find -lx openmpi
-$ spack uninstall /<hash>
+spack find -lx openmpi
+spack uninstall /<hash>
 ```
 
 !!! note
@@ -503,13 +508,13 @@ $ spack uninstall /<hash>
 When contacting administrators, include the following information if possible.
 
 ```bash
-$ hostname
-$ date
-$ echo $SHELL
-$ which spack
-$ spack --version
-$ spack find --loaded
-$ spack find -lx <package name you want to use>
+hostname
+date
+echo $SHELL
+which spack
+spack --version
+spack find --loaded
+spack find -lx <package name you want to use>
 ```
 
 If the problem occurs in a job, also include the job ID, job script, standard output, and standard error.

@@ -50,20 +50,20 @@ One key can be created per project. API usage is billed to the project the key w
 Set your API key in an environment variable. `OPENAI_API_KEY` is the variable name that the OpenAI SDK and many compatible tools read by default.
 
 ```bash
-$ export OPENAI_API_KEY=your-api-key
+export OPENAI_API_KEY=your-api-key
 ```
 
 Retrieve the list of available models.
 
 ```bash
-$ curl https://api.rikyu.r-ccs.riken.jp/v1/models \
+curl https://api.rikyu.r-ccs.riken.jp/v1/models \
     -H "Authorization: Bearer $OPENAI_API_KEY"
 ```
 
 Generate text. Specify the model you want to use in `model`.
 
 ```bash
-$ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
+curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -H "Content-Type: application/json" \
     -d '{
@@ -77,7 +77,7 @@ $ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
 To receive the generated text incrementally, set `stream` to `true`.
 
 ```bash
-$ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
+curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
     -H "Authorization: Bearer $OPENAI_API_KEY" \
     -H "Content-Type: application/json" \
     -d '{
@@ -94,7 +94,7 @@ $ curl https://api.rikyu.r-ccs.riken.jp/v1/chat/completions \
 Install the OpenAI Python library.
 
 ```bash
-$ pip install openai
+pip install openai
 ```
 
 Specify the endpoint in `base_url` and your API key in `api_key`.
