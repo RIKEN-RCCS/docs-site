@@ -1,12 +1,12 @@
 # プログラムのコンパイル方法
 
-## 1. 概要
+## 概要
 
 GCC および NVIDIA HPC SDK (NVHPC) によるプログラムのコンパイル方法について説明します。
 
-## 2. 利用可能なコンパイラ
+## 利用可能なコンパイラ
 
-### 2.1 GCC（GNU Compiler Collection）
+### GCC（GNU Compiler Collection）
 
 GCC は Linux 環境で広く利用されているオープンソースコンパイラです。C、C++、Fortran に対応しており、CPU 向けアプリケーション開発のコンパイラとして利用できます。一般的な数値計算プログラムやオープンソースソフトウェアのビルドでは GCC を使用します。また、OpenMP による共有メモリ並列化や、MPI 環境と組み合わせた CPU 並列プログラム開発にも利用できます。
 
@@ -26,7 +26,7 @@ g++ --version
 gfortran --version
 ```
 
-### 2.2 NVIDIA HPC SDK (NVHPC)
+### NVIDIA HPC SDK (NVHPC)
 
 NVHPC は NVIDIA が提供する高性能計算向けのコンパイラおよび関連ツール群です。OpenACC や CUDA による GPU プログラミング、および GPU ライブラリを利用したアプリケーション開発に使用します。
 
@@ -47,7 +47,7 @@ nvc++ --version
 nvfortran --version
 ```
 
-## 3. コンパイル
+## コンパイル
 
 コンパイルとは、ソースコードから実行可能なプログラムを生成する処理です。基本的な開発手順は以下のとおりです。
 
@@ -57,18 +57,12 @@ nvfortran --version
 4. 実行ファイルを生成する
 5. 実行結果を確認する
 
-開発中はデバッグ情報 (`-g`) や警告表示 (`-Wall`) を有効にし、問題がないことを確認してから最適化オプションを適用することを推奨します。
-
-### 3.1 GCC によるコンパイル
+### GCC によるコンパイル
 
 #### C 言語
 
-`-g` オプションはデバッグ情報を埋め込み、gdb などのデバッガで解析を行う際に利用します。`-Wall` オプションは一般的な警告を有効化します。コンパイルが成功していても警告が表示される場合は、コードに問題が潜んでいる可能性があるため確認してください。
-
-下記のように、開発時にはデバッグ情報と警告を有効にすることを推奨します。
-
 ```bash
-gcc -g -Wall sample.c -o sample
+gcc sample.c -o sample
 ```
 
 #### C++
@@ -87,7 +81,7 @@ C++ と同様に、`-std` オプションで使用する言語規格を明示す
 gfortran -std=f2008 sample.f90 -o sample
 ```
 
-### 3.2 NVHPC によるコンパイル
+### NVHPC によるコンパイル
 
 NVHPC を使用するには、事前に `module load nvhpc` コマンドで環境を設定してください。
 
@@ -95,24 +89,24 @@ NVHPC を使用するには、事前に `module load nvhpc` コマンドで環�
 
 ```bash
 module load nvhpc
-nvc -O2 sample.c -o sample
+nvc sample.c -o sample
 ```
 
 #### C++
 
 ```bash
 module load nvhpc
-nvc++ -O2 sample.cpp -o sample
+nvc++ sample.cpp -o sample
 ```
 
 #### Fortran
 
 ```bash
 module load nvhpc
-nvfortran -O2 sample.f90 -o sample
+nvfortran sample.f90 -o sample
 ```
 
-### 3.3 基本的なコンパイルオプション
+### 基本的なコンパイルオプション
 
 #### 出力ファイルの指定
 
@@ -138,7 +132,7 @@ gcc -I/path/to/include1 -I/path/to/include2 sample.c -o sample
 gcc sample.c -L/usr/local/lib -lmylib -o sample
 ```
 
-## 4. 最適化オプション
+## 最適化オプション
 
 コンパイラの最適化レベルを指定することで、実行速度を改善できます。最適化オプションは、コンパイラがプログラムの実行効率を改善するために行う変換処理を制御します。
 
@@ -154,15 +148,19 @@ gcc sample.c -L/usr/local/lib -lmylib -o sample
 
 !!! note
 
+    開発中はデバッグ情報 (`-g`) や警告表示 (`-Wall`) を有効にし、問題がないことを確認してから最適化オプションを適用することを推奨します。`-g` オプションはデバッグ情報を埋め込み、gdb などのデバッガで解析を行う際に利用します。`-Wall` オプションは一般的な警告を有効化します。コンパイルが成功していても警告が表示される場合は、コードに問題が潜んでいる可能性があるため確認してください。
+
+!!! note
+
     最適化レベルが高いほどデバッグが難しくなります。問題解析時は `-O0` または `-O1` の利用を推奨します。
 
 !!! note
 
     `-O3` や `-Ofast` で最適化したプログラムは、特に浮動小数点計算において計算結果が変わる可能性があります。
 
-## 5. 並列化
+## 並列化
 
-### 5.1 OpenMP による共有メモリ並列化
+### OpenMP による共有メモリ並列化
 
 OpenMP はシングルノード内の複数 CPU コアを利用した共有メモリ並列化を実現します。
 
@@ -182,12 +180,12 @@ export OMP_NUM_THREADS=4
 
 ```bash
 module load nvhpc
-nvc -mp -O2 sample.c -o sample
+nvc -mp sample.c -o sample
 export OMP_NUM_THREADS=4
 ./sample
 ```
 
-### 5.2 MPI による分散メモリ並列化
+### MPI による分散メモリ並列化
 
 MPI は複数の計算ノード間でのプロセス間通信を実現します。`module load nvhpc` により、NVHPC に同梱された Open MPI ベースの MPI 環境が利用可能になります。
 
@@ -211,22 +209,22 @@ mpic++ --show
 mpifort --show
 ```
 
-### 5.3 MPI と OpenMP のハイブリッド並列化
+### MPI と OpenMP のハイブリッド並列化
 
-複数ノードの複数 CPU コアを効率的に利用するため、MPI と OpenMP を組み合わせたハイブリッド並列化が有効です。ラッパーコンパイラは内部で NVHPC のコンパイラを呼び出すため、OpenMP を有効化するオプションは 5.1 節の NVHPC と同じ `-mp` を指定します。
+複数ノードの複数 CPU コアを効率的に利用するため、MPI と OpenMP を組み合わせたハイブリッド並列化が有効です。ラッパーコンパイラは内部で NVHPC のコンパイラを呼び出すため、OpenMP を有効化するオプションは前述の NVHPC と同じ `-mp` を指定します。
 
 ```bash
 module load nvhpc
-mpicc -mp -O2 hybrid_sample.c -o hybrid_sample
+mpicc -mp hybrid_sample.c -o hybrid_sample
 export OMP_NUM_THREADS=2
 mpirun -np 4 ./hybrid_sample
 ```
 
 この例は 4 プロセスを起動し、各プロセスが 2 スレッドで実行される設定です。
 
-## 6. GPU 開発
+## GPU 開発
 
-### 6.1 GPU 環境の確認
+### GPU 環境の確認
 
 ```bash
 module load nvhpc
@@ -243,7 +241,7 @@ nvidia-smi -q
 | `nvidia-smi -L` | システムで認識されている GPU 一覧を表示します。 |
 | `nvidia-smi -q` | GPU の詳細情報（温度、クロック、ECC 状態など）を表示します。 |
 
-### 6.2 OpenACC による GPU プログラミング
+### OpenACC による GPU プログラミング
 
 OpenACC は、C/C++ および Fortran プログラムを GPU にオフロードするための指示文ベースのプログラミングモデルです。CUDA のように GPU 向けの処理やメモリ管理を明示的に実装する必要がなく、ソースコードへ指示文を追加することで GPU を利用できます。
 
@@ -262,7 +260,7 @@ CUDA のメリットとして、下記が挙げられます。
 
 性能チューニングや GPU 固有機能を最大限活用したい場合は CUDA の利用も選択肢となりますが、多くの科学技術計算コードでは OpenACC による GPU 化から検討することを推奨します。
 
-### 6.3 OpenACC のコンパイル
+### OpenACC のコンパイル
 
 OpenACC を利用する場合は `-acc` オプションを指定します。
 
@@ -270,21 +268,21 @@ OpenACC を利用する場合は `-acc` オプションを指定します。
 
 ```bash
 module load nvhpc
-nvc -acc -O2 sample.c -o sample
+nvc -acc sample.c -o sample
 ```
 
 #### C++
 
 ```bash
 module load nvhpc
-nvc++ -acc -O2 sample.cpp -o sample
+nvc++ -acc sample.cpp -o sample
 ```
 
 #### Fortran
 
 ```bash
 module load nvhpc
-nvfortran -acc -O2 sample.f90 -o sample
+nvfortran -acc sample.f90 -o sample
 ```
 
 `-Minfo=accel` オプションにより、OpenACC コンパイル時に GPU 化された処理内容を確認できます。
@@ -305,29 +303,7 @@ main:
          Generating implicit copyin(b[:1000]) [if not already present]
 ```
 
-### 6.4 OpenACC プログラムの例
-
-指示文を付与することで、ループ処理を GPU 上で実行できます。
-
-#### C 言語
-
-```c
-#pragma acc parallel loop
-for(int i=0;i<n;i++){
-    c[i] = a[i] + b[i];
-}
-```
-
-#### Fortran
-
-```fortran
-!$acc parallel loop
-do i = 1, n
-    c(i) = a(i) + b(i)
-end do
-```
-
-### 6.5 MPI と OpenACC の併用
+### MPI と OpenACC の併用
 
 MPI と OpenACC を組み合わせることで、複数ノード・複数 GPU を利用した並列計算を実行できます。MPI はノード間の通信を担当し、OpenACC は各 MPI プロセスに割り当てられた GPU 上で計算処理を実行します。
 
@@ -335,7 +311,7 @@ MPI と OpenACC を組み合わせることで、複数ノード・複数 GPU �
 
 ```bash
 module load nvhpc
-mpicc -acc -O2 sample.c -o sample
+mpicc -acc sample.c -o sample
 mpirun -np 4 ./sample
 ```
 
@@ -343,7 +319,7 @@ mpirun -np 4 ./sample
 
 ```bash
 module load nvhpc
-mpic++ -acc -O2 sample.cpp -o sample
+mpic++ -acc sample.cpp -o sample
 mpirun -np 4 ./sample
 ```
 
@@ -351,7 +327,7 @@ mpirun -np 4 ./sample
 
 ```bash
 module load nvhpc
-mpifort -acc -O2 sample.f90 -o sample
+mpifort -acc sample.f90 -o sample
 mpirun -np 4 ./sample
 ```
 
@@ -359,7 +335,7 @@ mpirun -np 4 ./sample
 
     MPI プロセスと GPU を組み合わせて利用するアプリケーションでは、1 GPU に対して 1 MPI プロセスを割り当てる構成がよく利用されます。
 
-### 6.6 CUDA によるコンパイル
+### CUDA によるコンパイル
 
 CUDA 関連機能を利用する場合は、CUDA コンパイラおよびライブラリの利用が必要です。NVHPC では `-cuda` オプションを指定することで CUDA 機能を有効化できます。
 
@@ -367,21 +343,21 @@ CUDA 関連機能を利用する場合は、CUDA コンパイラおよびライ�
 
 ```bash
 module load nvhpc
-nvc -cuda -O2 sample.c -o sample
+nvc -cuda sample.c -o sample
 ```
 
 #### C++
 
 ```bash
 module load nvhpc
-nvc++ -cuda -O2 sample.cpp -o sample
+nvc++ -cuda sample.cpp -o sample
 ```
 
 #### Fortran
 
 ```bash
 module load nvhpc
-nvfortran -cuda -O2 sample.f90 -o sample
+nvfortran -cuda sample.f90 -o sample
 ```
 
 #### Compute Capability の指定
@@ -389,7 +365,7 @@ nvfortran -cuda -O2 sample.f90 -o sample
 生成する GPU コードの世代は `-gpu=ccXX` オプションで指定します。本システムに搭載されている GPU は NVIDIA GB200（Grace-Blackwell）で、Compute Capability は 10.0 です。したがって指定する値は `cc100` になります。
 
 ```bash
-nvc -cuda -gpu=cc100 -O2 sample.c -o sample
+nvc -cuda -gpu=cc100 sample.c -o sample
 ```
 
 `-gpu` オプションを省略した場合は、コンパイルを実行したノードの GPU に合わせたコードが生成されます。本システムではログインノードと計算ノードのいずれも GB200 を搭載しているため、通常は省略しても `cc100` 向けのコードが生成されます。
@@ -405,7 +381,7 @@ nvaccelinfo | grep "Default Target"
 
     Compute Capability は GPU 世代に依存する値です。本システム以外の環境向けにビルドする場合は、対象環境の値を `-gpu=ccXX` で明示的に指定してください。詳細は NVIDIA HPC SDK のドキュメントを参照してください。
 
-### 6.7 MPI と CUDA の併用
+### MPI と CUDA の併用
 
 MPI と CUDA を組み合わせることで、複数ノード・複数 GPU を利用した大規模並列計算を実行できます。ラッパーコンパイラに対しても `-cuda` オプションを指定します。
 
@@ -437,7 +413,7 @@ mpirun -np 4 ./sample
 
     MPI プロセスと GPU を組み合わせて利用するアプリケーションでは、1 GPU に対して 1 MPI プロセスを割り当てる構成がよく利用されます。
 
-### 6.8 GPU ライブラリの利用
+### GPU ライブラリの利用
 
 NVHPC には GPU 向けの高性能ライブラリが統合されています。
 
@@ -454,9 +430,9 @@ module load nvhpc
 nvc -cuda -lcublas sample.c -o sample
 ```
 
-## 7. トラブルシューティング
+## トラブルシューティング
 
-### 7.1 nvc が見つからない
+### nvc が見つからない
 
 **現象：** `nvc: command not found`
 
@@ -471,7 +447,7 @@ which nvc
 
 `module load` で環境変数が設定されることを確認してください。
 
-### 7.2 数学関数のリンクエラー
+### 数学関数のリンクエラー
 
 **現象：** `undefined reference to 'pow'`
 
@@ -485,7 +461,7 @@ gcc sample.c -lm -o sample
 
 `-lm` オプションで数学ライブラリを明示的にリンクしてください。
 
-### 7.3 外部ライブラリのリンクエラー
+### 外部ライブラリのリンクエラー
 
 **現象：** `undefined reference to 'myfunction'`
 
@@ -499,7 +475,7 @@ gcc sample.c -L/usr/local/lib -lmylib -o sample
 
 `-L` オプションでライブラリディレクトリを、`-l` オプションでライブラリ名を指定してください。
 
-## 8. 環境変数設定
+## 環境変数設定
 
 `configure` や `make` を使うビルドでは、使用するコンパイラやオプションを環境変数から取得します。あらかじめ設定しておくと、ビルドのたびにコンパイラを指定する必要がなくなります。
 

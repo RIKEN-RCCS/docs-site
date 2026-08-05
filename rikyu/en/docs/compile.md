@@ -1,12 +1,12 @@
 # Compiling Programs
 
-## 1. Overview
+## Overview
 
 This page explains how to compile programs using GCC and the NVIDIA HPC SDK (NVHPC).
 
-## 2. Available Compilers
+## Available Compilers
 
-### 2.1 GCC (GNU Compiler Collection)
+### GCC (GNU Compiler Collection)
 
 GCC is an open source compiler widely used in Linux environments. It supports C, C++, and Fortran, and can be used as the compiler for CPU application development. Use GCC to build general numerical programs and open source software. It can also be used for shared memory parallelization with OpenMP and for CPU parallel program development in combination with an MPI environment.
 
@@ -26,7 +26,7 @@ g++ --version
 gfortran --version
 ```
 
-### 2.2 NVIDIA HPC SDK (NVHPC)
+### NVIDIA HPC SDK (NVHPC)
 
 NVHPC is a set of compilers and related tools for high performance computing provided by NVIDIA. Use it for GPU programming with OpenACC or CUDA, and for developing applications that use GPU libraries.
 
@@ -47,7 +47,7 @@ nvc++ --version
 nvfortran --version
 ```
 
-## 3. Compiling
+## Compiling
 
 Compiling is the process of generating an executable program from source code. The basic development steps are as follows.
 
@@ -57,18 +57,12 @@ Compiling is the process of generating an executable program from source code. T
 4. Generate the executable
 5. Check the execution results
 
-During development, we recommend enabling debugging information (`-g`) and warnings (`-Wall`), confirming that there are no problems, and only then applying optimization options.
-
-### 3.1 Compiling with GCC
+### Compiling with GCC
 
 #### C
 
-The `-g` option embeds debugging information, which is used when analyzing a program with a debugger such as gdb. The `-Wall` option enables common warnings. Even if compilation succeeds, warnings may indicate latent problems in your code, so please review them.
-
-As shown below, we recommend enabling debugging information and warnings during development.
-
 ```bash
-gcc -g -Wall sample.c -o sample
+gcc sample.c -o sample
 ```
 
 #### C++
@@ -87,7 +81,7 @@ As with C++, we recommend specifying the language standard explicitly with the `
 gfortran -std=f2008 sample.f90 -o sample
 ```
 
-### 3.2 Compiling with NVHPC
+### Compiling with NVHPC
 
 To use NVHPC, set up the environment in advance with the `module load nvhpc` command.
 
@@ -95,24 +89,24 @@ To use NVHPC, set up the environment in advance with the `module load nvhpc` com
 
 ```bash
 module load nvhpc
-nvc -O2 sample.c -o sample
+nvc sample.c -o sample
 ```
 
 #### C++
 
 ```bash
 module load nvhpc
-nvc++ -O2 sample.cpp -o sample
+nvc++ sample.cpp -o sample
 ```
 
 #### Fortran
 
 ```bash
 module load nvhpc
-nvfortran -O2 sample.f90 -o sample
+nvfortran sample.f90 -o sample
 ```
 
-### 3.3 Basic Compiler Options
+### Basic Compiler Options
 
 #### Specifying the Output File
 
@@ -138,7 +132,7 @@ Compiling and linking are separate steps. Even if compilation succeeds, an `unde
 gcc sample.c -L/usr/local/lib -lmylib -o sample
 ```
 
-## 4. Optimization Options
+## Optimization Options
 
 Specifying the compiler optimization level can improve execution speed. Optimization options control the transformations that the compiler performs to improve the execution efficiency of a program.
 
@@ -154,15 +148,19 @@ For general use, we recommend `-O2`. Use `-O3` or `-Ofast` when performance is a
 
 !!! note
 
+    During development, we recommend enabling debugging information (`-g`) and warnings (`-Wall`), confirming that there are no problems, and only then applying optimization options. The `-g` option embeds debugging information, which is used when analyzing a program with a debugger such as gdb. The `-Wall` option enables common warnings. Even if compilation succeeds, warnings may indicate latent problems in your code, so please review them.
+
+!!! note
+
     The higher the optimization level, the harder debugging becomes. When investigating a problem, we recommend using `-O0` or `-O1`.
 
 !!! note
 
     Programs optimized with `-O3` or `-Ofast` may produce different computational results, especially in floating point calculations.
 
-## 5. Parallelization
+## Parallelization
 
-### 5.1 Shared Memory Parallelization with OpenMP
+### Shared Memory Parallelization with OpenMP
 
 OpenMP provides shared memory parallelization using multiple CPU cores within a single node.
 
@@ -182,12 +180,12 @@ Use the `-mp` option at compile time. Specify the number of threads to use at ru
 
 ```bash
 module load nvhpc
-nvc -mp -O2 sample.c -o sample
+nvc -mp sample.c -o sample
 export OMP_NUM_THREADS=4
 ./sample
 ```
 
-### 5.2 Distributed Memory Parallelization with MPI
+### Distributed Memory Parallelization with MPI
 
 MPI provides interprocess communication across multiple compute nodes. Running `module load nvhpc` makes available the Open MPI based MPI environment bundled with NVHPC.
 
@@ -211,22 +209,22 @@ mpic++ --show
 mpifort --show
 ```
 
-### 5.3 Hybrid Parallelization with MPI and OpenMP
+### Hybrid Parallelization with MPI and OpenMP
 
-To use the CPU cores of multiple nodes efficiently, hybrid parallelization combining MPI and OpenMP is effective. Because the wrapper compilers invoke an NVHPC compiler internally, specify `-mp` to enable OpenMP, the same option as for NVHPC in Section 5.1.
+To use the CPU cores of multiple nodes efficiently, hybrid parallelization combining MPI and OpenMP is effective. Because the wrapper compilers invoke an NVHPC compiler internally, specify `-mp` to enable OpenMP, the same option as for NVHPC above.
 
 ```bash
 module load nvhpc
-mpicc -mp -O2 hybrid_sample.c -o hybrid_sample
+mpicc -mp hybrid_sample.c -o hybrid_sample
 export OMP_NUM_THREADS=2
 mpirun -np 4 ./hybrid_sample
 ```
 
 This example starts 4 processes, each running with 2 threads.
 
-## 6. GPU Development
+## GPU Development
 
-### 6.1 Checking the GPU Environment
+### Checking the GPU Environment
 
 ```bash
 module load nvhpc
@@ -243,7 +241,7 @@ nvidia-smi -q
 | `nvidia-smi -L` | Lists the GPUs recognized by the system. |
 | `nvidia-smi -q` | Shows detailed GPU information such as temperature, clocks, and ECC status. |
 
-### 6.2 GPU Programming with OpenACC
+### GPU Programming with OpenACC
 
 OpenACC is a directive based programming model for offloading C/C++ and Fortran programs to GPUs. Unlike CUDA, it does not require you to explicitly implement GPU processing and memory management; you can use the GPU by adding directives to your source code.
 
@@ -262,7 +260,7 @@ On the other hand, CUDA requires you to write GPU processing explicitly, so the 
 
 If you want to tune performance or make the most of GPU specific features, CUDA is also an option. For many scientific computing codes, however, we recommend starting with GPU porting using OpenACC.
 
-### 6.3 Compiling OpenACC Programs
+### Compiling OpenACC Programs
 
 To use OpenACC, specify the `-acc` option.
 
@@ -270,21 +268,21 @@ To use OpenACC, specify the `-acc` option.
 
 ```bash
 module load nvhpc
-nvc -acc -O2 sample.c -o sample
+nvc -acc sample.c -o sample
 ```
 
 #### C++
 
 ```bash
 module load nvhpc
-nvc++ -acc -O2 sample.cpp -o sample
+nvc++ -acc sample.cpp -o sample
 ```
 
 #### Fortran
 
 ```bash
 module load nvhpc
-nvfortran -acc -O2 sample.f90 -o sample
+nvfortran -acc sample.f90 -o sample
 ```
 
 The `-Minfo=accel` option lets you check which parts were offloaded to the GPU when compiling with OpenACC.
@@ -305,29 +303,7 @@ main:
          Generating implicit copyin(b[:1000]) [if not already present]
 ```
 
-### 6.4 OpenACC Program Examples
-
-By adding directives, loops can be executed on the GPU.
-
-#### C
-
-```c
-#pragma acc parallel loop
-for(int i=0;i<n;i++){
-    c[i] = a[i] + b[i];
-}
-```
-
-#### Fortran
-
-```fortran
-!$acc parallel loop
-do i = 1, n
-    c(i) = a(i) + b(i)
-end do
-```
-
-### 6.5 Combining MPI and OpenACC
+### Combining MPI and OpenACC
 
 Combining MPI and OpenACC lets you run parallel computations that use multiple nodes and multiple GPUs. MPI handles communication between nodes, and OpenACC performs the computation on the GPU assigned to each MPI process.
 
@@ -335,7 +311,7 @@ Combining MPI and OpenACC lets you run parallel computations that use multiple n
 
 ```bash
 module load nvhpc
-mpicc -acc -O2 sample.c -o sample
+mpicc -acc sample.c -o sample
 mpirun -np 4 ./sample
 ```
 
@@ -343,7 +319,7 @@ mpirun -np 4 ./sample
 
 ```bash
 module load nvhpc
-mpic++ -acc -O2 sample.cpp -o sample
+mpic++ -acc sample.cpp -o sample
 mpirun -np 4 ./sample
 ```
 
@@ -351,7 +327,7 @@ mpirun -np 4 ./sample
 
 ```bash
 module load nvhpc
-mpifort -acc -O2 sample.f90 -o sample
+mpifort -acc sample.f90 -o sample
 mpirun -np 4 ./sample
 ```
 
@@ -359,7 +335,7 @@ mpirun -np 4 ./sample
 
     In applications that combine MPI processes with GPUs, a configuration that assigns one MPI process per GPU is commonly used.
 
-### 6.6 Compiling with CUDA
+### Compiling with CUDA
 
 To use CUDA related features, you need the CUDA compiler and libraries. With NVHPC, you can enable CUDA features by specifying the `-cuda` option.
 
@@ -367,21 +343,21 @@ To use CUDA related features, you need the CUDA compiler and libraries. With NVH
 
 ```bash
 module load nvhpc
-nvc -cuda -O2 sample.c -o sample
+nvc -cuda sample.c -o sample
 ```
 
 #### C++
 
 ```bash
 module load nvhpc
-nvc++ -cuda -O2 sample.cpp -o sample
+nvc++ -cuda sample.cpp -o sample
 ```
 
 #### Fortran
 
 ```bash
 module load nvhpc
-nvfortran -cuda -O2 sample.f90 -o sample
+nvfortran -cuda sample.f90 -o sample
 ```
 
 #### Specifying the Compute Capability
@@ -389,7 +365,7 @@ nvfortran -cuda -O2 sample.f90 -o sample
 Specify the generation of the GPU code to be generated with the `-gpu=ccXX` option. The GPUs installed in this system are NVIDIA GB200 (Grace-Blackwell), whose Compute Capability is 10.0. The value to specify is therefore `cc100`.
 
 ```bash
-nvc -cuda -gpu=cc100 -O2 sample.c -o sample
+nvc -cuda -gpu=cc100 sample.c -o sample
 ```
 
 If the `-gpu` option is omitted, code is generated for the GPU of the node where the compilation is performed. On this system, both the login nodes and the compute nodes are equipped with GB200, so code for `cc100` is normally generated even when the option is omitted.
@@ -405,7 +381,7 @@ nvaccelinfo | grep "Default Target"
 
     The Compute Capability is a value that depends on the GPU generation. When building for an environment other than this system, specify the value for the target environment explicitly with `-gpu=ccXX`. For details, see the NVIDIA HPC SDK documentation.
 
-### 6.7 Combining MPI and CUDA
+### Combining MPI and CUDA
 
 Combining MPI and CUDA lets you run large scale parallel computations that use multiple nodes and multiple GPUs. Specify the `-cuda` option for the wrapper compilers as well.
 
@@ -437,7 +413,7 @@ mpirun -np 4 ./sample
 
     In applications that combine MPI processes with GPUs, a configuration that assigns one MPI process per GPU is commonly used.
 
-### 6.8 Using GPU Libraries
+### Using GPU Libraries
 
 NVHPC integrates high performance libraries for GPUs.
 
@@ -454,9 +430,9 @@ module load nvhpc
 nvc -cuda -lcublas sample.c -o sample
 ```
 
-## 7. Troubleshooting
+## Troubleshooting
 
-### 7.1 nvc Is Not Found
+### nvc Is Not Found
 
 **Symptom:** `nvc: command not found`
 
@@ -471,7 +447,7 @@ which nvc
 
 Confirm that `module load` sets the environment variables.
 
-### 7.2 Link Error for Math Functions
+### Link Error for Math Functions
 
 **Symptom:** `undefined reference to 'pow'`
 
@@ -485,7 +461,7 @@ gcc sample.c -lm -o sample
 
 Link the math library explicitly with the `-lm` option.
 
-### 7.3 Link Error for External Libraries
+### Link Error for External Libraries
 
 **Symptom:** `undefined reference to 'myfunction'`
 
@@ -499,7 +475,7 @@ gcc sample.c -L/usr/local/lib -lmylib -o sample
 
 Specify the library directory with the `-L` option and the library name with the `-l` option.
 
-## 8. Environment Variable Settings
+## Environment Variable Settings
 
 Builds that use `configure` or `make` obtain the compiler and options to use from environment variables. Setting them in advance removes the need to specify the compiler for every build.
 
