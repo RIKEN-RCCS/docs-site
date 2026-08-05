@@ -2,55 +2,33 @@
 
 ## はじめに { #introduction }
 
-本ページでは、コンテナプラットフォーム Apptainer を理究で利用する方法を説明します。
-コンテナを利用すると、OS ディストリビューションやライブラリ、アプリケーションを 1 つのイメージにまとめて持ち運べるため、次のような利点があります。
+本ページでは、コンテナプラットフォーム Apptainer を利用する方法を説明します。
 
-- アプリケーション実行環境の再現性を確保できる
-- イメージが単一ファイルであり、保存・転送・共有が容易である
-- イメージを展開せずそのまま実行するため、共有ファイルシステムへの I/O 負荷を抑えられる
-- アプリケーションの起動が高速かつ安定する
+イメージの取得から実行までの最短の流れは次の 3 コマンドです。
 
-理究では、ログインノード・計算ノードの双方に Apptainer が導入されており、追加のセットアップなしで利用できます。
+```console
+apptainer pull ~/ubuntu2404.sif docker://ubuntu:24.04
+apptainer exec ~/ubuntu2404.sif cat /etc/os-release
+sbatch -A <プロジェクトID> --gpus=1 --time=00:05:00 --wrap "apptainer exec --nv ~/ubuntu2404.sif nvidia-smi -L"
+```
 
-!!! note "クイックスタート"
+!!! note
 
-    イメージの取得から実行までの最短の流れは次の 3 コマンドです。
-
-    ```console
-    apptainer pull ~/ubuntu2404.sif docker://ubuntu:24.04
-    apptainer exec ~/ubuntu2404.sif cat /etc/os-release
-    sbatch -A <プロジェクトID> --gpus=1 --time=00:05:00 --wrap "apptainer exec --nv ~/ubuntu2404.sif nvidia-smi -L"
-    ```
-
-    ジョブでの GPU の要求は `--gpus=N` で行います（`--gres=gpu:...` は使えません。[ジョブスケジューラ（Slurm）との連携](#slurm) を参照）。
-
-本ページのコマンド例では、次のプレースホルダを使用します。自身の環境に読み替えてください。
-
-| 表記 | 意味 |
-|---|---|
-| `<username>` | 自分のログインユーザ名 |
-| `<プロジェクトID>` | 自分の課題（プロジェクト）の ID（rkpXXXXX 形式。例: `rkp00010`） |
-| `<グループ>` | 自分の所属グループ名（グループ領域 `/data1/<グループ>` のディレクトリ名） |
-
-このほか、`< >` で囲んだ箇所（例: `<名前>`, `<計算ノード>`）は文脈に応じて読み替えてください。
-
-## Apptainer とは { #what-is-apptainer }
-
-Apptainer は、HPC 環境向けに設計されたオープンソースの Linux コンテナ実装です。
-2015 年に Singularity という名称で開発が始まり、2021 年にプロジェクトが Linux Foundation 傘下へ移管された際に Apptainer に改名されました。Singularity の直接の後継であり、後方互換性を保っています（[Singularity との互換性](#singularity-compatibility) を参照）。
-
-Apptainer には、HPC 環境での利用に適した次の特徴があります。
-
-1. イメージが単一ファイル（SIF 形式）で管理でき、取り扱いが直感的で容易
-2. イメージを展開せず単一ファイルのまま実行でき、I/O を抑制できる
-3. 起動したユーザの UID・権限がコンテナ内にそのまま引き継がれる
-4. root 権限や常駐デーモンを必要とせず、マルチユーザ環境で安全に運用できる
+    本ページのコマンド例では、次のプレースホルダを使用します。自身の環境に読み替えてください。
+    
+    | 表記 | 意味 |
+    |---|---|
+    | `<username>` | 自分のログインユーザ名 |
+    | `<プロジェクトID>` | 自分の課題（プロジェクト）の ID（rkpXXXXX 形式。例: `rkp00010`） |
+    | `<グループ>` | 自分の所属グループ名（グループ領域 `/data1/<グループ>` のディレクトリ名） |
+    
+    このほか、`< >` で囲んだ箇所（例: `<名前>`, `<計算ノード>`）は文脈に応じて読み替えてください。
 
 ### コンテナ { #container }
 
-コンテナは仮想化技術の一種で、ホスト側のカーネルを共有したまま、ルートディレクトリ以下のユーザ環境のみを切り替えて専用の環境でアプリケーションを実行する方式です。ハードウェアごと仮想化する完全仮想化とは異なります。
+コンテナは仮想化技術の一種で、ホスト側のカーネルを共有したまま、ルートディレクトリ以下のユーザ環境のみを切り替えて専用の環境でアプリケーションを実行する方式です。
 
-コンテナには次の特徴があります。
+次のような利点があります。
 
 1. カーネルは起動済みのものを共有するため、起動が高速でオーバーヘッドが小さい
 2. OS 環境・アプリケーション・設定を 1 つにまとめられ、再現性が高い
@@ -61,7 +39,7 @@ Apptainer には、HPC 環境での利用に適した次の特徴があります
 - コンテナはハードウェアのエミュレーションを行わないため、CPU アーキテクチャ（aarch64 / x86_64 など）が異なるイメージは動作しない
 - カーネルはホスト側のものを使うため、カーネルバージョンやドライバに依存する機能には注意が必要
 
-### イメージ { #image }
+### コンテナイメージ { #container-image }
 
 コンテナイメージは、ホストとは別の OS 環境・ランタイム・アプリケーションをファイルシステムとして構築し、ファイルに保存したものです。
 
@@ -80,20 +58,9 @@ Apptainer はコンテナの起動とアプリケーションの起動を統合�
 
 バッチジョブでは通常 2. と 3. を使います。4. は多数のデータを繰り返し処理する場合や、Jupyter Notebook などのサービスを立ち上げておく場合に適しています。
 
-### Singularity との互換性 { #singularity-compatibility }
-
-Apptainer は Singularity に対する後方互換性を持ち、`singularity` コマンドでも同じ操作ができます。理究では `singularity` コマンドは Apptainer の実体へのリンクになっており、`singularity --version` を実行すると `apptainer version 1.4.5` と表示されます。既存の Singularity 向け手順やスクリプトは、基本的に `singularity` を `apptainer` に置き換えるだけでそのまま動作します。
-
-ただし、次の差分に注意してください。
-
-- **環境変数の接頭辞**: `SINGULARITY_*` / `SINGULARITYENV_*` は `APPTAINER_*` / `APPTAINERENV_*` に改名されています。互換のため旧接頭辞も認識され、変数は問題なく伝搬しますが（対応する `APPTAINER_*` が未設定の場合のみ有効）、「`INFO:    Environment variable SINGULARITYENV_FOO is set, but APPTAINERENV_FOO is preferred`」のような INFO メッセージが表示されます。両方が設定されている場合は `APPTAINER_*` 側が優先されます。
-- **設定・キャッシュディレクトリ**: `~/.singularity` に相当するディレクトリは `~/.apptainer` です（`APPTAINER_CACHEDIR` などの環境変数で変更可能）。`~/.singularity` が存在する場合、リモートエンドポイント設定や PGP 鍵は初回実行時に自動移行されますが、キャッシュされたイメージデータは移行されません。
-
-上記以外のサブコマンド・オプションは Apptainer と Singularity で同一です。
-
 ## 利用の手順 { #getting-started }
 
-本節では、既存イメージの取得からコンテナ起動までの基本的な流れを説明します。イメージを入手・作成する方法は大きく 3 通りあります。
+本節では、既存イメージの取得からコンテナ起動までの基本的な流れを説明します。イメージを入手・作成する方法は 3 通りあります。
 
 1. Docker Hub などで公開されている既存イメージを取得して再利用する
 2. イメージをファイルシステムに展開（sandbox 化）し、手作業で変更する
@@ -101,41 +68,13 @@ Apptainer は Singularity に対する後方互換性を持ち、`singularity` �
 
 手作業（2.）はデバッグには便利ですが、再現性の観点からは、定義ファイル（3.）をリポジトリ等で管理してビルドする方法を推奨します。ベースイメージには Docker Hub で配布されている Ubuntu、AlmaLinux、Red Hat Universal Base Image（UBI）などの利用を想定しています。
 
-### 理究の Apptainer 環境 { #apptainer-environment }
-
-理究では Apptainer 1.4.5（執筆時点）が `/shared/software/apptainer/bin` に導入されており、標準で PATH に含まれています。`module load` などの事前準備は不要で、ログイン直後からそのまま利用できます。
-
-```console
-apptainer --version
-```
-
-出力例：
-
-```text
-apptainer version 1.4.5
-```
-
-理究はログインノード・計算ノードとも aarch64（Arm）アーキテクチャです。イメージの取得・作成・実行のいずれもアーキテクチャの食い違いを気にせず行えますが、取得するイメージは arm64（aarch64）版である必要があります（[アーキテクチャに関する注意](#architecture-notes) を参照）。
-
-イメージの置き場所・作業領域としては、次のストレージ領域を利用できます。
-
-| 領域 | パス | 容量 | アクセス範囲 | 種類 | 用途 |
-|---|---|---|---|---|---|
-| ホーム領域 | `/home/<username>` | 50 GB | 本人のみ | Lustre | 設定・定義ファイル、小規模な作業、小さな SIF イメージの保存 |
-| グループ領域 | `/data1/<グループ>` | 1 TB/グループ（最大 100 TB） | グループメンバ | Lustre | 大きな SIF イメージ・大規模データの保存、グループでの共有 |
-| スクラッチ領域 | `/tmp` | 1.5 TB/GPU | 実行ノードのみ | ローカル SSD（xfs） | 計算中の中間ファイル等の高速な一時作業（ジョブ終了時に全削除） |
-
 !!! note
 
-    スクラッチ領域（`/tmp`）はノードローカルで、ジョブ終了時にすべて削除されます。
-    残したいファイル（ビルドした SIF イメージ等）は、ジョブ終了前にホーム領域または
-    グループ領域へコピーしてください。SIF イメージの保存先は、小さなものはホーム領域、
-    大きなものはグループ領域（`/data1/<グループ>`）を使用してください
-    （ホーム領域のクォータは 50 GB です）。
+    本システムはログインノード・計算ノードとも aarch64 アーキテクチャです。イメージの取得・作成・実行のいずれもアーキテクチャの食い違いを気にせず行えますが、取得するイメージは arm64（aarch64）版である必要があり、x86_64（amd64）用のイメージは動作しません。本システム上で `pull` / `build` した場合は自動的に arm64 版が選択されますが、イメージによっては arm64 版が提供されていないことがあります。
 
 ### コマンドラインでのイメージ作成 { #build-image-cli }
 
-公開リポジトリからイメージを取得するには `pull` コマンドを使います。`docker://` に続けてイメージ名とタグを指定します。理究からの取得は内部のレジストリミラー（zot）を経由し、docker.io（Docker Hub）・nvcr.io（NVIDIA NGC）・quay.io のイメージが利用できます（いずれも取得できることを確認済みです）。
+公開リポジトリからイメージを取得するには `pull` コマンドを使います。`docker://` に続けてイメージ名とタグを指定します。本システムからの取得は内部のレジストリミラー（zot）を経由し、docker.io（Docker Hub）・nvcr.io（NVIDIA NGC）・quay.io のイメージが利用できます。
 
 ```console
 apptainer pull ubuntu2404.sif docker://ubuntu:24.04
@@ -144,17 +83,15 @@ apptainer pull cuda13-base.sif docker://nvcr.io/nvidia/cuda:13.0.0-base-ubuntu24
 apptainer pull busybox.sif docker://quay.io/prometheus/busybox:latest
 ```
 
-取得の際、Docker 形式のイメージレイヤーは SIF 形式に変換され、レイヤーデータは `~/.apptainer/cache` 以下にキャッシュされます。Apptainer は実行マシンのアーキテクチャを自動判別するため、理究上で取得すると自動的に arm64（aarch64）版のイメージが選択されます。
+取得の際、Docker 形式のイメージレイヤーは SIF 形式に変換され、レイヤーデータは `~/.apptainer/cache` 以下にキャッシュされます。SIF イメージの実体は SquashFS 形式で、起動すると読み込み専用になります。イメージにアプリケーションを追加するには、後述の定義ファイルによるビルド、またはファイルシステムに展開する sandbox を利用します。
 
-SIF イメージの実体は SquashFS 形式で、起動すると読み込み専用になります。イメージにアプリケーションを追加するには、後述の定義ファイルによるビルド、またはファイルシステムに展開する sandbox を利用します。
-
-sandbox（ディレクトリ展開形式）は、`build` コマンドに `--sandbox` オプションを付けて作成します。
+sandboxは、`build` コマンドに `--sandbox` オプションを付けて作成します。
 
 ```console
 apptainer build --sandbox ubuntu2404 docker://ubuntu:24.04
 ```
 
-sandbox 内のファイルはユーザ自身がオーナーとなり、コンテナを起動しなくても直接編集できます。ただし、sandbox からコンテナを起動した場合も既定では読み込み専用です。書き込み可能な状態で起動するには `--writable` オプションを指定します（SIF イメージでは指定できません）。また、root 権限を前提とする `apt` / `dnf` / `rpm` などのパッケージ管理コマンドを使うには `--fakeroot` オプションが必要です（[sandbox を用いる方法](#sandbox) を参照）。
+sandbox 内のファイルはユーザ自身がオーナとなり、コンテナを起動しなくても直接編集できます。ただし、sandbox からコンテナを起動した場合も既定では読み込み専用です。書き込み可能な状態で起動するには `--writable` オプションを指定します（SIF イメージでは指定できません）。また、root 権限を前提とする `apt` / `dnf` / `rpm` などのパッケージ管理コマンドを使うには `--fakeroot` オプションが必要です。
 
 SIF と sandbox は相互に変換できます。
 
@@ -162,6 +99,26 @@ SIF と sandbox は相互に変換できます。
 apptainer build from_sandbox.sif ubuntu2404
 apptainer build --sandbox from_sif ubuntu2404.sif
 ```
+
+手元にある SIF イメージのアーキテクチャは、`sif list` コマンドで確認できます。
+
+```console
+apptainer sif list sample.sif
+```
+
+出力例：
+
+```text
+------------------------------------------------------------------------------
+ID   |GROUP   |LINK    |SIF POSITION (start-end)  |TYPE
+------------------------------------------------------------------------------
+1    |1       |NONE    |32176-32214               |Def.FILE
+2    |1       |NONE    |32214-36205               |JSON.Generic
+3    |1       |NONE    |36205-36438               |JSON.Generic
+4    |1       |NONE    |36864-28946432            |FS (Squashfs/*System/arm64)
+```
+
+TYPE 欄に `FS (Squashfs/*System/arm64)` のようにアーキテクチャが表示されます。`arm64` であれば本システムで実行できます。
 
 ### イメージからのコンテナ起動 { #run-container }
 
@@ -175,7 +132,7 @@ VERSION="9.8 (Olive Jaguar)"
 ...
 ```
 
-ホスト OS は Ubuntu 24.04 LTS ですが、コンテナ内ではイメージの OS 環境（この例では AlmaLinux）に切り替わり、イメージ内のコマンド・ライブラリのみが利用可能になります。カーネルとユーザ（UID）はホスト側のものがそのまま使われます。
+ホスト OS は Ubuntu ですが、コンテナ内ではイメージの OS 環境（この例では AlmaLinux）に切り替わり、イメージ内のコマンド・ライブラリのみが利用可能になります。カーネルとユーザはホスト側のものがそのまま使われます。
 
 コンテナ内からは自身のホームディレクトリがそのまま見えます（他ユーザのホームディレクトリは見えません）。コンテナ内の `/etc/passwd` には起動時に自身のエントリーのみが追加されます。また、プロセス空間はホストと共有されるため、`ps` や `kill` はコンテナ内外で相互に有効です。
 
@@ -183,10 +140,7 @@ VERSION="9.8 (Olive Jaguar)"
 
 ```console
 apptainer exec ubuntu2404.sif cat /etc/os-release
-apptainer exec docker://almalinux:9 cat /etc/passwd
 ```
-
-2 つ目の例のようにリポジトリを直接指定した場合は、SIF への変換（またはキャッシュとの同期）を行ってから実行されます（[リポジトリを指定した直接実行](#run-from-repository) を参照）。
 
 SIF ファイルには実行属性が付いており、スクリプトのように直接起動することもできます。
 
@@ -195,17 +149,19 @@ SIF ファイルには実行属性が付いており、スクリプトのよう�
 ./ubuntu2404.sif cat /etc/os-release
 ```
 
-イメージ内容を固定して運用したい場合や、起動オーバーヘッドを最小化したい場合は、SIF イメージでの利用を原則として推奨します。SIF は内部が圧縮されており、総ファイル量に比してサイズが小さく、メタデータアクセスの負荷も低いため、アプリケーションの起動が高速かつ安定します。
+!!! note
+    
+    イメージ内容を固定して運用したい場合や、起動オーバーヘッドを最小化したい場合は、SIF イメージでの利用を推奨します。SIF は内部が圧縮されており、総ファイル量に比してサイズが小さく、メタデータアクセスの負荷も低いため、アプリケーションの起動が高速かつ安定します。
 
 ## イメージの作成 { #building-images }
 
-本節では、実行用の SIF イメージを作成するいくつかの方法を説明します。理究では一般ユーザ権限のまま `--fakeroot` オプションによるビルドが可能です（ログインノード・計算ノードの双方で、`docker://` ベースのビルドが動作することを確認済みです）。
+本節では、実行用の SIF イメージを作成する方法を説明します。
 
 ### sandbox を用いる方法 { #sandbox }
 
-sandbox を編集して SIF に固める方法です。手軽な反面、作業履歴が残らないため、確定した手順は定義ファイル（[定義ファイルによるカスタムイメージ](#definition-file)）に落とすことを推奨します。
+sandbox を編集して SIF に固める方法です。手軽な反面、作業履歴が残らないため、確定した手順は定義ファイル（[定義ファイルによるカスタムイメージ](#definition-file)）に保存することを推奨します。
 
-**コンテナを起動せずに済む場合**は、既成のアプリケーションやリファレンスデータを sandbox に展開して固めるだけです。
+コンテナを起動せずに済む場合は、既成のアプリケーションやリファレンスデータを sandbox に展開して固めるだけです。
 
 ```console
 apptainer build --sandbox ubi9_py312 docker://registry.access.redhat.com/ubi9/python-312
@@ -214,7 +170,7 @@ vi ubi9_py312/usr/local/etc/application.config
 apptainer build appl.sif ubi9_py312
 ```
 
-**パッケージの追加など、コンテナを起動してシステムを変更する場合**は、`--writable` と `--fakeroot` を指定して sandbox を編集します。
+パッケージの追加など、コンテナを起動してシステムを変更する場合は、`--writable` と `--fakeroot` を指定して sandbox を編集します。
 
 ```console
 apptainer build --sandbox /tmp/ubuntu-sandbox ubuntu2404.sif
@@ -225,18 +181,17 @@ Apptainer> exit
 apptainer build ~/from-sandbox.sif /tmp/ubuntu-sandbox
 ```
 
-なお、`apt-get` などによる外部からのパッケージ取得には、外部ネットワークへの到達制限に関する注意があります（[定義ファイルによるカスタムイメージ](#definition-file) の警告を参照）。
+!!! warning
+
+    本システムから外部への HTTP接続は制限されており、`apt-get` などによる外部からのパッケージ取得は失敗することがあります。
 
 !!! note
 
-    sandbox は多数の小ファイルで構成されるため、共有ファイルシステム（ホーム領域・グループ領域）
-    上に置くとメタデータアクセスの負荷が大きくなります。sandbox の作成・編集はスクラッチ領域
-    （`/tmp`）上で行うことを推奨します。スクラッチ領域はジョブ終了時に削除されるため、
-    完成した SIF イメージはホーム領域またはグループ領域に保存してください。
+    sandbox は多数の小ファイルで構成されるため、共有ファイルシステム（ホーム領域・グループ領域）上に置くとメタデータアクセスの負荷が大きくなります。sandbox の作成・編集はスクラッチ領域（`/tmp`）上で行うことを推奨します。スクラッチ領域はジョブ終了時に削除されるため、完成した SIF イメージはホーム領域またはグループ領域に保存してください。
 
 ### 定義ファイルによるカスタムイメージ { #definition-file }
 
-定義ファイル（Definition File、慣習的に拡張子 `.def`）を書くと、イメージのビルドを自動化・再現可能にできます。定義ファイルは主に次の要素で構成されます。
+定義ファイルを書くと、イメージのビルドを自動化・再現可能にできます。定義ファイルは主に次の要素で構成されます。
 
 1. ヘッダー（`Bootstrap:`, `From:`）: ベースイメージの指定
 2. `%files`: ホストからイメージへのファイル取り込み
@@ -278,15 +233,11 @@ apptainer build --fakeroot ~/from_def.sif example.def
 
 !!! warning
 
-    理究から外部への HTTP（ポート 80）接続は制限されており、`%post` での `apt-get` などによる
-    外部からのパッケージ取得は失敗することがあります。
+    本システムから外部への HTTP接続は制限されており、`apt-get` などによる外部からのパッケージ取得は失敗することがあります。
 
 !!! note
 
-    ビルド時の一時展開先は既定でスクラッチ領域（`/tmp`）が使われます。一時領域を明示したい
-    場合は、環境変数 `APPTAINER_TMPDIR` で展開先を、`APPTAINER_CACHEDIR` でキャッシュ先を
-    変更できます。ホーム領域（50 GB）の容量を圧迫したくない場合は、`APPTAINER_CACHEDIR` を
-    スクラッチ領域やグループ領域（`/data1/<グループ>`）に向けることも有効です。
+    ビルド時の一時展開先は既定でスクラッチ領域（`/tmp`）が使われます。一時領域を明示したい場合は、環境変数 `APPTAINER_TMPDIR` で展開先を、`APPTAINER_CACHEDIR` でキャッシュ先を変更できます。ホーム領域の容量を圧迫したくない場合は、`APPTAINER_CACHEDIR` をスクラッチ領域やグループ領域（`/data1/<グループ>`）に向けることも有効です。
 
 ### 実行環境の埋め込み { #embed-runtime-env }
 
@@ -300,14 +251,13 @@ apptainer build --fakeroot ~/from_def.sif example.def
 
 !!! warning
 
-    定義ファイルの `From:` に `latest` タグを指定すると、ビルドのたびに取得される内容が変わる
-    可能性があります。再現性を重視する場合は、バージョンを固定したタグを指定してください。
+    定義ファイルの `From:` に `latest` タグを指定すると、ビルドのたびに取得される内容が変わる可能性があります。再現性を重視する場合は、バージョンを固定したタグを指定してください。
 
 ### ジョブ投入によるイメージ作成 { #build-via-job }
 
-理究ではログインノードでも `--fakeroot` によるビルドが可能なため、軽量なイメージであればログインノード上で直接ビルドできます。一方、多数のパッケージをインストールする大規模なビルドは CPU・メモリ・ストレージへの負荷が大きいため、バッチジョブとして計算ノードで実行することを推奨します。計算ノードでも、内部ミラーからの `docker://` 取得と `--fakeroot` ビルドの双方が可能なことを確認済みです。ビルドをジョブスクリプト化しておくと、定義ファイルと合わせて手順が記録され、再現性の面でも有利です。
+軽量なイメージであればログインノード上で直接ビルドできますが、多数のパッケージをインストールする大規模なビルドは CPU・メモリ・ストレージへの負荷が大きいため、バッチジョブとして計算ノードで実行することを推奨します。ビルド時の一時ファイルは多数の小ファイルを生成して共有ファイルシステムに負荷をかけるため、作業領域にはスクラッチ領域（`/tmp`）を使い、成果物のみホーム領域またはグループ領域へコピーしてください。
 
-ジョブスクリプトの例を示します（資源の要求方法は [ジョブスケジューラ（Slurm）との連携](#slurm) を参照）。
+ジョブスクリプトの例を示します（資源の要求方法は [Slurmとの連携](#slurm) を参照）。
 
 ```bash
 #!/bin/bash
@@ -326,11 +276,9 @@ cp $APPTAINER_TMPDIR/create_job.sif ~/
 sbatch ./build_job.sh
 ```
 
-この例のように GPU を使わないジョブでは `--gpus` の指定は不要です（[ジョブスケジューラ（Slurm）との連携](#slurm) を参照）。
-
 ### 電子署名によるイメージ管理 { #image-signing }
 
-Apptainer は公開鍵暗号によるイメージの署名・検証機能を持ち、イメージの真正性（作成者と改竄の有無）を確認できます。
+Apptainer は公開鍵暗号によるイメージの署名・検証機能を持ち、イメージの作成者と改竄の有無を確認できます。
 
 キーペアの作成:
 
@@ -368,8 +316,7 @@ FATAL:   Failed to verify container: integrity: signature not found for object g
 
 !!! note
 
-    上の出力にあるとおり、手元に該当する公開鍵がない場合、既定では外部のキーサーバ
-    （keys.openpgp.org）が参照されます（理究から HTTPS で到達可能なことを確認済みです）。
+    上の出力にあるとおり、手元に該当する公開鍵がない場合、既定では外部のキーサーバ（keys.openpgp.org）が参照されます。
 
 公開鍵のエクスポート・インポート:
 
@@ -437,9 +384,7 @@ export APPTAINER_BIND='/data1/<グループ>/input:/opt/input:ro,/data1/<グル�
 
 !!! warning
 
-    カレントディレクトリは既定で自動バインドされるため、`/usr/bin` や `/usr/lib` などから
-    コンテナを起動すると、コンテナ内の同名ディレクトリがホスト側のもので置き換わり、
-    ランタイムエラーの原因になることがあります。システムディレクトリからの起動は避けてください。
+    カレントディレクトリは既定で自動バインドされるため、`/usr/bin` や `/usr/lib` などからコンテナを起動すると、コンテナ内の同名ディレクトリがホスト側のもので置き換わり、ランタイムエラーの原因になることがあります。システムディレクトリからの起動は避けてください。
 
 ### インスタンス化によるコンテナの常駐 { #instances }
 
@@ -522,8 +467,7 @@ apptainer cache clean
 
 !!! note
 
-    この実行方法はリポジトリ側の更新に追従するため、動作実績のある実行環境を維持したい場合には
-    向きません。常に最新版を取り込みたい場合などに限定して利用することをお勧めします。
+    この実行方法はリポジトリ側の更新に追従するため、動作実績のある実行環境を維持したい場合には向きません。常に最新版を取り込みたい場合などに限定して利用することをお勧めします。
 
 ### Overlay 機能について { #overlay }
 
@@ -558,9 +502,11 @@ SIF と overlay の両方に同一のファイルがある場合は overlay 側�
 
 小サイズのファイルが多数あるワークロードでは、overlay に取り込んでおくことで共有ファイルシステムのメタデータアクセス負荷の軽減にも寄与します。
 
+## GPU と MPI { #gpu-and-mpi }
+
 ### GPU の利用 { #gpu }
 
-理究の計算ノードは NVIDIA GB200 NVL4 構成（Grace CPU ×2、B200 GPU ×4）で、1 ノードあたり 4 基の GPU を利用できます。GPU メモリは HBM3e で、1 GPU あたり 173.2 GiB（ノード合計 692.8 GiB）です。ホスト側の GPU ドライバは 580.159.03 で、CUDA 13.0 に対応しています（ドライバ・CUDA は執筆時点の実測値）。**コンテナ内で利用する CUDA ツールキットは 13.0 以下のバージョンである必要があります。**
+ホスト側の GPU ドライバは CUDA 13.0 に対応していますが、コンテナ内で利用する CUDA ツールキットは 13.0 以下のバージョンである必要があります。
 
 コンテナ内から GPU を利用するには、`--nv` オプションを指定します。次の例は、GPU を 4 基割り当てたジョブ内での実行例です。
 
@@ -577,24 +523,15 @@ GPU 2: NVIDIA GB200 (UUID: <省略>)
 GPU 3: NVIDIA GB200 (UUID: <省略>)
 ```
 
-このように、GPU を含まないイメージ（上の例では素の Ubuntu）からでもホストの GPU を認識できます。なお、ジョブ内では Slurm が割り当てた GPU のみが見えます（例: `--gpus=1` のジョブでは GPU 0 のみが表示されます）。`--nv` を指定すると、Apptainer は次の処理を行います。
+このように、コンテナからホストの GPU を認識できます。なお、ジョブ内では Slurm が割り当てた GPU のみが見えます（例: `--gpus=1` のジョブでは GPU 0 のみが表示されます）。`--nv` を指定すると、Apptainer は次の処理を行います。
 
 1. `/dev/nvidia*` などの GPU デバイスをコンテナ内で利用可能にする（コンテナ内に `/dev/nvidia*` が現れます）
 2. ホスト側の NVIDIA ドライバ関連ライブラリをコンテナ内にバインドする
 3. バインドしたライブラリが使われるよう、コンテナ内の `LD_LIBRARY_PATH` を設定する
 
-CUDA ツールキットやフレームワーク（PyTorch 等）はコンテナイメージ側に含め、ドライバはホスト側のものを `--nv` で取り込む、という分担が基本です。GPU 用イメージは NVIDIA NGC（`docker://nvcr.io/...`）から arm64（aarch64）版を取得できます（[コマンドラインでのイメージ作成](#build-image-cli)・[アーキテクチャに関する注意](#architecture-notes) を参照）。
-
-ジョブでの GPU の要求は `--gpus=N` オプションで行います（[ジョブスケジューラ（Slurm）との連携](#slurm) を参照）。
+CUDA ツールキットやフレームワーク（PyTorch 等）はコンテナイメージ側に含め、ドライバはホスト側のものを `--nv` で取り込む、という分担が基本です。GPU 用イメージは NVIDIA NGC（`docker://nvcr.io/...`）から arm64（aarch64）版を取得できます（[コマンドラインでのイメージ作成](#build-image-cli) を参照）。
 
 ### MPI 並列 { #mpi }
-
-!!! note
-
-    本節の各方式は、単純な MPI プログラム（MPI_Allreduce）の疎通を、ノード内（4 ランク）・
-    2 ノード（8 ランク）で確認しています。InfiniBand/UCX が実際に使われているかの確認や
-    通信性能、GPU 対応 MPI、実アプリケーション固有の互換性は未確認のため、本番利用の前に
-    各自のイメージ構成で確認してください。
 
 #### ノード内並列 { #mpi-intra-node }
 
@@ -604,19 +541,27 @@ CUDA ツールキットやフレームワーク（PyTorch 等）はコンテナ�
 apptainer exec mpi-apps.sif mpiexec --bind-to none -np 8 ~/myapps/hoge inputfile
 ```
 
-理究のジョブ内では、既定のプロセスバインドがジョブに割り当てられたコアと衝突して失敗するため（`hwloc_set_cpubind` エラー）、`--bind-to none` を指定します（プロセス配置を制御したい場合は、アプリケーション・ジョブ側で調整してください）。なお、HPC-X ビルドの Open MPI を内蔵するイメージ（NGC の nvhpc 系など）では、ノード内実行でも [コンテナ内蔵 Open MPI + srun --mpi=pmix](#mpi-container-pmix) の注記にある `OPAL_PREFIX` / `LD_LIBRARY_PATH` の指定が必要です。
-
 この場合、起動されるコンテナは 1 つだけで、その中で複数のプロセスが動作します。
+
+!!! note
+
+    HPC-X ビルドの Open MPI を内蔵するイメージ（NGC の nvhpc 系など）では、ノード内実行でも [コンテナ内蔵 Open MPI + srun --mpi=pmix](#mpi-container-pmix) の注記にある `OPAL_PREFIX` / `LD_LIBRARY_PATH` の指定が必要です。
 
 #### マルチノード並列の考え方 { #mpi-multi-node }
 
-複数ノードにまたがる MPI 並列を、ノード内並列と同じ方法で起動することはできません。他ノードでのプロセス起動時点ではコンテナ環境が立ち上がっていないためです。マルチノード並列では、プロセスの起動にコンテナ起動を含める、すなわち **ホスト側のプロセスマネージャから `apptainer exec` を起動する** 形をとります。ノード内並列とは `mpirun`（`srun`）と `apptainer` の順番が逆になっている点に注意してください。
+複数ノードにまたがる MPI 並列を、ノード内並列と同じ方法で起動することはできません。他ノードでのプロセス起動時点ではコンテナ環境が立ち上がっていないためです。マルチノード並列では、プロセスの起動にコンテナ起動を含める、すなわち ホスト側のプロセスマネージャから `apptainer exec` を起動する形をとります。ノード内並列とは `mpirun`（`srun`）と `apptainer` の順番が逆になっている点に注意してください。
 
-理究では、複数ノードの確保は GPU 数の指定で行います（1 ノード 4 基のため、`--gpus=8` で 2 ノード。[ジョブスケジューラ（Slurm）との連携](#slurm) を参照）。確保した複数ノードへのコンテナ起動は、Slurm の PMIx 連携を用いた次の形で動作することを確認済みです（`--gpus=8 --ntasks-per-node=4` のジョブで、2 ノード×4 タスクの計 8 コンテナが起動）。
+複数ノードの確保は GPU 数の指定で行います（1 ノード 4 基のため、`--gpus=8` で 2 ノード。[ジョブスケジューラ（Slurm）との連携](#slurm) を参照）。
+
+次は `--gpus=8 --ntasks-per-node=4` のジョブ内（2 ノードが確保されている状態）で実行した例です。
 
 ```console
-# --gpus=8 --ntasks-per-node=4 のジョブ内で実行した例 (2 ノードが確保されている状態)
 srun --mpi=pmix apptainer exec ubuntu2404.sif hostname
+```
+
+出力例：
+
+```text
 c146
 c146
 c146
@@ -627,13 +572,13 @@ c147
 c147
 ```
 
-この方式では、ホスト側とコンテナ内の MPI が連携して動作する必要があるため、両者のバージョン整合が重要になります。理究では次の 2 つの方式を利用できます。
+この方式では、ホスト側とコンテナ内の MPI が連携して動作する必要があるため、両者のバージョン整合が重要になります。本システムでは次の 2 つの方式を利用できます。
 
 #### ホスト提供 MPI のバインド方式（第一選択） { #mpi-host-bind }
 
-理究のホスト側には NVIDIA HPC-X（`nvhpc-hpcx` モジュール）が用意されています（提供バージョンは `module avail` で確認してください）。HPC-X は HPC SDK（`/shared/software/hpc_sdk`。読み取り専用のシステムソフトウェア領域）の一部として導入されており、Open MPI 5.0 系（執筆時点の実測では 5.0.10rc2）ベースです。HPC-X は GB200 GPU と InfiniBand 相互結合網に最適化されており、**ホスト側の HPC-X をコンテナにバインドして利用する方式が、相互結合網と GPU の性能を引き出す推奨経路です**。
+本システムのホスト側には NVIDIA HPC-X が `nvhpc-hpcx` モジュールとして用意されています。HPC-X は HPC SDKの一部として導入されている Open MPI 系で、GPU と InfiniBand 相互結合網に最適化されています。
 
-モジュールをロードすると `mpirun` 等が PATH に追加されます。Open MPI や UCX の実体ライブラリは HPC SDK ツリー側にあるため、コンテナへのバインドは HPC SDK のディレクトリごと行い、コンテナ内にライブラリの場所を環境変数で伝えます。アプリケーションはホスト側の `mpicc`（モジュールロード後に利用可）でビルドすると、ホスト MPI と ABI が一致し確実です。
+Open MPI や UCX の実体ライブラリは HPC SDK ツリー側にあるため、コンテナへのバインドは HPC SDK のディレクトリごと行い、コンテナ内にライブラリの場所を環境変数で伝えます。アプリケーションはホスト側の `mpicc`でビルドすると、ホスト MPI と ABI が一致し確実です。
 
 ```bash
 #!/bin/bash
@@ -646,7 +591,7 @@ module load nvhpc-hpcx
 
 # ホスト側 Open MPI の場所 (OPAL_PREFIX) を mpirun の実体パスから求める
 OMPI_PREFIX=$(readlink -f "$(which mpirun)"); OMPI_PREFIX=${OMPI_PREFIX%/bin/mpirun}
-UCX_LIB=<UCX の lib ディレクトリ>   # HPC SDK 内の hpcx-*/ucx*/lib (libucp.so のある場所。
+UCX_LIB="<UCX の lib ディレクトリ>" # HPC SDK 内の hpcx-*/ucx*/lib (libucp.so のある場所。
                                     # 例: find /shared/software/hpc_sdk -name libucp.so で確認)
 
 mpirun --bind-to none -np 8 apptainer exec --nv -B /shared/software/hpc_sdk \
@@ -654,11 +599,6 @@ mpirun --bind-to none -np 8 apptainer exec --nv -B /shared/software/hpc_sdk \
   --env LD_LIBRARY_PATH=$OMPI_PREFIX/lib:$UCX_LIB \
   mpi-apps.sif ~/myapps/hoge inputfile
 ```
-
-!!! note
-
-    この方式で 2 ノード×8 ランクの MPI_Allreduce 疎通を確認済みです
-    （検証の範囲は [MPI 並列](#mpi) 冒頭の注記を参照）。
 
 #### 代替: コンテナ内蔵 Open MPI + srun --mpi=pmix { #mpi-container-pmix }
 
@@ -672,91 +612,13 @@ srun --mpi=pmix apptainer exec mpi-apps.sif ~/myapps/hoge inputfile
 
 !!! note
 
-    NGC の nvhpc 系イメージなど、HPC-X ビルドの Open MPI を内蔵するイメージは、ビルド時の
-    インストール先パスが焼き込まれているため、そのままでは MPI_Init に失敗します
-    （`PML ob1 cannot be selected` 等）。実行時に
-    `--env OPAL_PREFIX=<コンテナ内の ompi プレフィックス>` と
-    `--env LD_LIBRARY_PATH=<ompi/lib>:<ucx/lib>` を指定してください
-    （プレフィックスはコンテナ内の `hpc_sdk/**/hpcx-*/ompi` を探して確認します）。
+    NGC の nvhpc 系イメージなど、HPC-X ビルドの Open MPI を内蔵するイメージは、ビルド時のインストール先パスが焼き込まれているため、そのままでは MPI_Init に失敗します（`PML ob1 cannot be selected` 等）。実行時に`--env OPAL_PREFIX=<コンテナ内の ompi プレフィックス>` と`--env LD_LIBRARY_PATH=<ompi/lib>:<ucx/lib>` を指定してください。プレフィックスはコンテナ内の `hpc_sdk/**/hpcx-*/ompi` を探して確認します。
 
-コンテナ内蔵の Open MPI 4.1 系とホスト側 `pmix_v5` の組み合わせで、2 ノード×8 ランクの MPI_Allreduce 疎通を確認済みです。実行時に共有メモリ転送の UCX ERROR（`mm_posix ... Permission denied`）が多数出力されることがありますが、別のトランスポートにフォールバックして正常に完走します。別系統の MPI を内蔵する場合は、事前に疎通確認してください。
+実行時に共有メモリ転送の UCX ERROR（`mm_posix ... Permission denied`）が多数出力されることがありますが、別のトランスポートにフォールバックして正常に完走します。別系統の MPI を内蔵する場合は、事前に疎通確認してください。
 
-## ジョブスケジューラ（Slurm）との連携 { #slurm }
+### MPI 並列ジョブ { #mpi-job }
 
-理究のジョブスケジューラは Slurm です。Apptainer はホスト環境との親和性が高く、ジョブスクリプト内でコンテナであることをあまり意識せずに利用できます。
-
-ジョブの資源要求は、次のポリシーに従ってください。
-
-- **GPU は必ず `--gpus=N`（短縮形 `-G N`）で要求します。** 指定できる GPU 数は 1〜4・8・12・16 です。`--gres=gpu:...` や `--gpus-per-node` による指定はジョブ投入時にエラーになります。
-- **ノード数は利用者が `-N` で指定しません。** 要求した GPU 数から自動的に決定されます（1 ノード 4 基。例えば `--gpus=8` なら 2 ノード）。ノードの配置はスケジューラに任せます。
-- GPU を使わないジョブ（イメージのビルド等）では `--gpus` の指定は不要です。
-- パーティションは既定の `gpu` が使用されるため、指定は不要です（最大実行時間は 96 時間）。
-- 経過時間は `--time=HH:MM:SS` で指定します。
-- `#SBATCH -A`（`--account=`）には **課題（プロジェクト）の ID**（rkpXXXXX 形式。例: `rkp00010`）を指定します。ログインユーザ名ではありません。複数の課題に所属している場合は、課金対象とする課題の指定が必要です。自分の課題 ID は `sacctmgr -n show assoc user=$USER format=account,user,qos` で確認できます（課題未所属のアカウントでは空になります）。
-
-### シンプルな実行 { #slurm-simple }
-
-ホームディレクトリの SIF イメージ内でアプリケーションを実行する基本的なジョブスクリプトの例です。
-
-```bash
-#!/bin/bash
-#SBATCH -A <プロジェクトID>
-#SBATCH --gpus=1
-#SBATCH --time=00:15:00
-
-export OMP_NUM_THREADS=8
-export APPTAINERENV_MYCODE_CONFIG=/usr/share/MyApps/config.json
-apptainer exec ~/ubuntu2404.sif python3 ~/mycode/test.py
-```
-
-```console
-sbatch ./job.sh
-```
-
-この例のアプリケーションは GPU を使いませんが、`--gpus=1` により 1 GPU 分の CPU コア・メモリが割り当てられるため、`OMP_NUM_THREADS=8` のようなスレッド並列にも対応できます。GPU を使わないジョブでは `--gpus` を省略することもできます。
-
-GPU を利用する場合は、`--gpus=N` で必要な GPU 数を要求し、`--nv` を付けて実行します。
-
-```bash
-#!/bin/bash
-#SBATCH -A <プロジェクトID>
-#SBATCH --gpus=4
-#SBATCH --time=01:00:00
-
-apptainer exec --nv ~/cuda-app.sif python3 ~/mycode/train.py
-```
-
-### 実行方法のイメージへの埋め込み { #slurm-embedded-runscript }
-
-`%environment` と `%runscript` をイメージに設定しておくと、ジョブスクリプトを極めてシンプルにできます。
-
-定義ファイル:
-
-```text
-Bootstrap: docker
-From: ubuntu:24.04
-
-%environment
-    export OMP_NUM_THREADS=8
-    export MYCODE_CONFIG=/usr/share/MyApps/hoge.json
-
-%runscript
-    python3 /usr/share/MyApps/hoge.py "$@"
-```
-
-このイメージを `hoge` という名前で PATH の通ったディレクトリに実行属性付きで保存しておくと、ジョブスクリプトは通常のアプリケーション実行と変わらなくなります。
-
-```bash
-#!/bin/bash
-#SBATCH -A <プロジェクトID>
-#SBATCH --time=00:15:00
-
-hoge input.txt
-```
-
-### MPI 並列ジョブ { #slurm-mpi }
-
-マルチノード MPI の実行方式は [MPI 並列](#mpi) を参照してください。コンテナ内蔵 Open MPI + PMIx 方式のジョブスクリプト例を示します（`--gpus=8` により 2 ノードが確保され、`--ntasks-per-node=4` との組み合わせで 2 ノード×4 タスクの計 8 タスクで実行されることを確認済みです）。
+コンテナ内蔵 Open MPI + PMIx 方式のジョブスクリプト例を示します。
 
 ```bash
 #!/bin/bash
@@ -785,6 +647,38 @@ MPI plugin types are...
 specific pmix plugin versions available: pmix_v5
 ```
 
+## Slurmとの連携 { #slurm }
+
+Apptainer はホスト環境との親和性が高く、ジョブスクリプト内でコンテナであることをあまり意識せずに利用できます。ジョブの投入方法そのものは [Slurmの使い方](slurm.md)、指定できる GPU 数と確保されるノード数・CPU コア数・メモリ量は [ジョブ実行資源](resources.md) を参照してください。
+
+### 実行方法のイメージへの埋め込み { #slurm-embedded-runscript }
+
+`%environment` と `%runscript` をイメージに設定しておくと、ジョブスクリプトをシンプルにできます。
+
+定義ファイル:
+
+```text
+Bootstrap: docker
+From: ubuntu:24.04
+
+%environment
+    export OMP_NUM_THREADS=8
+    export MYCODE_CONFIG=/usr/share/MyApps/hoge.json
+
+%runscript
+    python3 /usr/share/MyApps/hoge.py "$@"
+```
+
+このイメージを `hoge` という名前で PATH の通ったディレクトリに実行属性付きで保存しておくと、ジョブスクリプトは通常のアプリケーション実行と変わらなくなります。
+
+```bash
+#!/bin/bash
+#SBATCH -A <プロジェクトID>
+#SBATCH --time=00:15:00
+
+hoge input.txt
+```
+
 ### インタラクティブ実行 { #slurm-interactive }
 
 計算ノードを対話的に利用するには `salloc` でノードを確保し、`srun` でシェルを起動します。
@@ -792,58 +686,12 @@ specific pmix plugin versions available: pmix_v5
 ```console
 salloc -A <プロジェクトID> --gpus=1 --time=00:30:00
 srun --pty bash -i
-[<username>@<計算ノード> ~]$ apptainer shell ubuntu2404.sif
-Apptainer>
+```
+
+計算ノード上でシェルが起動したら、そのままコンテナを操作できます。
+
+```console
+apptainer shell ubuntu2404.sif
 ```
 
 インタラクティブジョブ内では、本ページで紹介したすべての操作（イメージのビルド、sandbox の編集、GPU を使った動作確認など）を対話的に実行できます。
-
-## 理究特有の注意点 { #rikyu-notes }
-
-### アーキテクチャに関する注意 { #architecture-notes }
-
-理究はログインノード・計算ノードとも aarch64（Arm）アーキテクチャです。コンテナはハードウェアのエミュレーションを行わないため、**x86_64（amd64）用のイメージは理究では動作しません**。イメージを取得する際は、arm64（aarch64）版が提供されていることを確認してください。理究上で `pull` / `build` した場合は自動的に arm64 版が選択されますが、イメージによっては arm64 版が提供されていないことがあります。
-
-手元にある SIF イメージのアーキテクチャは、`sif list` コマンドで確認できます。
-
-```console
-apptainer sif list sample.sif
-```
-
-出力例：
-
-```text
-------------------------------------------------------------------------------
-ID   |GROUP   |LINK    |SIF POSITION (start-end)  |TYPE
-------------------------------------------------------------------------------
-1    |1       |NONE    |32176-32214               |Def.FILE
-2    |1       |NONE    |32214-36205               |JSON.Generic
-3    |1       |NONE    |36205-36438               |JSON.Generic
-4    |1       |NONE    |36864-28946432            |FS (Squashfs/*System/arm64)
-```
-
-TYPE 欄に `FS (Squashfs/*System/arm64)` のようにアーキテクチャが表示されます。`arm64` であれば理究で実行できます。
-
-### イメージ取得に関する注意 { #image-pull-notes }
-
-理究からの `docker://` によるイメージ取得は、内部のレジストリミラー（zot）を経由します。docker.io（Docker Hub）・nvcr.io（NVIDIA NGC）・quay.io のイメージが利用できます。
-
-### ビルドと作業領域に関する注意 { #build-workspace }
-
-理究では一般ユーザ権限のまま `--fakeroot` オプションが利用でき、ホームディレクトリ上でもビルドが可能です。特別な準備は必要ありません。ビルドと内部ミラーからのイメージ取得は、ログインノード・計算ノードのどちらでも動作することを確認済みです。ただし、`%post` などでの外部からのパッケージ取得には外部ネットワークへの到達制限があります（[定義ファイルによるカスタムイメージ](#definition-file) の警告を参照）。
-
-sandbox の展開やビルド時の一時ファイルは多数の小ファイルを生成するため、共有ファイルシステムには負荷がかかります。大きめのビルド作業は、スクラッチ領域（`/tmp`）を作業領域とすることを推奨します（[理究の Apptainer 環境](#apptainer-environment)・[sandbox を用いる方法](#sandbox)・[ジョブ投入によるイメージ作成](#build-via-job) を参照）。スクラッチ領域はジョブ終了時に削除されるため、成果物はホーム領域またはグループ領域へコピーしてください。
-
-### マルチノード MPI に関する注意 { #multi-node-mpi-notes }
-
-コンテナを用いたマルチノード MPI は、ホスト HPC-X のバインド方式・コンテナ内蔵 Open MPI + PMIx 方式のいずれも、2 ノード×8 ランクの MPI_Allreduce 疎通まで確認済みです（[MPI 並列](#mpi) を参照）。InfiniBand/UCX が実際に使われているかの確認や通信性能、GPU 対応 MPI、実アプリケーション固有の互換性は未確認のため、本番利用の前に各自のイメージ構成で小規模な動作確認を行ってください。
-
-### トラブルシューティング { #troubleshooting }
-
-| 症状 | 主な原因 | 参照 |
-|---|---|---|
-| コンテナ実行時に `exec format error` が出る | x86_64（amd64）用イメージを取得している | [アーキテクチャに関する注意](#architecture-notes) |
-| `%post` の `apt-get` がタイムアウトする | 外部 HTTP（ポート 80）への到達制限 | [定義ファイルによるカスタムイメージ](#definition-file) |
-| GPU アプリケーションが CUDA エラーで動かない | コンテナ内の CUDA がホスト対応バージョン（13.0）を超えている | [GPU の利用](#gpu) |
-| MPI_Init が失敗する（存在しないパスを探す / `PML ob1 cannot be selected`） | HPC-X 系ビルドの Open MPI は実行時に `OPAL_PREFIX` と `LD_LIBRARY_PATH` の指定が必要 | [コンテナ内蔵 Open MPI + srun --mpi=pmix](#mpi-container-pmix) |
-| `mpirun` が `hwloc_set_cpubind` エラーで失敗する | 既定のプロセスバインドがジョブ割当コアと衝突 | [ノード内並列](#mpi-intra-node)（`--bind-to none`） |
