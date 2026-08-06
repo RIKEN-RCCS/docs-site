@@ -6,10 +6,10 @@ Open OnDemandは、Webブラウザからスーパーコンピュータを利用�
 
 Open OnDemandでは、次の機能を利用できます。
 
-* ファイルの送受信・編集
-* ジョブの投入と管理
-* Webターミナルの利用
-* 対話アプリケーション（リモートデスクトップなど）の実行
+- ファイルの送受信・編集
+- ジョブの投入と管理
+- Webターミナルの利用
+- 対話アプリケーション（リモートデスクトップなど）の実行
 
 !!! note
 
@@ -119,9 +119,9 @@ WebブラウザからログインノードにSSHアクセスし、コマンド�
 
 |                     名称                                  |                               説明                                  |
 | --------------------------------------------------------- | ------------------------------------------------------------------- |
-| Desktop ([Xfce](https://www.xfce.org/){ target="_blank" rel="noopener" })                   | X Window System上で動作する軽量デスクトップ環境                     |
+| Desktop（[Xfce](https://www.xfce.org/){ target="_blank" rel="noopener" }）                   | X Window System上で動作する軽量デスクトップ環境                     |
 | [JupyterLab](https://jupyter.org/){ target="_blank" rel="noopener" }                        | Webブラウザ上で動作するプログラムの対話型実行環境                   |
-| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd){ target="_blank" rel="noopener" }) | ターミナルセッションをウェブブラウザから操作するためのツール        |
+| Terminal（[ttyd](https://github.com/OpenOnDemandJP/ttyd){ target="_blank" rel="noopener" }） | ターミナルセッションをウェブブラウザから操作するためのツール        |
 | [VSCode](https://code.visualstudio.com/){ target="_blank" rel="noopener" }                  | [Microsoft](https://www.microsoft.com/){ target="_blank" rel="noopener" }が開発しているコードエディタ |
 | NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute){ target="_blank" rel="noopener" }と[NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems){ target="_blank" rel="noopener" } |
 | [Gnuplot](http://www.gnuplot.info/){ target="_blank" rel="noopener" }                       | コマンドライン駆動型グラフ作成プログラム                            |
@@ -149,6 +149,6 @@ WebブラウザからログインノードにSSHアクセスし、コマンド�
 
 Desktopを終了させたい場合は、次のいずれかの手順で終了してください。Webブラウザを閉じるだけでは終了しないことに注意してください。
 
-* <span class="text-marker">Running</span>画面の<span class="text-marker">Delete</span>ボタンをクリックする。
-* メニューバーの<span class="text-marker">My Interactive Sessions</span>をクリックし、該当のジョブの<span class="text-marker">Delete</span>ボタンをクリックする。
-* Desktopの左上の<span class="text-marker">Applications</span>から<span class="text-marker">Log Out</span>をクリックする。
+- <span class="text-marker">Running</span>画面の<span class="text-marker">Delete</span>ボタンをクリックする。
+- メニューバーの<span class="text-marker">My Interactive Sessions</span>をクリックし、該当のジョブの<span class="text-marker">Delete</span>ボタンをクリックする。
+- Desktopの左上の<span class="text-marker">Applications</span>から<span class="text-marker">Log Out</span>をクリックする。

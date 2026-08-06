@@ -10,7 +10,7 @@ Open OnDemandのダッシュボードから<span class="text-marker">Slurm</span
 
 背景が白色のWebフォームに値を入力すると、右下のテキストエリアにジョブスクリプトが生成されます。なお、背景が<span style="background: yellow;">黄色</span>のWebフォームは、ジョブスクリプトに影響しない項目です。Webフォームのラベルにあるアスタリスクは必須項目を指します。
 
-![Web form of Slurm](img/composer_slurm.png){ width="800" }
+<img width="800" alt="Web form of Slurm" src="img/composer_slurm.png">
 
 右上の項目の意味は次のとおりです。
 
@@ -30,7 +30,7 @@ Open OnDemandのダッシュボードから<span class="text-marker">Slurm</span
 
 テキストエリアの下部にある<span class="text-marker">Submit</span>をクリックするとジョブが投入されます。成功時には保存場所のパスとHistory Pageへのリンクが表示されます。保存場所のパスをクリックすると、[Open OnDemandのHome Directory](ood.md#home-directory)が起動します。保存場所のパスの横にあるターミナルのアイコンをクリックすると、[Open OnDemandのRIKYU Shell Access](ood.md#rikyu-shell-access)が起動します。
 
-![Link to History Page](img/link_to_history.png){ width="800" }
+<img width="800" alt="Link to History Page" src="img/link_to_history.png">
 
 ## ジョブ履歴の閲覧
 
@@ -38,19 +38,19 @@ Open OnDemandのダッシュボードから<span class="text-marker">Slurm</span
 
 <img width="800" alt="History Page" src="img/history.png" style="border: 1px solid #000;">
 
-* 右上の検索窓は、ジョブ履歴を条件で絞り込むことで、目的のジョブを検索するための機能です。<span class="text-marker">Detail</span>ボタンをクリックすると、より詳細な条件での検索が可能です。
-* テーブルのヘッダにある&#9650;と&#9660;をクリックすると、その列をキーとしてテーブル全体が昇順または降順に並び替えられます。デフォルトはJob IDの降順です。
-* <span class="text-marker">Job ID</span>の項目のリンクをクリックすると、ジョブの詳細情報が表示されます。
+- 右上の検索窓は、ジョブ履歴を条件で絞り込むことで、目的のジョブを検索するための機能です。<span class="text-marker">Detail</span>ボタンをクリックすると、より詳細な条件での検索が可能です。
+- テーブルのヘッダにある&#9650;と&#9660;をクリックすると、その列をキーとしてテーブル全体が昇順または降順に並び替えられます。デフォルトはJob IDの降順です。
+- <span class="text-marker">Job ID</span>の項目のリンクをクリックすると、ジョブの詳細情報が表示されます。
 
 <img width="600" alt="Job details" src="img/job_details.png" style="border: 1px solid #000; margin-left: 30px;">
 
-* <span class="text-marker">Application</span>の項目のリンクをクリックすると、該当アプリケーションのページが開きます。
-* <span class="text-marker">Script Location</span>の項目のリンクをクリックすると、[Open OnDemandのHome Directory](ood.md#home-directory)が開きます。また、ターミナルアイコンをクリックすると、[Open OnDemandのRIKYU Shell Access](ood.md#rikyu-shell-access)が起動します。
-* <span class="text-marker">Script Name</span>の項目のリンクをクリックすると、実行したジョブスクリプトが表示されます。
+- <span class="text-marker">Application</span>の項目のリンクをクリックすると、該当アプリケーションのページが開きます。
+- <span class="text-marker">Script Location</span>の項目のリンクをクリックすると、[Open OnDemandのHome Directory](ood.md#home-directory)が開きます。また、ターミナルアイコンをクリックすると、[Open OnDemandのRIKYU Shell Access](ood.md#rikyu-shell-access)が起動します。
+- <span class="text-marker">Script Name</span>の項目のリンクをクリックすると、実行したジョブスクリプトが表示されます。
 
    <img width="300" alt="Load parameters" src="img/load_parameters.png" style="border: 1px solid #000; margin-left: 30px;">
 
-* <span class="text-marker">Load parameters</span>をクリックすると、そのジョブスクリプトを作成するために用いられたパラメータがロードされた状態でアプリケーションページが開きます。
-* テーブルの左側にあるチェックボックスで対象のジョブを選択し、<span class="text-marker">Cancel Job</span>をクリックすると、キューに登録されているジョブもしくは実行中のジョブをキャンセルできます。
-* <span class="text-marker">Delete Info</span>をクリックすると、完了したジョブの情報をテーブルから削除できます。
-* テーブルの一番上のチェックボックスをチェックすると、そのページに表示されているすべてのジョブを選択できます。
+- <span class="text-marker">Load parameters</span>をクリックすると、そのジョブスクリプトを作成するために用いられたパラメータがロードされた状態でアプリケーションページが開きます。
+- テーブルの左側にあるチェックボックスで対象のジョブを選択し、<span class="text-marker">Cancel Job</span>をクリックすると、キューに登録されているジョブもしくは実行中のジョブをキャンセルできます。
+- <span class="text-marker">Delete Info</span>をクリックすると、完了したジョブの情報をテーブルから削除できます。
+- テーブルの一番上のチェックボックスをチェックすると、そのページに表示されているすべてのジョブを選択できます。

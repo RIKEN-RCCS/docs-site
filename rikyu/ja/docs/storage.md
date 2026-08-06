@@ -4,7 +4,7 @@
 
 ## ホーム領域
 
-各ユーザは50 GBのホーム領域（`/home/USER`）を持ちます。`USER`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
+各ユーザは50 GBのホーム領域（`/home/USERNAME`）を持ちます。`USERNAME`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
 
 コマンドラインでホーム領域の利用状況を確認するには、次のコマンドを実行してください。
 
@@ -77,7 +77,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
     </tr>
     <tr>
       <td>ホーム領域</td>
-      <td><code>/home/USER</code></td>
+      <td><code>/home/USERNAME</code></td>
       <td>50 GB</td>
       <td rowspan="2">可能</td>
       <td rowspan="2">Lustre</td>
@@ -111,7 +111,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 
 [理究ポータル](https://portal.rikyu.r-ccs.riken.jp/ja/usage/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
-ポータルにログインし、画面上部の<span class="text-marker">利用量</span>を選択します。<span class="text-marker">ストレージ</span>にある課題の<span class="text-marker">容量を変更</span>をクリックし、<span class="text-marker">新しい容量 (TB)</span>を入力して<span class="text-marker">変更する</span>をクリックします。
+ポータルにログインし、画面上部の<span class="text-marker">利用量</span>を選択します。<span class="text-marker">ストレージ</span>にある課題の<span class="text-marker">容量を変更</span>をクリックし、<span class="text-marker">新しい容量（TB）</span>を入力して<span class="text-marker">変更する</span>をクリックします。
 
 <img width="700" alt="グループ領域の容量変更" src="img/storage_quota.svg" style="border: 1px solid #000;">
 

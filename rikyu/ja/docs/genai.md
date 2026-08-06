@@ -31,7 +31,7 @@ APIキーは、理究ポータルで発行します。
 
 [理究ポータル](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
-ポータルにログインし、画面上部の<span class="text-marker">API キー</span>を選択します。<span class="text-marker">新しいキーを発行</span>のフォームで課題IDを選び、<span class="text-marker">発行</span>をクリックします。
+ポータルにログインし、画面上部の<span class="text-marker">APIキー</span>を選択します。<span class="text-marker">新しいキーを発行</span>のフォームで課題IDを選び、<span class="text-marker">発行</span>をクリックします。
 
 <img width="700" alt="APIキーの発行" src="img/genai_keys.svg" style="border: 1px solid #000;">
 
@@ -41,7 +41,7 @@ APIキーは、理究ポータルで発行します。
 
 APIキーは課題ごとに1つ発行できます。APIの利用量は、キーの発行元の課題に計上されます。複数の課題に所属している場合は、利用したい課題のキーを使用してください。
 
-!!! note
+!!! warning
 
     APIキーは本システムを利用するための認証情報です。第三者と共有せず、ソースコードや公開リポジトリに直接記述しないでください。漏洩のおそれがある場合は、ポータルの一覧からキーを失効し、新しいキーを発行してください。
 
@@ -50,7 +50,7 @@ APIキーは課題ごとに1つ発行できます。APIの利用量は、キー�
 発行したAPIキーを環境変数に設定します。`OPENAI_API_KEY`は、OpenAI SDKや多くの互換ツールが既定で参照する環境変数名です。
 
 ```bash
-export OPENAI_API_KEY=発行したAPIキー
+export OPENAI_API_KEY=API_KEY
 ```
 
 利用できるモデルの一覧を取得します。
@@ -154,10 +154,10 @@ Cline（Visual Studio Codeの拡張機能）のように、接続先とAPIキー
 
 ## 注意事項
 
-* 1回のリクエストで生成されるトークン数の上限（`max_tokens`）は、指定しない場合32,768です。長い入力を与える場合は、入力と`max_tokens`の合計がモデルのコンテキスト長を超えないように`max_tokens`を調整してください。超えるとエラー（HTTP 400）になります。
-* リクエストボディのサイズ上限は32 MBです。
-* リクエストのタイムアウトは600秒です。
-* 公開しているのは`/v1`配下のパスのみです。
+- 1回のリクエストで生成されるトークン数の上限（`max_tokens`）は、指定しない場合32,768です。長い入力を与える場合は、入力と`max_tokens`の合計がモデルのコンテキスト長を超えないように`max_tokens`を調整してください。超えるとエラー（HTTP 400）になります。
+- リクエストボディのサイズ上限は32 MBです。
+- リクエストのタイムアウトは600秒です。
+- 公開しているのは`/v1`配下のパスのみです。
 
 ## 利用料金
 
