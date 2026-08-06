@@ -4,7 +4,7 @@ The storage areas of this system are divided into three types: <span class="text
 
 ## Home Area
 
-Each user has a 50 GB home area (`/home/USER`). `USER` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
+Each user has a 50 GB home area (`/home/USERNAME`). `USERNAME` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
 
 To check home area usage from the command line, run the following command.
 
@@ -40,12 +40,17 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
     /data1      4k       0k      1T       -       1        0 10000000       -
 ```
 
-`used` is the used capacity, `blimit` is the capacity limit, `files` is the number of files in use, and `ilimit` is the file count limit.
+The meaning of each field is the same as for the home area.
 
 To find your group name from the command line, run the `id` command and check the string beginning with `rkp` shown in `groups=...`. An example is shown below. A single user may belong to multiple groups.
 
 ```bash
-rku00011@c000:~$ id
+id
+```
+
+Example output:
+
+```text
 uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 ```
 
@@ -72,7 +77,7 @@ The home area and group area are on shared storage, so they can be used from bot
     </tr>
     <tr>
       <td>Home area</td>
-      <td><code>/home/USER</code></td>
+      <td><code>/home/USERNAME</code></td>
       <td>50 GB</td>
       <td rowspan="2">Available</td>
       <td rowspan="2">Lustre</td>
@@ -106,7 +111,7 @@ The capacity of the group area can be changed in the RIKYU Portal by the project
 
 [RIKYU Portal](https://portal.rikyu.r-ccs.riken.jp/en/usage/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
-Sign in to the portal and select <span class="text-marker">Usage</span> at the top of the page. Under <span class="text-marker">Storage</span>, click <span class="text-marker">CHANGE QUOTA</span> for the project, enter a <span class="text-marker">New quota (TB)</span>, and click <span class="text-marker">SAVE</span>.
+Log in to the portal and select <span class="text-marker">Usage</span> at the top of the page. Under <span class="text-marker">Storage</span>, click <span class="text-marker">CHANGE QUOTA</span> for the project, enter a <span class="text-marker">New quota (TB)</span>, and click <span class="text-marker">SAVE</span>.
 
 <img width="700" alt="Changing the group area capacity" src="img/storage_quota.svg" style="border: 1px solid #000;">
 

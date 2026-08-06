@@ -1,39 +1,22 @@
 # Spack
 
-## 0. How to Read This Manual
-
-This manual explains how to use software on RIKYU.
-Software is managed with **Spack**.
-
-To use software that has already been built by the system, first read **Chapters 1 and 2, and Chapters 5 and 6 as needed**.
-Read the private instance instructions in **Chapter 7** only if you need to build OSS yourself.
-
-| Purpose | Chapters to read |
-|---|---|
-| Use prebuilt software | Chapters 1, 2, 3, 5, and 6 |
-| Use GPU-enabled software | Chapters 1, 2, 3, 5, and 6 |
-| Use MPI applications | Chapters 1, 2, 3, 4, 5, and 6 |
-| Resolve multiple packages with the same name | Chapter 6 |
-| Build software yourself | Chapters 1, 7, and 8 |
-
-## 1. Terminology
+## Terminology { #terminology }
 
 | Term | Meaning |
 |---|---|
 | Spack | A package management tool commonly used on supercomputers and HPC systems. It can manage multiple versions, compilers, MPI implementations, GPU-enabled builds, and other build variants separately. |
-| OSS | Open Source Software. In this manual, this refers to open source software provided by the system, such as cp2k, gromacs, lammps, and quantum-espresso. |
+| OSS | Open Source Software. On this page, this refers to open source software provided by the system, such as cp2k, gromacs, lammps, and quantum-espresso. |
 | Public instance | A Spack environment managed by the system. Frequently used OSS is provided as prebuilt software. In normal use, start with this environment. |
 | Private instance | A Spack environment created by a user in their home directory or another user-controlled location. Use this when you need OSS that is not provided by the system or custom build conditions. |
 | Chaining | A feature that lets a private instance refer to prebuilt packages in the public instance. It can reduce the need to build dependencies from scratch. |
 | spec | A Spack package specification. It includes not only the package name, but also the version, compiler, dependencies, build options, and other settings. |
 | Hash | A short identifier that Spack uses to distinguish prebuilt packages. Use it when multiple packages have the same name. |
 
+## Basic Procedure for the Public Instance { #public-instance }
 
-## 2. Basic Procedure for the Public Instance
+Use the procedure in this section when using software that has already been built by the system.
 
-Use the procedure in this chapter when using software that has already been built by the system.
-
-### 2.1 Load the Spack Environment
+### Load the Spack Environment { #load-env }
 
 If you use `bash` or `zsh`, run the following after logging in.
 
@@ -49,7 +32,7 @@ source /shared/software/spack-1.2.0/share/spack/setup-env.csh
 
 When using software in a batch job, include the same setup command in the job script.
 
-### 2.2 Confirm That Spack Is Available
+### Confirm That Spack Is Available { #verify-spack }
 
 After loading the environment, run the following.
 
@@ -58,9 +41,9 @@ spack --version
 which spack
 ```
 
-If `spack: command not found` is displayed, the environment in 2.1 has not been loaded. In the same shell, load `setup-env.sh` again.
+If `spack: command not found` is displayed, [Load the Spack Environment](#load-env) has not been done. In the same shell, load `setup-env.sh` again.
 
-### 2.3 Check Available Software
+### Check Available Software { #list-software }
 
 Check the prebuilt software explicitly provided by the system.
 
@@ -80,13 +63,13 @@ Common check commands are as follows.
 |---|---|
 | `spack find -x` | Shows only packages that are provided for direct user use. |
 | `spack find -lx` | Shows the same packages as `spack find -x`, plus short hashes. |
-| `spack find <name>` | Searches installed packages with the specified name. |
-| `spack find -lv <name>` | Shows detailed information and hashes for the specified package. |
+| `spack find PACKAGE_NAME` | Searches installed packages with the specified name. |
+| `spack find -lv PACKAGE_NAME` | Shows detailed information and hashes for the specified package. |
 | `spack find --loaded` | Shows packages currently loaded in the shell. |
 
 If you run `spack find` without `-x`, packages installed as dependencies are also shown. For normal use, start with `spack find -x`.
 
-### 2.4 Load Software
+### Load Software { #load-software }
 
 For example, to use `cp2k`, run the following.
 
@@ -99,7 +82,7 @@ Loading a package sets environment variables such as `PATH`, making the applicat
 Check that the executable is visible.
 
 ```bash
-which <execution command>
+which COMMAND
 ```
 
 For some applications, the package name and executable command name are different.
@@ -112,7 +95,7 @@ You can check currently loaded packages with the following.
 spack find --loaded
 ```
 
-### 2.5 Unload Software When Finished
+### Unload Software When Finished { #unload-software }
 
 To remove a package from the current shell after use, run the following.
 
@@ -122,12 +105,11 @@ spack unload cp2k
 
 When trying another package with the same name but different build conditions, unload the old package before loading the new one.
 
-
-## 3. Using Software in Batch Jobs
+## Using Software in Batch Jobs { #batch-jobs }
 
 Do not run heavy computations on login nodes. Run actual computations on compute nodes through batch jobs or interactive jobs.
 
-### 3.1 Basic GPU Job Form
+### Basic GPU Job Form { #gpu-job }
 
 When using GPU-enabled software, loading the software with Spack alone does not allocate GPUs. Request GPU resources in the Slurm job options.
 
@@ -139,16 +121,16 @@ When using GPU-enabled software, loading the software with Spack alone does not 
 #SBATCH --ntasks=8              # Number of processes
 
 . /shared/software/spack-1.2.0/share/spack/setup-env.sh
-spack load <GPU-enabled package name>
+spack load PACKAGE_NAME
 
 # Examples for checking that GPUs are allocated
 srun nvidia-smi
 srun bash -c 'echo CUDA_VISIBLE_DEVICES=$CUDA_VISIBLE_DEVICES'
 
-srun <application execution command> <input file, etc.>
+srun COMMAND INPUT_FILE
 ```
 
-### 3.2 Main GPU-Enabled Software Provided
+### Main GPU-Enabled Software Provided { #gpu-software }
 
 The following software is currently provided as GPU-enabled builds.
 
@@ -164,7 +146,7 @@ The provided software may be updated. Check the latest list with the following.
 spack find -x
 ```
 
-### 3.3 Example Quantum ESPRESSO Job Script
+### Example Quantum ESPRESSO Job Script { #quantum-espresso }
 
 The following is an example using `quantum-espresso`.
 
@@ -183,25 +165,25 @@ srun pw.x -in qe.in
 
 `qe.in` is a Quantum ESPRESSO input file. For actual calculations, prepare the input file and required pseudopotential files in UPF format in advance.
 
-## 4. Using hpcx-mpi
+## Using hpcx-mpi { #hpcx-mpi }
 
 NVIDIA HPC-X MPI is available on this system. HPC-X MPI is an MPI implementation based on Open MPI and uses communication libraries such as UCX.
 
 However, not all MPI applications provided in the public instance are built with `hpcx-mpi` support. Before running an MPI application, confirm that the target application was built with an `hpcx-mpi` configuration.
 
-### 4.1 Main Packages Provided with hpcx-mpi Support
+### Main Packages Provided with hpcx-mpi Support { #hpcx-mpi-packages }
 
 The following applications and libraries are currently provided with `hpcx-mpi` support.
 
 - `quantum-espresso`
 - `gromacs`
 
-### 4.2 Check Whether a Package Supports hpcx-mpi
+### Check Whether a Package Supports hpcx-mpi { #check-hpcx-mpi }
 
 First, check the hash of the target package.
 
 ```bash
-spack find -lv <package name>
+spack find -lv PACKAGE_NAME
 ```
 
 Example:
@@ -213,7 +195,7 @@ spack find -lv quantum-espresso
 After finding the hash, use it to check the build configuration.
 
 ```bash
-spack spec /<hash>
+spack spec /HASH
 ```
 
 If the dependency tree contains the following entry, that configuration uses `hpcx-mpi`.
@@ -222,22 +204,21 @@ If the dependency tree contains the following entry, that configuration uses `hp
 ^hpcx-mpi
 ```
 
-When multiple packages have the same name, checking only by package name, such as `spack spec quantum-espresso`, may show a configuration different from the installed package you intended. We recommend checking the hash with `spack find -lv <package name>` and then confirming the configuration with `spack spec /<hash>`.
+When multiple packages have the same name, checking only by package name, such as `spack spec quantum-espresso`, may show a configuration different from the installed package you intended. We recommend checking the hash with `spack find -lv PACKAGE_NAME` and then confirming the configuration with `spack spec /HASH`.
 
-### 4.3 MPI Runtime Considerations
+### MPI Runtime Considerations { #mpi-runtime }
 
 MPI applications must use the same MPI implementation expected by the loaded application at runtime. When using MPI applications provided in this system's public instance, generally load the target application with `spack load` and run it with Slurm `srun`.
 
 ```bash
 . /shared/software/spack-1.2.0/share/spack/setup-env.sh
-spack load <MPI-enabled package name>
-srun <MPI application execution command> <input file, etc.>
+spack load PACKAGE_NAME
+srun COMMAND INPUT_FILE
 ```
 
-If an MPI communication error occurs, see the troubleshooting section in Chapter 8.
+If an MPI communication error occurs, see [Troubleshooting](#troubleshooting).
 
-
-## 5. Finding Provided Software
+## Finding Provided Software { #find-software }
 
 The provided software may be updated. Always check the latest list on the system.
 
@@ -245,7 +226,7 @@ The provided software may be updated. Always check the latest list on the system
 spack find -x
 ```
 
-### 5.1 Main Provided Software
+### Main Provided Software { #main-software }
 
 | Field | Main packages |
 |---|---|
@@ -258,7 +239,7 @@ spack find -x
 | Chemistry and drug discovery | `openbabel`, `autodock-vina` |
 | Development and other tools | `julia`, `rust`, `gsl`, `tmux`, `darshan-runtime`, `kokkos`, `petsc`, `parallel-netcdf`, `netcdf-c`, `netcdf-fortran`|
 
-### 5.2 Example Output of `spack find -lx`
+### Example Output of `spack find -lx` { #find-lx-output }
 
 The following is example output. Hashes, versions, and package counts may change when the system is updated.
 
@@ -307,12 +288,11 @@ kn3r4xs py-toml@0.10.2
 ==> 40 installed packages
 ```
 
-
-## 6. When Multiple Packages Have the Same Name
+## When Multiple Packages Have the Same Name { #duplicate-packages }
 
 Spack can manage multiple builds of the same software at the same time, with different versions, compilers, MPI implementations, GPU support, dependencies, and other settings. For this reason, the same package name may appear more than once.
 
-### 6.1 Typical Error
+### Typical Error { #typical-error }
 
 For example, suppose you run the following when multiple builds of `fftw` are installed.
 
@@ -330,7 +310,7 @@ If there are multiple candidates, an error like the following is shown.
     nkvjfgj fftw@3.3.11 platform=linux os=ubuntu24.04 target=neoverse_v2 %c,fortran=nvhpc@26.3
 ```
 
-### 6.2 Recommended: Specify by Hash
+### Recommended: Specify by Hash { #specify-by-hash }
 
 When multiple packages have the same name, first check the short hashes.
 
@@ -352,9 +332,9 @@ spack load /5rny4xu
 spack load /nkvjfgj
 ```
 
-Hashes may change when the environment is updated. Do not memorize the hashes in this manual as fixed values. Check them at runtime with `spack find -lx <package name>`.
+Hashes may change when the environment is updated. Do not memorize the hashes on this page as fixed values. Check them at runtime with `spack find -lx PACKAGE_NAME`.
 
-### 6.3 Specify by Version or Compiler
+### Specify by Version or Compiler { #specify-by-version }
 
 You can also specify a version number.
 
@@ -378,12 +358,11 @@ spack load fftw%nvhpc@26.3
 
 If multiple candidates still remain, specify the package by hash.
 
+## Using a Private Instance { #private-instance }
 
-## 7. Using a Private Instance
+This section is for users who want to build and use OSS themselves. If you only use prebuilt software provided by the public instance, you do not need to perform the steps in this section.
 
-This chapter is for users who want to build and use OSS themselves. If you only use prebuilt software provided by the public instance, you do not need to perform the steps in this chapter.
-
-### 7.1 When a Private Instance Is Needed
+### When a Private Instance Is Needed { #when-private-instance }
 
 Use a private instance in the following cases.
 
@@ -392,20 +371,20 @@ Use a private instance in the following cases.
 - You want to build with custom build options, dependencies, or compiler settings.
 - You want to manage custom packages within a research group.
 
-### 7.2 Create a Spack Instance
+### Create a Spack Instance { #create-instance }
 
 The following example creates a personal Spack instance under your home directory.
 
 ```bash
 cd $HOME
-git clone <Spack repository URL> spack
+git clone SPACK_REPO_URL spack
 cd spack
-git checkout <branch name>
+git checkout BRANCH_NAME
 ```
 
 Follow administrator guidance for the repository URL and branch name to use.
 
-### 7.3 Load the Private Instance Environment
+### Load the Private Instance Environment { #load-private-env }
 
 ```bash
 . $HOME/spack/share/spack/setup-env.sh
@@ -413,7 +392,7 @@ Follow administrator guidance for the repository URL and branch name to use.
 
 If you load both the public instance and private instance `setup-env.sh` files in the same shell, it becomes difficult to tell which Spack is being used. When using a private instance, we recommend opening a new shell and loading the private-side `setup-env.sh`.
 
-### 7.4 Configure Chaining with the Public Instance
+### Configure Chaining with the Public Instance { #chaining }
 
 In a private instance, you can refer to prebuilt packages in the public instance by configuring Spack's `upstreams.yaml`. This reduces the cost of building dependencies each time.
 
@@ -436,7 +415,7 @@ After configuring it, check whether packages from the public instance are visibl
 spack find -lx
 ```
 
-### 7.5 Search for Packages
+### Search for Packages { #search-packages }
 
 Search for package names available in Spack.
 
@@ -451,7 +430,7 @@ Check package versions and build options.
 spack info openmpi
 ```
 
-### 7.6 Install Packages
+### Install Packages { #install-packages }
 
 For example, to install `openmpi`, run the following.
 
@@ -475,7 +454,7 @@ spack find -lx openmpi
 
     Build packages for compute nodes from an interactive job on a compute node or by submitting an installation job. Do not run long builds on login nodes.
 
-### 7.7 Uninstall Packages
+### Uninstall Packages { #uninstall-packages }
 
 ```bash
 spack uninstall openmpi
@@ -485,25 +464,25 @@ If multiple packages have the same name, prevent accidental deletion by checking
 
 ```bash
 spack find -lx openmpi
-spack uninstall /<hash>
+spack uninstall /HASH
 ```
 
 !!! note
 
     Do not delete packages in the public instance. Delete only packages that you installed in your private instance.
 
-## 8. Troubleshooting
+## Troubleshooting { #troubleshooting }
 
 | Symptom | Main cause | Action |
 |---|---|---|
 | `spack: command not found` is displayed | The Spack environment has not been loaded | Run `. /shared/software/spack-1.2.0/share/spack/setup-env.sh`. The same setup is required inside jobs. |
-| `matches multiple packages` is displayed | Multiple packages have the same name | Check candidates with `spack find -lx <package name>` and load the package with `spack load /<hash>`. |
+| `matches multiple packages` is displayed | Multiple packages have the same name | Check candidates with `spack find -lx PACKAGE_NAME` and load the package with `spack load /HASH`. |
 | The execution command is still not found after `spack load` | The executable name differs from the package name, or the package is a library package | Check the application's executable command name. Ask administrators if needed. |
-| An MPI job does not start or has a communication error | The MPI implementation or build configuration does not match the runtime environment | Check whether the package has an `hpcx-mpi` configuration with `spack find -lv <package name>` and `spack spec /<hash>`. |
+| An MPI job does not start or has a communication error | The MPI implementation or build configuration does not match the runtime environment | Check whether the package has an `hpcx-mpi` configuration with `spack find -lv PACKAGE_NAME` and `spack spec /HASH`. |
 | Builds in a private instance are very slow | Dependencies are also being built from scratch | Configure chaining with the public instance and reuse existing prebuilt packages. |
 | The application works in a login shell but not in a job script | The Spack environment is not loaded in the job script | Explicitly write the `setup-env.sh` load command and `spack load` command in the job script. |
 
-### 8.1 Information to Check Before Contacting Support
+### Information to Check Before Contacting Support { #before-contacting }
 
 When contacting administrators, include the following information if possible.
 
@@ -514,7 +493,7 @@ echo $SHELL
 which spack
 spack --version
 spack find --loaded
-spack find -lx <package name you want to use>
+spack find -lx PACKAGE_NAME
 ```
 
 If the problem occurs in a job, also include the job ID, job script, standard output, and standard error.

@@ -1,12 +1,12 @@
+# Welcome
+
 !!! info
 
     Early Access Phase 2 for production operation is currently underway. Early Access Phase 2 is scheduled to continue until the end of September 2026.
 
-# Welcome
+Supercomputer RIKYU is a system installed at the [RIKEN Center for Computational Science](https://www.r-ccs.riken.jp){ target="_blank" rel="noopener" } to accelerate scientific discovery through AI. The system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, for a total of 1,600 NVIDIA Blackwell GPUs. Its FP64 performance is 64.160 PFLOPS, and its FP8 performance is 15.539 EFLOPS.
 
-The Supercomputer RIKYU is a system installed at the [RIKEN Center for Computational Science](https://www.r-ccs.riken.jp){ target="_blank" rel="noopener" } to accelerate scientific discovery through AI. The system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, for a total of 1,600 NVIDIA Blackwell GPUs. Its FP64 performance is 64.160 PFLOPS, and its FP8 performance is 15.539 EFLOPS.
-
-This user guide explains how to use the Supercomputer RIKYU.
+This user guide explains how to use Supercomputer RIKYU.
 
 !!! note
 

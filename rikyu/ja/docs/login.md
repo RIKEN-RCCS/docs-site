@@ -73,7 +73,7 @@ SSH公開鍵をOpen OnDemandから本システムに登録します。Open OnDem
 
 [Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
-「SSH Public Key」を起動してください。次の画面が表示されますので、「Add a Public Key」のテキストエリアにご自身のSSH公開鍵を入力し、「Add」ボタンをクリックしてください。登録が成功すると、「Registered Public Keys」に登録情報が表示されます。
+<span class="text-marker">SSH Public Key</span>を起動してください。次の画面が表示されますので、<span class="text-marker">Add a Public Key</span>のテキストエリアにご自身のSSH公開鍵を入力し、<span class="text-marker">Add</span>ボタンをクリックしてください。登録が成功すると、<span class="text-marker">Registered Public Keys</span>に登録情報が表示されます。
 
 <img width="800" alt="SSH public key" src="img/sshpubkey.png">
 

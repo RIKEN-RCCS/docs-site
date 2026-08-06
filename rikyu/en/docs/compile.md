@@ -150,11 +150,11 @@ For general use, we recommend `-O2`. Use `-O3` or `-Ofast` when performance is a
 
     During development, we recommend enabling debugging information (`-g`) and warnings (`-Wall`), confirming that there are no problems, and only then applying optimization options. The `-g` option embeds debugging information, which is used when analyzing a program with a debugger such as gdb. The `-Wall` option enables common warnings. Even if compilation succeeds, warnings may indicate latent problems in your code, so please review them.
 
-!!! note
+!!! tip
 
     The higher the optimization level, the harder debugging becomes. When investigating a problem, we recommend using `-O0` or `-O1`.
 
-!!! note
+!!! warning
 
     Programs optimized with `-O3` or `-Ofast` may produce different computational results, especially in floating point calculations.
 

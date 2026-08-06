@@ -6,10 +6,10 @@ Open OnDemand is a web portal that lets you use the supercomputer from a web bro
 
 Open OnDemand provides the following features.
 
-* File transfer and editing
-* Job submission and management
-* Web terminal access
-* Running interactive applications, such as remote desktops
+- File transfer and editing
+- Job submission and management
+- Web terminal access
+- Running interactive applications, such as remote desktops
 
 !!! note
 
@@ -105,7 +105,7 @@ You can access a login node over SSH from a web browser and use a command-line i
 
 ### SSH Public Key
 
-See [SSH Public Key Registration](https://docs.r-ccs.riken.jp/rikyu/en/login/#ssh).
+See [SSH Public Key Registration](login.md#registering-an-ssh-public-key).
 
 ### Delete Passkey
 
@@ -119,15 +119,15 @@ Interactive applications let users interactively operate applications running on
 
 | Name                                                      | Description                                                                        |
 | --------------------------------------------------------- | ---------------------------------------------------------------------------------- |
-| Desktop ([Xfce](https://www.xfce.org/))                   | Lightweight desktop environment running on X Window System                         |
-| [JupyterLab](https://jupyter.org/)                        | Interactive programming environment in a web browser                               |
-| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd)) | Tool for operating terminal sessions from a web browser                            |
-| [VSCode](https://code.visualstudio.com/)                  | Code editor developed by [Microsoft](https://www.microsoft.com/)                   |
-| NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute) and [NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems) |
-| [Gnuplot](http://www.gnuplot.info/)                       | Command-line driven graphing program                                               |
-| [OVITO](https://www.ovito.org)                            | Scientific data visualization and analysis solution for particle-based simulations |
-| [ParaView](https://www.paraview.org/)                     | Scientific and technical data visualization program                                |
-| [PyMOL](https://www.pymol.org/)                           | Program for visualizing and analyzing 3D structures of biomolecules                |
+| Desktop ([Xfce](https://www.xfce.org/){ target="_blank" rel="noopener" })                   | Lightweight desktop environment running on X Window System                         |
+| [JupyterLab](https://jupyter.org/){ target="_blank" rel="noopener" }                        | Interactive programming environment in a web browser                               |
+| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd){ target="_blank" rel="noopener" }) | Tool for operating terminal sessions from a web browser                            |
+| [VSCode](https://code.visualstudio.com/){ target="_blank" rel="noopener" }                  | Code editor developed by [Microsoft](https://www.microsoft.com/){ target="_blank" rel="noopener" }                   |
+| NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute){ target="_blank" rel="noopener" } and [NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems){ target="_blank" rel="noopener" } |
+| [Gnuplot](http://www.gnuplot.info/){ target="_blank" rel="noopener" }                       | Command-line driven graphing program                                               |
+| [OVITO](https://www.ovito.org){ target="_blank" rel="noopener" }                            | Scientific data visualization and analysis solution for particle-based simulations |
+| [ParaView](https://www.paraview.org/){ target="_blank" rel="noopener" }                     | Scientific and technical data visualization program                                |
+| [PyMOL](https://www.pymol.org/){ target="_blank" rel="noopener" }                           | Program for visualizing and analyzing 3D structures of biomolecules                |
 
 The following example explains how to use Desktop. Click <span class="text-marker">Desktop</span> from <span class="text-marker">Interactive Apps</span> in the menu bar to open a web form for specifying compute resources and other settings. After entering the required information, click <span class="text-marker">Launch</span> to submit a job to RIKYU.
 
@@ -149,6 +149,6 @@ When the job starts on a compute node, the status changes to <span class="text-m
 
 To terminate Desktop, use one of the following methods. Note that closing the web browser does not terminate the session.
 
-* Click the <span class="text-marker">Delete</span> button on the <span class="text-marker">Running</span> screen.
-* Click <span class="text-marker">My Interactive Sessions</span> in the menu bar, and then click the <span class="text-marker">Delete</span> button for the corresponding job.
-* Click <span class="text-marker">Applications</span> in the upper left of Desktop, and then click <span class="text-marker">Log Out</span>.
+- Click the <span class="text-marker">Delete</span> button on the <span class="text-marker">Running</span> screen.
+- Click <span class="text-marker">My Interactive Sessions</span> in the menu bar, and then click the <span class="text-marker">Delete</span> button for the corresponding job.
+- Click <span class="text-marker">Applications</span> in the upper left of Desktop, and then click <span class="text-marker">Log Out</span>.

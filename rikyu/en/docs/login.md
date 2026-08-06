@@ -2,7 +2,7 @@
 
 This system provides two login methods: <span class="text-marker">connecting to the Open OnDemand server over HTTPS from a web browser</span> and <span class="text-marker">connecting to a login node over SSH from terminal software</span>. After logging in with either method, submit jobs to compute nodes through the [Slurm job scheduler](https://slurm.schedmd.com/slurm.html){ target="_blank" rel="noopener" }. Place data on shared storage for use.
 
-![How to use](img/howtouse.png){ width="500" }
+<img width="500" alt="How to use" src="img/howtouse.png">
 
 ## Open OnDemand
 
@@ -22,15 +22,15 @@ For details, see [Open OnDemand](ood.md).
 
 Before connecting over SSH from terminal software, create a key pair consisting of a private key and a public key. We recommend generating one of the following types of key pairs.
 
-* Ed25519
-* ECDSA (NIST P 521)
-* RSA (key length of 2048 bits or more)
+- Ed25519
+- ECDSA (NIST P-521)
+- RSA (key length of 2048 bits or more)
 
 This section explains how to generate a key pair from a terminal.
 
-* On Windows, start PowerShell.
-* On macOS, start Terminal (Applications &#x25BB; Utilities &#x25BB; Terminal).
-* On Linux, start a terminal emulator.
+- On Windows, start PowerShell.
+- On macOS, start Terminal (Applications &#x25BB; Utilities &#x25BB; Terminal).
+- On Linux, start a terminal emulator.
 
 The following example shows the `ssh-keygen` command for generating an Ed25519 key pair (on Windows, use the `ssh-keygen.exe` command). After running the command, a private key (`id_ed25519`) and a public key (`id_ed25519.pub`) are created as a key pair in the `.ssh` directory under your home directory.
 
@@ -63,7 +63,7 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-!!! note
+!!! warning
 
     Be sure to set a passphrase. Use a string that is difficult for others to guess (15 or more characters are recommended).
 
@@ -73,9 +73,9 @@ Register your SSH public key with this system from Open OnDemand. Log in to Open
 
 [Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
-Launch "SSH Public Key". The following screen appears. Enter your SSH public key in the text area under "Add a Public Key", then click the "Add" button. When registration succeeds, the registration information appears under "Registered Public Keys".
+Launch <span class="text-marker">SSH Public Key</span>. The following screen appears. Enter your SSH public key in the text area under <span class="text-marker">Add a Public Key</span>, then click the <span class="text-marker">Add</span> button. When registration succeeds, the registration information appears under <span class="text-marker">Registered Public Keys</span>.
 
-![SSH public key](img/sshpubkey.png){ width="800" }
+<img width="800" alt="SSH public key" src="img/sshpubkey.png">
 
 After registering your public key, you can log in over SSH from terminal software with the following command. Replace `USERNAME` with your user name.
 

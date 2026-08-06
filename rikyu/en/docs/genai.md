@@ -31,7 +31,7 @@ Create an API key in the RIKYU Portal.
 
 [RIKYU Portal](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
-Sign in to the portal and select <span class="text-marker">API Keys</span> at the top of the page. In the <span class="text-marker">Create a new key</span> form, choose a project ID and click <span class="text-marker">CREATE</span>.
+Log in to the portal and select <span class="text-marker">API Keys</span> at the top of the page. In the <span class="text-marker">Create a new key</span> form, choose a project ID and click <span class="text-marker">CREATE</span>.
 
 <img width="700" alt="Creating an API key" src="img/genai_keys.svg" style="border: 1px solid #000;">
 
@@ -41,7 +41,7 @@ Sign in to the portal and select <span class="text-marker">API Keys</span> at th
 
 One key can be created per project. API usage is billed to the project the key was created for. If you belong to multiple projects, use the key for the project you want to use.
 
-!!! note
+!!! warning
 
     An API key is a credential for using this system. Do not share it with others, and do not write it directly in source code or public repositories. If there is any risk of leakage, revoke the key from the list in the portal and create a new one.
 
@@ -50,7 +50,7 @@ One key can be created per project. API usage is billed to the project the key w
 Set your API key in an environment variable. `OPENAI_API_KEY` is the variable name that the OpenAI SDK and many compatible tools read by default.
 
 ```bash
-export OPENAI_API_KEY=your-api-key
+export OPENAI_API_KEY=API_KEY
 ```
 
 Retrieve the list of available models.
@@ -154,10 +154,10 @@ The names of the settings differ between applications, but any application that 
 
 ## Notes
 
-* If you do not specify `max_tokens`, the maximum number of tokens generated per request is 32,768. When you send a long input, adjust `max_tokens` so that the input plus `max_tokens` does not exceed the context length of the model. Exceeding it results in an error (HTTP 400).
-* The maximum request body size is 32 MB.
-* The request timeout is 600 seconds.
-* Only paths under `/v1` are publicly available.
+- If you do not specify `max_tokens`, the maximum number of tokens generated per request is 32,768. When you send a long input, adjust `max_tokens` so that the input plus `max_tokens` does not exceed the context length of the model. Exceeding it results in an error (HTTP 400).
+- The maximum request body size is 32 MB.
+- The request timeout is 600 seconds.
+- Only paths under `/v1` are publicly available.
 
 ## Usage Fees
 

@@ -10,11 +10,9 @@ This page explains how to use the container platform Apptainer.
 
     | Notation | Meaning |
     |---|---|
-    | `<username>` | Your login user name |
-    | `<project-ID>` | The ID of your project (in the form rkpXXXXX, for example `rkp00010`) |
-    | `<group>` | The name of the group you belong to (the directory name of the group area `/data1/<group>`) |
-
-    Other text enclosed in `< >` (for example `<name>`, `<compute-node>`) should also be read according to the context.
+    | `USERNAME` | Your login user name |
+    | `PROJECT_NAME` | The ID of your project (in the form rkpXXXXX, for example `rkp00010`) |
+    | `GROUP` | The name of the group you belong to (the directory name of the group area `/data1/GROUP`) |
 
 ### What Is a Container { #container }
 
@@ -145,7 +143,7 @@ A SIF file has the execute permission set, so it can also be started directly li
 ./ubuntu2404.sif cat /etc/os-release
 ```
 
-!!! note
+!!! tip
 
     When you want to keep the contents of an image fixed, or to minimize startup overhead, we recommend using a SIF image. A SIF is compressed internally, so it is small relative to the total amount of files it holds and puts little load on metadata access, which makes application startup fast and stable.
 
@@ -177,9 +175,9 @@ Apptainer> exit
 apptainer build ~/from-sandbox.sif /tmp/ubuntu-sandbox
 ```
 
-!!! note
+!!! tip
 
-    A sandbox consists of a large number of small files, so placing it on a shared file system (the home or group area) puts a heavy load on metadata access. We recommend creating and editing sandboxes in the scratch area (`/tmp`). The scratch area is deleted when the job ends, so save the finished SIF image in the home or group area.
+    A sandbox consists of a large number of small files, so placing it on a shared storage (the home or group area) puts a heavy load on metadata access. We recommend creating and editing sandboxes in the scratch area (`/tmp`). The scratch area is deleted when the job ends, so save the finished SIF image in the home or group area.
 
 ### Custom Images with a Definition File { #definition-file }
 
@@ -214,7 +212,7 @@ From: ubuntu:24.04
     python3 "$@"
 
 %labels
-    Author <username>@example.org
+    Author USERNAME@example.org
 ```
 
 Build by adding `--fakeroot` to the `build` command.
@@ -223,9 +221,9 @@ Build by adding `--fakeroot` to the `build` command.
 apptainer build --fakeroot ~/from_def.sif example.def
 ```
 
-!!! note
+!!! tip
 
-    By default, the temporary expansion directory used during a build is the scratch area (`/tmp`). To specify the temporary area explicitly, use the `APPTAINER_TMPDIR` environment variable for the expansion directory and `APPTAINER_CACHEDIR` for the cache directory. If you do not want to consume space in your home area, pointing `APPTAINER_CACHEDIR` at the scratch area or the group area (`/data1/<group>`) is also effective.
+    By default, the temporary expansion directory used during a build is the scratch area (`/tmp`). To specify the temporary area explicitly, use the `APPTAINER_TMPDIR` environment variable for the expansion directory and `APPTAINER_CACHEDIR` for the cache directory. If you do not want to consume space in your home area, pointing `APPTAINER_CACHEDIR` at the scratch area or the group area (`/data1/GROUP`) is also effective.
 
 ### Embedding the Runtime Environment { #embed-runtime-env }
 
@@ -243,13 +241,13 @@ Embedding environment variables in `%environment` prevents missing settings and 
 
 ### Building Images by Submitting a Job { #build-via-job }
 
-A lightweight image can be built directly on a login node, but a large build that installs many packages puts a heavy load on CPU, memory, and storage, so we recommend running it on a compute node as a batch job. Temporary files created during a build consist of a large number of small files and put a load on the shared file system, so use the scratch area (`/tmp`) as the working area and copy only the result to the home or group area.
+A lightweight image can be built directly on a login node, but a large build that installs many packages puts a heavy load on CPU, memory, and storage, so we recommend running it on a compute node as a batch job. Temporary files created during a build consist of a large number of small files and put a load on the shared storage, so use the scratch area (`/tmp`) as the working area and copy only the result to the home or group area.
 
 The following is an example job script (for how to request resources, see [Working with Slurm](#slurm)).
 
 ```bash
 #!/bin/bash
-#SBATCH -A <project-ID>
+#SBATCH -A PROJECT_NAME
 #SBATCH --time=01:00:00
 
 # Build with the scratch area (/tmp, deleted when the job ends) as the working
@@ -351,26 +349,26 @@ At container startup, Apptainer automatically binds (mounts so that they are vis
 - `/dev`, `/proc`, `/sys`
 - The current directory at startup (if a directory of the same name exists in the container)
 
-To bind other directories, use the `-B` option (short for `--bind`). Separate the host path and the mount point in the container with a colon (if the mount point is omitted, the path is bound at the same location). The group area `/data1/<group>` is not bound automatically, so specify it explicitly when you want to use it from inside the container.
+To bind other directories, use the `-B` option (short for `--bind`). Separate the host path and the mount point in the container with a colon (if the mount point is omitted, the path is bound at the same location). The group area `/data1/GROUP` is not bound automatically, so specify it explicitly when you want to use it from inside the container.
 
 ```console
-apptainer exec -B /data1/<group> ubuntu2404.sif ls /data1/<group>
-apptainer exec -B /data1/<group>:/work ubuntu2404.sif ls -al /work
+apptainer exec -B /data1/GROUP ubuntu2404.sif ls /data1/GROUP
+apptainer exec -B /data1/GROUP:/work ubuntu2404.sif ls -al /work
 ```
 
 To mount read-only, add `ro` after another colon. The following example refers to reference data placed in the group area as read-only.
 
 ```console
-apptainer exec -B /data1/<group>/reference:/opt/data:ro ubuntu2404.sif ls -al /opt/data
+apptainer exec -B /data1/GROUP/reference:/opt/data:ro ubuntu2404.sif ls -al /opt/data
 ```
 
 Multiple directories can be given by repeating `-B` or by separating them with commas. They can also be set in advance in the `APPTAINER_BIND` environment variable.
 
 ```console
-export APPTAINER_BIND='/data1/<group>/input:/opt/input:ro,/data1/<group>/output:/opt/output'
+export APPTAINER_BIND='/data1/GROUP/input:/opt/input:ro,/data1/GROUP/output:/opt/output'
 ```
 
-!!! note
+!!! warning
 
     The current directory is bound automatically by default, so starting a container from `/usr/bin`, `/usr/lib`, or a similar location replaces the directory of the same name in the container with the host one, which can cause runtime errors. Avoid starting containers from system directories.
 
@@ -387,10 +385,10 @@ Example output:
 
 ```text
 INSTANCE NAME    PID       IP    IMAGE
-noble            <PID>           /home/<username>/ubuntu2404.sif
+noble            PID           /home/USERNAME/ubuntu2404.sif
 ```
 
-A running instance is referred to as `instance://<name>`.
+A running instance is referred to as `instance://INSTANCE_NAME`.
 
 ```console
 apptainer exec instance://noble cat /etc/os-release
@@ -488,7 +486,7 @@ apptainer exec --overlay overlay.img core.sif ls -al /usr/share/apps
 
 When the same file exists in both the SIF and the overlay, the overlay takes precedence, so this can also be used to modify parts of an image. An overlay image is simply a file in ext3 format and can be resized with `resize2fs`. If you pass a SIF file as the argument to `apptainer overlay create`, the overlay can also be embedded in the SIF and operated as a single file.
 
-For workloads with a large number of small files, taking them into an overlay also helps reduce metadata access load on the shared file system.
+For workloads with a large number of small files, taking them into an overlay also helps reduce metadata access load on the shared storage.
 
 ## GPU and MPI { #gpu-and-mpi }
 
@@ -505,10 +503,10 @@ apptainer exec --nv docker://ubuntu:24.04 nvidia-smi -L
 Example output:
 
 ```text
-GPU 0: NVIDIA GB200 (UUID: <omitted>)
-GPU 1: NVIDIA GB200 (UUID: <omitted>)
-GPU 2: NVIDIA GB200 (UUID: <omitted>)
-GPU 3: NVIDIA GB200 (UUID: <omitted>)
+GPU 0: NVIDIA GB200 (UUID: OMITTED)
+GPU 1: NVIDIA GB200 (UUID: OMITTED)
+GPU 2: NVIDIA GB200 (UUID: OMITTED)
+GPU 3: NVIDIA GB200 (UUID: OMITTED)
 ```
 
 As shown, the host GPUs can be recognized from inside the container. Note that within a job only the GPUs allocated by Slurm are visible (for example, in a `--gpus=1` job only GPU 0 is shown). When `--nv` is specified, Apptainer does the following.
@@ -570,7 +568,7 @@ The actual Open MPI and UCX libraries live in the HPC SDK tree, so bind the HPC 
 
 ```bash
 #!/bin/bash
-#SBATCH -A <project-ID>
+#SBATCH -A PROJECT_NAME
 #SBATCH --gpus=8
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=01:00:00
@@ -579,7 +577,7 @@ module load nvhpc-hpcx
 
 # Derive the location of the host Open MPI (OPAL_PREFIX) from the real path of mpirun
 OMPI_PREFIX=$(readlink -f "$(which mpirun)"); OMPI_PREFIX=${OMPI_PREFIX%/bin/mpirun}
-UCX_LIB="<UCX lib directory>"       # hpcx-*/ucx*/lib in the HPC SDK (where libucp.so is;
+UCX_LIB="UCX_LIB_DIR"       # hpcx-*/ucx*/lib in the HPC SDK (where libucp.so is;
                                     # find it with: find /shared/software/hpc_sdk -name libucp.so)
 
 mpirun --bind-to none -np 8 apptainer exec --nv -B /shared/software/hpc_sdk \
@@ -600,7 +598,7 @@ With this approach, Slurm on the host starts a container on each node, and the M
 
 !!! note
 
-    Images that bundle an HPC-X build of Open MPI, such as the nvhpc images from NGC, have the installation path from build time baked in, so `MPI_Init` fails as they are (with errors such as `PML ob1 cannot be selected`). At run time, specify `--env OPAL_PREFIX=<ompi prefix in the container>` and `--env LD_LIBRARY_PATH=<ompi/lib>:<ucx/lib>`. Look for `hpc_sdk/**/hpcx-*/ompi` in the container to find the prefix.
+    Images that bundle an HPC-X build of Open MPI, such as the nvhpc images from NGC, have the installation path from build time baked in, so `MPI_Init` fails as they are (with errors such as `PML ob1 cannot be selected`). At run time, specify `--env OPAL_PREFIX=OMPI_PREFIX` and `--env LD_LIBRARY_PATH=OMPI_LIB:UCX_LIB`. Look for `hpc_sdk/**/hpcx-*/ompi` in the container to find the prefix.
 
 At run time, many UCX errors for the shared memory transport (`mm_posix ... Permission denied`) may be printed, but the run falls back to another transport and completes normally. If you bundle a different MPI, check that it works beforehand.
 
@@ -610,7 +608,7 @@ The following is an example job script for the container-bundled Open MPI with P
 
 ```bash
 #!/bin/bash
-#SBATCH -A <project-ID>
+#SBATCH -A PROJECT_NAME
 #SBATCH --gpus=8
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=01:00:00
@@ -661,7 +659,7 @@ If you save this image as `hoge` in a directory on your PATH with the execute pe
 
 ```bash
 #!/bin/bash
-#SBATCH -A <project-ID>
+#SBATCH -A PROJECT_NAME
 #SBATCH --time=00:15:00
 
 hoge input.txt
@@ -672,7 +670,7 @@ hoge input.txt
 To use a compute node interactively, allocate a node with `salloc` and start a shell with `srun`.
 
 ```console
-salloc -A <project-ID> --gpus=1 --time=00:30:00
+salloc -A PROJECT_NAME --gpus=1 --time=00:30:00
 srun --pty bash -i
 ```
 
