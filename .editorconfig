@@ -1,0 +1,23 @@
+# EditorConfig — https://editorconfig.org
+# VS Code、Vim、Emacs、JetBrains 系などが自動で適用します。
+# VS Code は拡張機能「EditorConfig for VS Code」が必要です。
+
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+insert_final_newline = true
+trim_trailing_whitespace = true
+indent_style = space
+
+# Markdown では行末の半角スペース 2 個が強制改行を意味するため、
+# 一般には trim_trailing_whitespace を無効にする慣習がありますが、
+# 本リポジトリは改行に <br> を使っており、行末空白に意味を持たせている
+# 箇所は存在しないため、[*] の設定をそのまま適用します。
+#
+# インデント幅は指定しません。admonition の継続行は 4 スペース、
+# ネストした箇条書きは 2 スペースと文脈によって異なるためです。
+
+[*.{css,html,svg,toml}]
+indent_size = 2

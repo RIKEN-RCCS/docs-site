@@ -9,10 +9,10 @@ Open OnDemandのダッシュボードから<span class="text-marker">Slurm</span
 <img width="800" alt="Open OnDemand" src="img/ood.png" style="border: 1px solid #000;">
 
 背景が白色のWebフォームに値を入力すると、右下のテキストエリアにジョブスクリプトが生成されます。なお、背景が<span style="background: yellow;">黄色</span>のWebフォームは、ジョブスクリプトに影響しない項目です。Webフォームのラベルにあるアスタリスクは必須項目を指します。
-	
+
 ![Web form of Slurm](img/composer_slurm.png){ width="800" }
 
-右上の項目の意味は下記の通りです。
+右上の項目の意味は次のとおりです。
 
 | 項目            | 意味                                 |
 | --------------- | ------------------------------------ |
@@ -22,8 +22,8 @@ Open OnDemandのダッシュボードから<span class="text-marker">Slurm</span
 
 !!! note
 
-    テキストエリアを手動で編集した後に背景が白色のWebフォームを変更すると、下記の警告画面が表示されます。<span class="text-marker">Discard and continue</span>をクリックするとテキストエリアで編集した内容は破棄されます。
-    
+    テキストエリアを手動で編集した後に背景が白色のWebフォームを変更すると、次の警告画面が表示されます。<span class="text-marker">Discard and continue</span>をクリックするとテキストエリアで編集した内容は破棄されます。
+
     <img width="400" alt="Warning" src="img/overwrite_warning.png" style="border: 1px solid #000;">
 
 ## ジョブの投入

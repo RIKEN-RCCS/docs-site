@@ -7,13 +7,13 @@ This page explains how to use the container platform Apptainer.
 !!! note
 
     The command examples on this page use the following placeholders. Replace them with the values for your own environment.
-    
+
     | Notation | Meaning |
     |---|---|
     | `<username>` | Your login user name |
     | `<project-ID>` | The ID of your project (in the form rkpXXXXX, for example `rkp00010`) |
     | `<group>` | The name of the group you belong to (the directory name of the group area `/data1/<group>`) |
-    
+
     Other text enclosed in `< >` (for example `<name>`, `<compute-node>`) should also be read according to the context.
 
 ### What Is a Container { #container }
@@ -146,7 +146,7 @@ A SIF file has the execute permission set, so it can also be started directly li
 ```
 
 !!! note
-    
+
     When you want to keep the contents of an image fixed, or to minimize startup overhead, we recommend using a SIF image. A SIF is compressed internally, so it is small relative to the total amount of files it holds and puts little load on metadata access, which makes application startup fast and stable.
 
 ## Building Images { #building-images }

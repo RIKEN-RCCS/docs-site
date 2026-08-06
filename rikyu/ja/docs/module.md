@@ -4,11 +4,11 @@
 
 | モジュール名   | 説明                                     |
 | -------------- | ---------------------------------------- |
-| `nvhpc`        | MPIを含む標準的なNVIDIA HPC SDK環境です。|
+| `nvhpc`        | MPIを含む標準的なNVIDIA HPC SDK環境です。 |
 | `nvhpc-nompi`  | MPIを含まないNVIDIA HPC SDK環境です。別のMPIを自分で用意して使用する場合に適しています。 |
 | `nvhpc-hpcx`   | `nvhpc`にHPC-Xを組み合わせた環境です。InfiniBand/RDMA環境でHPC-XのMPIを使う場合に適しています。 |
-| `nvhpc-hpcx-cuda13` | `nvhpc-hpcx`と同様にHPC-Xを含みますが、使用するCUDAバージョンがCUDA 13に固定されています。|
-| `nvhpc-byo-compiler` | システムのGCCなど、利用者が用意したコンパイラを使うための環境です。BYOは“Bring Your Own”の略です。|
+| `nvhpc-hpcx-cuda13` | `nvhpc-hpcx`と同様にHPC-Xを含みますが、使用するCUDAバージョンがCUDA 13に固定されています。 |
+| `nvhpc-byo-compiler` | システムのGCCなど、利用者が用意したコンパイラを使うための環境です。BYOは「Bring Your Own」の略です。 |
 
 ## `module`コマンド
 
@@ -85,7 +85,7 @@ module purge
 ```
 
 !!! tip
-    
+
     必要なモジュールをロードする前に`module purge`を実行しておくと、意図しないモジュール環境の影響を避けやすくなります。
 
 ### モジュールの設定内容を表示

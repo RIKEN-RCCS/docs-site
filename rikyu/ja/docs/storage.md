@@ -6,7 +6,7 @@
 
 各ユーザは50 GBのホーム領域（`/home/USER`）を持ちます。`USER`はユーザ名です。ホーム領域を読み書きできるのは、その領域を持つユーザ本人だけです。ホーム領域は、ユーザごとの設定ファイルや小規模な作業ファイルの保存に適しています。
 
-コマンドラインでホーム領域の利用状況を確認するには、以下のコマンドを実行してください。
+コマンドラインでホーム領域の利用状況を確認するには、次のコマンドを実行してください。
 
 ```bash
 lfs quota -h -p `lfs project -d $HOME | awk '{print $1}'` /home
@@ -26,7 +26,7 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
 
 各グループは1 TBのグループ領域（`/data1/GROUP`）を持ちます。`GROUP`はグループ名です。グループ領域は、同じグループのメンバが読み書きできます。グループ領域は、大規模な作業ファイルや同じグループのメンバで共同利用するデータの保存に適しています。
 
-コマンドラインでグループ領域の利用状況を確認するには、以下のコマンドを実行してください（`GROUP`にはグループ名を指定してください）。
+コマンドラインでグループ領域の利用状況を確認するには、次のコマンドを実行してください（`GROUP`にはグループ名を指定してください）。
 
 ```bash
 lfs quota -h -p `lfs project -d /data1/GROUP | awk '{print $1}'` /data1
@@ -40,12 +40,17 @@ Filesystem    used   bquota  blimit  bgrace   files   iquota  ilimit  igrace
     /data1      4k       0k      1T       -       1        0 10000000       -
 ```
 
-`used`は使用済み容量、`blimit`は容量の上限、`files`は使用中のファイル数、`ilimit`はファイル数の上限です。
+各項目の意味はホーム領域と同じです。
 
 コマンドラインでグループ名を知りたい場合は、`id`コマンドを実行し、`groups=...`に表示される`rkp`で始まる文字列を確認してください。実行例は次のとおりです。1人のユーザは複数のグループを持つことがあります。
 
 ```bash
-rku00011@c000:~$ id
+id
+```
+
+出力例：
+
+```text
 uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 ```
 
@@ -120,7 +125,7 @@ uid=100010(rku00011) gid=200000(rkuser) groups=200000(rkuser),200013(rkp00010)
 
     ファイル数（inode）の上限は、ポータルからは変更できません。変更が必要な場合はチケットで依頼してください。
 
-100 TBを超える容量が必要な場合は、PIまたはSubPIが以下のリンクからチケットで申請してください。
+100 TBを超える容量が必要な場合は、PIまたはSubPIが次のリンクからチケットで申請してください。
 
 [チケット作成](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 

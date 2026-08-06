@@ -1,6 +1,6 @@
 # Open OnDemandの使い方
 
-Open OnDemandは、Webブラウザからスーパーコンピュータを利用できるWebポータルです。Open OnDemandへは以下のリンクからログインしてください。
+Open OnDemandは、Webブラウザからスーパーコンピュータを利用できるWebポータルです。Open OnDemandには次のリンクからログインしてください。
 
 [Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
@@ -12,14 +12,14 @@ Open OnDemandでは、次の機能を利用できます。
 * 対話アプリケーション（リモートデスクトップなど）の実行
 
 !!! note
- 
+
     Open OnDemandは、Google Chrome、Mozilla Firefox、Microsoft Edgeなどの主要なWebブラウザに対応していますが、Internet Explorer 11は対応していません。Chromeは、リモートデスクトップなどで文字列のコピー&ペースト機能をネイティブにサポートしているため、Chromeの利用を推奨します。
 
 下図は「理究」のOpen OnDemandのダッシュボードです。
 
 <img width="700" alt="Open OnDemand" src="img/ood.png" style="border: 1px solid #000;">
 
-画面上部にあるメニューバーの項目は下記の通りです。
+画面上部にあるメニューバーの項目は次のとおりです。
 
 |              項目              |                          意味                          |
 | ------------------------------ | ------------------------------------------------------ |
@@ -42,11 +42,12 @@ Open OnDemandでは、次の機能を利用できます。
 | Home Directory | ファイルの送受信・編集 |
 
 ### Home Directory
-ファイルの送受信・編集などを行えます。送受信可能な最大サイズは10GBです。
+
+ファイルの送受信・編集などを行えます。送受信可能な最大サイズは10 GBです。
 
 <img width="800" alt="Home Directory" src="img/home_directory.png" style="border: 1px solid #000;">
 
-Home Directoryの各機能は下記の通りです。個別のファイルやディレクトリに対する操作は「3点＋下三角」のメニューから行えます。
+Home Directoryの各機能は次のとおりです。個別のファイルやディレクトリに対する操作は「3点＋下三角」のメニューから行えます。
 
 |    ツールバー    |              説明            |
 | ---------------- | ---------------------------- |
@@ -104,7 +105,7 @@ WebブラウザからログインノードにSSHアクセスし、コマンド�
 
 ### SSH Public Key
 
-[SSH公開鍵の登録](https://docs.r-ccs.riken.jp/rikyu/ja/login/#ssh)を参照してください。
+[SSH公開鍵の登録](login.md#ssh)を参照してください。
 
 ### Delete Passkey
 
@@ -118,15 +119,15 @@ WebブラウザからログインノードにSSHアクセスし、コマンド�
 
 |                     名称                                  |                               説明                                  |
 | --------------------------------------------------------- | ------------------------------------------------------------------- |
-| Desktop ([Xfce](https://www.xfce.org/))                   | X Window System上で動作する軽量デスクトップ環境                     |
-| [JupyterLab](https://jupyter.org/)                        | Webブラウザ上で動作するプログラムの対話型実行環境                   |
-| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd)) | ターミナルセッションをウェブブラウザから操作するためのツール        |
-| [VSCode](https://code.visualstudio.com/)                  | [Microsoft](https://www.microsoft.com/)が開発しているコードエディタ |
-| NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute)と[NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems) |
-| [Gnuplot](http://www.gnuplot.info/)                       | コマンドライン駆動型グラフ作成プログラム                            |
-| [OVITO](https://www.ovito.org)                            | 粒子シミュレーションなどの大規模データの可視化・解析プログラム      |
-| [ParaView](https://www.paraview.org/)                     | 科学技術データ可視化プログラム                                      |
-| [PyMOL](https://www.pymol.org/)                           | 生体高分子の立体構造などの可視化・解析プログラム                    |
+| Desktop ([Xfce](https://www.xfce.org/){ target="_blank" rel="noopener" })                   | X Window System上で動作する軽量デスクトップ環境                     |
+| [JupyterLab](https://jupyter.org/){ target="_blank" rel="noopener" }                        | Webブラウザ上で動作するプログラムの対話型実行環境                   |
+| Terminal ([ttyd](https://github.com/OpenOnDemandJP/ttyd){ target="_blank" rel="noopener" }) | ターミナルセッションをウェブブラウザから操作するためのツール        |
+| [VSCode](https://code.visualstudio.com/){ target="_blank" rel="noopener" }                  | [Microsoft](https://www.microsoft.com/){ target="_blank" rel="noopener" }が開発しているコードエディタ |
+| NVIDIA Profiler                                           | [NVIDIA Nsight Compute](https://developer.nvidia.com/nsight-compute){ target="_blank" rel="noopener" }と[NVIDIA Nsight Systems](https://developer.nvidia.com/nsight-systems){ target="_blank" rel="noopener" } |
+| [Gnuplot](http://www.gnuplot.info/){ target="_blank" rel="noopener" }                       | コマンドライン駆動型グラフ作成プログラム                            |
+| [OVITO](https://www.ovito.org){ target="_blank" rel="noopener" }                            | 粒子シミュレーションなどの大規模データの可視化・解析プログラム      |
+| [ParaView](https://www.paraview.org/){ target="_blank" rel="noopener" }                     | 科学技術データ可視化プログラム                                      |
+| [PyMOL](https://www.pymol.org/){ target="_blank" rel="noopener" }                           | 生体高分子の立体構造などの可視化・解析プログラム                    |
 
 例として、Desktopの利用方法を説明します。メニューバーの<span class="text-marker">Interactive Apps</span>から<span class="text-marker">Desktop</span>をクリックすると、計算リソースなどを入力するためのWebフォームが表示されます。入力後に<span class="text-marker">Launch</span>をクリックすると、「理究」にジョブが投入されます。
 
@@ -146,7 +147,7 @@ WebブラウザからログインノードにSSHアクセスし、コマンド�
 
 <img width="600" alt="View-only shared Desktop session" src="img/desktop.png">
 
-Desktopを終了させたい場合は、以下のいずれかの手順で終了してください。Webブラウザを閉じるだけでは終了しないことに注意してください。
+Desktopを終了させたい場合は、次のいずれかの手順で終了してください。Webブラウザを閉じるだけでは終了しないことに注意してください。
 
 * <span class="text-marker">Running</span>画面の<span class="text-marker">Delete</span>ボタンをクリックする。
 * メニューバーの<span class="text-marker">My Interactive Sessions</span>をクリックし、該当のジョブの<span class="text-marker">Delete</span>ボタンをクリックする。

@@ -17,7 +17,7 @@
 | ネットワーク | InfiniBand XDR、800 Gbps &times; 4 |
 | ローカルストレージ | Kioxia XD7P NVMe SSD 7.68 TB、帯域幅: Read 7.2 GB/s、Write 4.8 GB/s、IOPS (4 KB): Read 1,550 K、Write 200 K |
 
-CPU/GPU間の接続および帯域幅の詳細は、以下の図を参照してください。
+CPU/GPU間の接続および帯域幅の詳細は、次の図を参照してください。
 
 ![Compute node bandwidth](img/bandwidth.png){ width="550" }
 
