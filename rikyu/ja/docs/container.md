@@ -4,14 +4,6 @@
 
 本ページでは、コンテナプラットフォーム Apptainer を利用する方法を説明します。
 
-イメージの取得から実行までの最短の流れは次の 3 コマンドです。
-
-```console
-apptainer pull ~/ubuntu2404.sif docker://ubuntu:24.04
-apptainer exec ~/ubuntu2404.sif cat /etc/os-release
-sbatch -A <プロジェクトID> --gpus=1 --time=00:05:00 --wrap "apptainer exec --nv ~/ubuntu2404.sif nvidia-smi -L"
-```
-
 !!! note
 
     本ページのコマンド例では、次のプレースホルダを使用します。自身の環境に読み替えてください。
@@ -64,7 +56,7 @@ Apptainer はコンテナの起動とアプリケーションの起動を統合�
 
 1. Docker Hub などで公開されている既存イメージを取得して再利用する
 2. イメージをファイルシステムに展開（sandbox 化）し、手作業で変更する
-3. 定義ファイル（def ファイル）を書いてビルドを自動化する
+3. 定義ファイルを書いてビルドを自動化する
 
 手作業（2.）はデバッグには便利ですが、再現性の観点からは、定義ファイル（3.）をリポジトリ等で管理してビルドする方法を推奨します。ベースイメージには Docker Hub で配布されている Ubuntu、AlmaLinux、Red Hat Universal Base Image（UBI）などの利用を想定しています。
 
@@ -83,7 +75,7 @@ apptainer pull cuda13-base.sif docker://nvcr.io/nvidia/cuda:13.0.0-base-ubuntu24
 apptainer pull busybox.sif docker://quay.io/prometheus/busybox:latest
 ```
 
-取得の際、Docker 形式のイメージレイヤーは SIF 形式に変換され、レイヤーデータは `~/.apptainer/cache` 以下にキャッシュされます。SIF イメージの実体は SquashFS 形式で、起動すると読み込み専用になります。イメージにアプリケーションを追加するには、後述の定義ファイルによるビルド、またはファイルシステムに展開する sandbox を利用します。
+取得の際、Docker 形式のイメージレイヤは SIF 形式に変換され、レイヤデータは `~/.apptainer/cache` 以下にキャッシュされます。SIF イメージの実体は SquashFS 形式で、起動すると読み込み専用になります。イメージにアプリケーションを追加するには、後述の定義ファイルによるビルド、またはファイルシステムに展開する sandbox を利用します。
 
 sandboxは、`build` コマンドに `--sandbox` オプションを付けて作成します。
 
@@ -92,6 +84,10 @@ apptainer build --sandbox ubuntu2404 docker://ubuntu:24.04
 ```
 
 sandbox 内のファイルはユーザ自身がオーナとなり、コンテナを起動しなくても直接編集できます。ただし、sandbox からコンテナを起動した場合も既定では読み込み専用です。書き込み可能な状態で起動するには `--writable` オプションを指定します（SIF イメージでは指定できません）。また、root 権限を前提とする `apt` / `dnf` / `rpm` などのパッケージ管理コマンドを使うには `--fakeroot` オプションが必要です。
+
+!!! note
+
+    本システムから外部への HTTP接続は制限されており、`apt` などによる外部からのパッケージ取得は失敗することがあります。
 
 SIF と sandbox は相互に変換できます。
 
@@ -159,7 +155,7 @@ SIF ファイルには実行属性が付いており、スクリプトのよう�
 
 ### sandbox を用いる方法 { #sandbox }
 
-sandbox を編集して SIF に固める方法です。手軽な反面、作業履歴が残らないため、確定した手順は定義ファイル（[定義ファイルによるカスタムイメージ](#definition-file)）に保存することを推奨します。
+sandbox を編集して SIF に固める方法です。手軽な反面、作業履歴が残らないため、確定した手順は定義ファイルに保存することを推奨します。
 
 コンテナを起動せずに済む場合は、既成のアプリケーションやリファレンスデータを sandbox に展開して固めるだけです。
 
@@ -181,10 +177,6 @@ Apptainer> exit
 apptainer build ~/from-sandbox.sif /tmp/ubuntu-sandbox
 ```
 
-!!! warning
-
-    本システムから外部への HTTP接続は制限されており、`apt-get` などによる外部からのパッケージ取得は失敗することがあります。
-
 !!! note
 
     sandbox は多数の小ファイルで構成されるため、共有ファイルシステム（ホーム領域・グループ領域）上に置くとメタデータアクセスの負荷が大きくなります。sandbox の作成・編集はスクラッチ領域（`/tmp`）上で行うことを推奨します。スクラッチ領域はジョブ終了時に削除されるため、完成した SIF イメージはホーム領域またはグループ領域に保存してください。
@@ -193,7 +185,7 @@ apptainer build ~/from-sandbox.sif /tmp/ubuntu-sandbox
 
 定義ファイルを書くと、イメージのビルドを自動化・再現可能にできます。定義ファイルは主に次の要素で構成されます。
 
-1. ヘッダー（`Bootstrap:`, `From:`）: ベースイメージの指定
+1. ヘッダ（`Bootstrap:`, `From:`）: ベースイメージの指定
 2. `%files`: ホストからイメージへのファイル取り込み
 3. `%post`: イメージ内で実行する構築処理（パッケージ追加など）
 4. `%environment` / `%runscript`: 実行時の環境変数と既定コマンドの定義
@@ -231,10 +223,6 @@ From: ubuntu:24.04
 apptainer build --fakeroot ~/from_def.sif example.def
 ```
 
-!!! warning
-
-    本システムから外部への HTTP接続は制限されており、`apt-get` などによる外部からのパッケージ取得は失敗することがあります。
-
 !!! note
 
     ビルド時の一時展開先は既定でスクラッチ領域（`/tmp`）が使われます。一時領域を明示したい場合は、環境変数 `APPTAINER_TMPDIR` で展開先を、`APPTAINER_CACHEDIR` でキャッシュ先を変更できます。ホーム領域の容量を圧迫したくない場合は、`APPTAINER_CACHEDIR` をスクラッチ領域やグループ領域（`/data1/<グループ>`）に向けることも有効です。
@@ -249,7 +237,7 @@ apptainer build --fakeroot ~/from_def.sif example.def
 
 `%environment` に環境変数を埋め込んでおけば設定漏れを防止でき、ジョブスクリプトも簡素になります（[実行方法のイメージへの埋め込み](#slurm-embedded-runscript) を参照）。
 
-!!! warning
+!!! note
 
     定義ファイルの `From:` に `latest` タグを指定すると、ビルドのたびに取得される内容が変わる可能性があります。再現性を重視する場合は、バージョンを固定したタグを指定してください。
 
@@ -333,7 +321,7 @@ apptainer key import ./public.asc
 
 #### 環境変数の取り扱い { #env-vars }
 
-Apptainer はコンテナ起動時に、ホスト側の環境変数をほぼすべてコンテナ内に引き継ぎます。ただし `PATH` と `LD_LIBRARY_PATH` は例外で、コンテナ側で再設定されます。定義ファイルの `%environment` セクションに記述した内容は、イメージ内にスクリプトとして転記され、コンテナ起動時に source されます。
+Apptainer はコンテナ起動時に、ホスト側の環境変数をほぼすべてコンテナ内に引き継ぎます。ただし `PATH` と `LD_LIBRARY_PATH` は例外で、コンテナ側で再設定されます。定義ファイルの `%environment` セクションに記述した内容は、イメージ内にスクリプトとして転記され、コンテナ起動時に読み込まれます。
 
 ホスト側で `APPTAINERENV_***`（`***` は任意の変数名）という環境変数を設定しておくと、コンテナ内では `***` という名前の変数として設定されます。ホスト環境に干渉せずにコンテナ内の変数を事前設定でき、イメージを再作成することなく `%environment` の設定を一時的に上書きできます。
 
@@ -382,13 +370,13 @@ apptainer exec -B /data1/<グループ>/reference:/opt/data:ro ubuntu2404.sif ls
 export APPTAINER_BIND='/data1/<グループ>/input:/opt/input:ro,/data1/<グループ>/output:/opt/output'
 ```
 
-!!! warning
+!!! note
 
     カレントディレクトリは既定で自動バインドされるため、`/usr/bin` や `/usr/lib` などからコンテナを起動すると、コンテナ内の同名ディレクトリがホスト側のもので置き換わり、ランタイムエラーの原因になることがあります。システムディレクトリからの起動は避けてください。
 
 ### インスタンス化によるコンテナの常駐 { #instances }
 
-`exec` や `run` はアプリケーション終了と同時にコンテナも終了するため、繰り返し実行するとコンテナ起動のオーバーヘッドが累積します。また、サーバーのように常駐するサービスの運用にも向きません。インスタンス化は、コンテナを起動したまま維持し、その中で複数のアプリケーションを実行できる機能です。
+`exec` や `run` はアプリケーション終了と同時にコンテナも終了するため、繰り返し実行するとコンテナ起動のオーバーヘッドが累積します。また、サーバのように常駐するサービスの運用にも向きません。インスタンス化は、コンテナを起動したまま維持し、その中で複数のアプリケーションを実行できる機能です。
 
 ```console
 apptainer instance start ubuntu2404.sif noble
@@ -419,7 +407,7 @@ done
 apptainer instance stop worker
 ```
 
-複数のインスタンスを同時に起動して、異なる環境での処理を 1 ジョブ内で並行実行することもできます。一般的には、データベースや Web サーバーなど、ノード内に何らかのサービスを起動させておく用途で利用されます。インスタンス起動時に自動実行させたい処理は、定義ファイルの `%runscript` の代わりに `%startscript` に記述します。
+複数のインスタンスを同時に起動して、異なる環境での処理を 1 ジョブ内で並行実行することもできます。一般的には、データベースや Web サーバなど、ノード内に何らかのサービスを起動させておく用途で利用されます。インスタンス起動時に自動実行させたい処理は、定義ファイルの `%runscript` の代わりに `%startscript` に記述します。
 
 インスタンスの停止:
 
@@ -471,7 +459,7 @@ apptainer cache clean
 
 ### Overlay 機能について { #overlay }
 
-SIF イメージは読み込み専用ですが、Linux カーネルの OverlayFS を使って書き込み可能なレイヤーを重ね合わせることができます。方法は 2 つあります。
+SIF イメージは読み込み専用ですが、Linux カーネルの OverlayFS を使って書き込み可能なレイヤを重ね合わせることができます。方法は 2 つあります。
 
 1. `--writable-tmpfs` オプション: メモリ上の tmpfs を一時的な書き込み領域として重ねる
 2. `--overlay` オプション: 永続的な書き込み可能領域（overlay イメージ）を別途用意して重ねる
@@ -574,11 +562,11 @@ c147
 
 この方式では、ホスト側とコンテナ内の MPI が連携して動作する必要があるため、両者のバージョン整合が重要になります。本システムでは次の 2 つの方式を利用できます。
 
-#### ホスト提供 MPI のバインド方式（第一選択） { #mpi-host-bind }
+#### ホスト提供 MPI のバインド方式 { #mpi-host-bind }
 
 本システムのホスト側には NVIDIA HPC-X が `nvhpc-hpcx` モジュールとして用意されています。HPC-X は HPC SDKの一部として導入されている Open MPI 系で、GPU と InfiniBand 相互結合網に最適化されています。
 
-Open MPI や UCX の実体ライブラリは HPC SDK ツリー側にあるため、コンテナへのバインドは HPC SDK のディレクトリごと行い、コンテナ内にライブラリの場所を環境変数で伝えます。アプリケーションはホスト側の `mpicc`でビルドすると、ホスト MPI と ABI が一致し確実です。
+Open MPI や UCX の実体ライブラリは HPC SDK ツリー側にあるため、コンテナへのバインドは HPC SDK のディレクトリごと行い、コンテナ内にライブラリの場所を環境変数で伝えます。アプリケーションはホスト側の `mpicc`でビルドすると、ホスト MPI と ABI（Application Binary Interface）が一致し確実です。
 
 ```bash
 #!/bin/bash
@@ -600,7 +588,7 @@ mpirun --bind-to none -np 8 apptainer exec --nv -B /shared/software/hpc_sdk \
   mpi-apps.sif ~/myapps/hoge inputfile
 ```
 
-#### 代替: コンテナ内蔵 Open MPI + srun --mpi=pmix { #mpi-container-pmix }
+#### コンテナ内蔵 Open MPI + srun --mpi=pmix { #mpi-container-pmix }
 
 ホスト側 MPI に依存せず、コンテナの可搬性を優先したい場合は、コンテナ内に Open MPI を内蔵し、Slurm の PMIx 連携でプロセスを起動する方式が利用できます。
 
@@ -608,7 +596,7 @@ mpirun --bind-to none -np 8 apptainer exec --nv -B /shared/software/hpc_sdk \
 srun --mpi=pmix apptainer exec mpi-apps.sif ~/myapps/hoge inputfile
 ```
 
-この方式では、ホスト側の Slurm（PMIx プラグイン）が各ノードでコンテナを起動し、コンテナ内蔵の MPI ランタイムが PMIx を介してプロセス群を集合させます。
+この方式では、ホスト側の Slurmが各ノードでコンテナを起動し、コンテナ内蔵の MPI ランタイムが PMIx を介してプロセス群を集合させます。
 
 !!! note
 
