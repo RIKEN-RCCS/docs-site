@@ -4,16 +4,6 @@
 
 本ページでは、コンテナプラットフォームApptainerを利用する方法を説明します。
 
-!!! note
-
-    本ページのコマンド例では、次のプレースホルダを使用します。自身の環境に読み替えてください。
-
-    | 表記 | 意味 |
-    |---|---|
-    | `USERNAME` | 自分のログインユーザ名 |
-    | `PROJECT_NAME` | 自分の課題（プロジェクト）のID（rkpXXXXX形式。例：`rkp00010`） |
-    | `GROUP` | 自分の所属グループ名（グループ領域`/data1/GROUP`のディレクトリ名） |
-
 ### コンテナ { #container }
 
 コンテナは仮想化技術の一種で、ホスト側のカーネルを共有したまま、ルートディレクトリ以下のユーザ環境のみを切り替えて専用の環境でアプリケーションを実行する方式です。
@@ -212,7 +202,7 @@ From: ubuntu:24.04
     python3 "$@"
 
 %labels
-    Author USERNAME@example.org
+    Author USER@example.org
 ```
 
 ビルドは`build`コマンドに`--fakeroot`を付けて実行します。
@@ -247,7 +237,7 @@ apptainer build --fakeroot ~/from_def.sif example.def
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --time=01:00:00
 
 # スクラッチ領域 (/tmp。ジョブ終了時に削除) を作業領域にしてビルドし、
@@ -385,7 +375,7 @@ apptainer instance list
 
 ```text
 INSTANCE NAME    PID       IP    IMAGE
-noble            PID           /home/USERNAME/ubuntu2404.sif
+noble            PID           /home/USER/ubuntu2404.sif
 ```
 
 起動中のインスタンスは`instance://INSTANCE_NAME`で参照できます。
@@ -568,7 +558,7 @@ Open MPIやUCXの実体ライブラリはHPC SDKツリー側にあるため、�
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --gpus=8
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=01:00:00
@@ -608,7 +598,7 @@ srun --mpi=pmix apptainer exec mpi-apps.sif ~/myapps/hoge inputfile
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --gpus=8
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=01:00:00
@@ -659,7 +649,7 @@ From: ubuntu:24.04
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --time=00:15:00
 
 hoge input.txt
@@ -670,7 +660,7 @@ hoge input.txt
 計算ノードを対話的に利用するには`salloc`でノードを確保し、`srun`でシェルを起動します。
 
 ```console
-salloc -A PROJECT_NAME --gpus=1 --time=00:30:00
+salloc -A PROJECT --gpus=1 --time=00:30:00
 srun --pty bash -i
 ```
 

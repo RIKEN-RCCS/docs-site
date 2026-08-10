@@ -75,16 +75,16 @@ Submitted batch job 2080
 
 The `2080` in the output message is the job ID. Use it to specify the target job when checking job status, canceling a job, and so on.
 
-If you belong to multiple projects, you can specify the project to charge for the job with the Slurm `--account=` or `-A` option. In a job script, write it as follows. Specify the project name to use for `PROJECT_NAME`.
+If you belong to multiple projects, you can specify the project to charge for the job with the Slurm `--account=` or `-A` option. In a job script, write it as follows. Specify the project name to use for `PROJECT`.
 
 ```bash
-#SBATCH --account=PROJECT_NAME
+#SBATCH --account=PROJECT
 ```
 
 Alternatively, specify it when running the `sbatch` command.
 
 ```bash
-sbatch --account=PROJECT_NAME job.sh
+sbatch --account=PROJECT job.sh
 ```
 
 ### Showing Job Status
@@ -160,10 +160,10 @@ Example output:
 c072
 ```
 
-If you belong to multiple projects, you can specify the project to charge for the job with the Slurm `--account=` or `-A` option. Specify the project name to use for `PROJECT_NAME`.
+If you belong to multiple projects, you can specify the project to charge for the job with the Slurm `--account=` or `-A` option. Specify the project name to use for `PROJECT`.
 
 ```bash
-srun --account=PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
+srun --account=PROJECT --gpus=4 --time=00:10:00 --pty bash
 ```
 
 When you are finished, run `exit` to leave the shell and end the `srun` job.

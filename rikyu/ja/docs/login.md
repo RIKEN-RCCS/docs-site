@@ -42,13 +42,13 @@ ssh-keygen -t ed25519
 
 ```text
 Generating public/private ed25519 key pair.
-Enter file in which to save the key (/home/username/.ssh/id_ed25519):
+Enter file in which to save the key (/home/user/.ssh/id_ed25519):
 Enter passphrase (empty for no passphrase):  # パスフレーズを入力
 Enter same passphrase again:                 # もう一度同じパスフレーズを入力
-Your identification has been saved in /home/username/.ssh/id_ed25519.
-Your public key has been saved in /home/username/.ssh/id_ed25519.pub.
+Your identification has been saved in /home/user/.ssh/id_ed25519.
+Your public key has been saved in /home/user/.ssh/id_ed25519.pub.
 The key fingerprint is:
-SHA256:dlah2Qrf131ccOS5Fs/IFbrkd8LLWMHxPI393AMagag username@hostname
+SHA256:dlah2Qrf131ccOS5Fs/IFbrkd8LLWMHxPI393AMagag user@hostname
 The key's randomart image is:
 +--[ED25519 256]--+
 |        . ... ooo|
@@ -77,10 +77,10 @@ SSH公開鍵をOpen OnDemandから本システムに登録します。Open OnDem
 
 <img width="800" alt="SSH public key" src="img/sshpubkey.png">
 
-公開鍵の登録後、端末ソフトウェアから次のコマンドでSSHログインできます。`USERNAME`は自分のユーザ名に置き換えてください。
+公開鍵の登録後、端末ソフトウェアから次のコマンドでSSHログインできます。`USER`は自分のユーザ名に置き換えてください。
 
 ```bash
-ssh USERNAME@login.rikyu.r-ccs.riken.jp
+ssh USER@login.rikyu.r-ccs.riken.jp
 ```
 
 コマンドラインによるジョブの投入方法などについては、[Slurmの使い方](slurm.md)を参照してください。

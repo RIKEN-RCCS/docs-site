@@ -75,16 +75,16 @@ Submitted batch job 2080
 
 出力メッセージの`2080`はジョブIDであり、ジョブの状態確認やキャンセルなどで対象のジョブを指定するために使用します。
 
-複数の課題に所属している場合は、Slurmの`--account=`または`-A`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT_NAME`には、利用する課題名を指定してください。
+複数の課題に所属している場合は、Slurmの`--account=`または`-A`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT`には、利用する課題名を指定してください。
 
 ```bash
-#SBATCH --account=PROJECT_NAME
+#SBATCH --account=PROJECT
 ```
 
 または、`sbatch`コマンドの実行時に指定します。
 
 ```bash
-sbatch --account=PROJECT_NAME job.sh
+sbatch --account=PROJECT job.sh
 ```
 
 ### ジョブの状態表示
@@ -160,10 +160,10 @@ hostname
 c072
 ```
 
-複数の課題に所属している場合は、Slurmの`--account=`または`-A`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT_NAME`には、利用する課題名を指定してください。
+複数の課題に所属している場合は、Slurmの`--account=`または`-A`オプションで、ジョブの課金対象となる課題を指定できます。ジョブスクリプトには、次のように記述します。`PROJECT`には、利用する課題名を指定してください。
 
 ```bash
-srun --account=PROJECT_NAME --gpus=4 --time=00:10:00 --pty bash
+srun --account=PROJECT --gpus=4 --time=00:10:00 --pty bash
 ```
 
 終了したら、`exit`を実行してシェルを抜け、`srun`ジョブを終了します。

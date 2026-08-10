@@ -4,7 +4,7 @@ The storage areas of this system are divided into three types: <span class="text
 
 ## Home Area
 
-Each user has a 50 GB home area (`/home/USERNAME`). `USERNAME` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
+Each user has a 50 GB home area (`/home/USER`). `USER` is the user name. Only the user who owns the area can read and write to it. The home area is suitable for storing per-user configuration files and small work files.
 
 To check home area usage from the command line, run the following command.
 
@@ -77,7 +77,7 @@ The home area and group area are on shared storage, so they can be used from bot
     </tr>
     <tr>
       <td>Home area</td>
-      <td><code>/home/USERNAME</code></td>
+      <td><code>/home/USER</code></td>
       <td>50 GB</td>
       <td rowspan="2">Available</td>
       <td rowspan="2">Lustre</td>
@@ -129,10 +129,11 @@ If you need more than 100 TB, the PI or SubPI should request it with a ticket us
 
 [Create a Ticket](https://support.r-ccs.riken.jp/hc/ja/requests/new){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
+!!! note
+
+    Charges based on the additional capacity are planned, but no charges will be incurred during Early Access Phase 2. The fees are currently under review.
+    
 ### Home Area
 
 The capacity of the home area cannot be changed. Store large data in the group area.
 
-!!! note
-
-    Charges based on the additional capacity are planned, but no charges will be incurred during Early Access Phase 2. The fees are currently under review.

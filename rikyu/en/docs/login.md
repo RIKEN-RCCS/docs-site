@@ -42,13 +42,13 @@ Example output:
 
 ```text
 Generating public/private ed25519 key pair.
-Enter file in which to save the key (/home/username/.ssh/id_ed25519):
+Enter file in which to save the key (/home/user/.ssh/id_ed25519):
 Enter passphrase (empty for no passphrase):  # Enter a passphrase
 Enter same passphrase again:                 # Enter the same passphrase again
-Your identification has been saved in /home/username/.ssh/id_ed25519.
-Your public key has been saved in /home/username/.ssh/id_ed25519.pub.
+Your identification has been saved in /home/user/.ssh/id_ed25519.
+Your public key has been saved in /home/user/.ssh/id_ed25519.pub.
 The key fingerprint is:
-SHA256:dlah2Qrf131ccOS5Fs/IFbrkd8LLWMHxPI393AMagag username@hostname
+SHA256:dlah2Qrf131ccOS5Fs/IFbrkd8LLWMHxPI393AMagag user@hostname
 The key's randomart image is:
 +--[ED25519 256]--+
 |        . ... ooo|
@@ -77,10 +77,10 @@ Launch <span class="text-marker">SSH Public Key</span>. The following screen app
 
 <img width="800" alt="SSH public key" src="img/sshpubkey.png">
 
-After registering your public key, you can log in over SSH from terminal software with the following command. Replace `USERNAME` with your user name.
+After registering your public key, you can log in over SSH from terminal software with the following command. Replace `USER` with your user name.
 
 ```bash
-ssh USERNAME@login.rikyu.r-ccs.riken.jp
+ssh USER@login.rikyu.r-ccs.riken.jp
 ```
 
 For information on submitting jobs from the command line, see [Slurm](slurm.md).

@@ -4,16 +4,6 @@
 
 This page explains how to use the container platform Apptainer.
 
-!!! note
-
-    The command examples on this page use the following placeholders. Replace them with the values for your own environment.
-
-    | Notation | Meaning |
-    |---|---|
-    | `USERNAME` | Your login user name |
-    | `PROJECT_NAME` | The ID of your project (in the form rkpXXXXX, for example `rkp00010`) |
-    | `GROUP` | The name of the group you belong to (the directory name of the group area `/data1/GROUP`) |
-
 ### What Is a Container { #container }
 
 A container is a form of virtualization that shares the host kernel while switching only the user environment below the root directory, so that applications run in a dedicated environment.
@@ -212,7 +202,7 @@ From: ubuntu:24.04
     python3 "$@"
 
 %labels
-    Author USERNAME@example.org
+    Author USER@example.org
 ```
 
 Build by adding `--fakeroot` to the `build` command.
@@ -247,7 +237,7 @@ The following is an example job script (for how to request resources, see [Worki
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --time=01:00:00
 
 # Build with the scratch area (/tmp, deleted when the job ends) as the working
@@ -385,7 +375,7 @@ Example output:
 
 ```text
 INSTANCE NAME    PID       IP    IMAGE
-noble            PID           /home/USERNAME/ubuntu2404.sif
+noble            PID           /home/USER/ubuntu2404.sif
 ```
 
 A running instance is referred to as `instance://INSTANCE_NAME`.
@@ -568,7 +558,7 @@ The actual Open MPI and UCX libraries live in the HPC SDK tree, so bind the HPC 
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --gpus=8
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=01:00:00
@@ -608,7 +598,7 @@ The following is an example job script for the container-bundled Open MPI with P
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --gpus=8
 #SBATCH --ntasks-per-node=4
 #SBATCH --time=01:00:00
@@ -659,7 +649,7 @@ If you save this image as `hoge` in a directory on your PATH with the execute pe
 
 ```bash
 #!/bin/bash
-#SBATCH -A PROJECT_NAME
+#SBATCH -A PROJECT
 #SBATCH --time=00:15:00
 
 hoge input.txt
@@ -670,7 +660,7 @@ hoge input.txt
 To use a compute node interactively, allocate a node with `salloc` and start a shell with `srun`.
 
 ```console
-salloc -A PROJECT_NAME --gpus=1 --time=00:30:00
+salloc -A PROJECT --gpus=1 --time=00:30:00
 srun --pty bash -i
 ```
 
