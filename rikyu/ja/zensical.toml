@@ -22,6 +22,7 @@ nav = [
   { "Slurmの使い方" = "slurm.md" },
   { "Spackの使い方" = "spack.md" },
   { "生成AIサービス" = "genai.md" },
+  { "システムアップデート履歴" = "changelog.md" },
   { "お問い合わせ" = "contact.md" },
 ]
 

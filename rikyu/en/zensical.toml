@@ -22,6 +22,7 @@ nav = [
   { "Slurm" = "slurm.md" },
   { "Spack" = "spack.md" },
   { "Generative AI Service" = "genai.md" },
+  { "System Update History" = "changelog.md" },
   { "Contact" = "contact.md" },
 ]
 
