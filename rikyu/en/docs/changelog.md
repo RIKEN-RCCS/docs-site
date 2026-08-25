@@ -6,6 +6,7 @@ Only changes that affect how you use the system are listed here (internal config
 
 ### 2026-08-25
 
+- **[Generative AI]** Started offering the new model `qwen3.8-27b`. It accepts image input.
 - **[Account]** Added information that accounts beginning with `ea`, issued during Early Access Phase 1, will be deleted on September 14, 2026.
 
 ### 2026-08-20
