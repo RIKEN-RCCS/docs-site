@@ -4,6 +4,10 @@ Only changes that affect how you use the system are listed here (internal config
 
 ## August 2026
 
+### 2026-08-25
+
+- **[Account]** Added information that accounts beginning with `ea`, issued during Early Access Phase 1, will be deleted on September 14, 2026.
+
 ### 2026-08-20
 
 - **[System]** Started updating the node kernel to the 7.0 series (7.0.0-1016-nvidia-64k). Trial operation has started on some of the compute nodes first, and it will be rolled out to all nodes if no problems are found. There is no change to how you use the system.

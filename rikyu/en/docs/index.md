@@ -1,5 +1,11 @@
 # Welcome
 
+!!! warning "Deletion of Early Access Phase 1 Accounts"
+
+    Accounts issued during Early Access Phase 1 (accounts beginning with `ea`) will be deleted on Monday, September 14, 2026. When these accounts are deleted, all data stored in them will also be deleted.
+
+    If you have any data you need, complete a backup or data migration by Sunday, September 13, 2026. Please note that accounts and data cannot be recovered after deletion.
+
 !!! info
 
     Early Access Phase 2 for production operation is currently underway. Early Access Phase 2 is scheduled to continue until the end of September 2026.
@@ -7,10 +13,6 @@
 Supercomputer RIKYU is a system installed at the [RIKEN Center for Computational Science](https://www.r-ccs.riken.jp){ target="_blank" rel="noopener" } to accelerate scientific discovery through AI. The system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, for a total of 1,600 NVIDIA Blackwell GPUs. Its FP64 performance is 64.160 PFLOPS, and its FP8 performance is 15.539 EFLOPS.
 
 This user guide explains how to use Supercomputer RIKYU.
-
-!!! note
-
-    This user guide includes various command examples. Unless otherwise noted, Bash is used as the shell.
 
 ## Account Application
 
@@ -21,10 +23,6 @@ To apply for an account on this system, use the RIKYU Account Application System
 !!! note
 
     Users continuing from Early Access Phase 1 must also submit a new account application. Early Access Phase 2 is available to ARiSE users, members of accepted SPReAD1000 projects, and RIKEN members. To use this system, users must register their personal information, and the project representative must register the project, add project members, and complete the required project procedures.
-
-!!! note
-
-    Early Access Phase 1 accounts will be maintained for the time being only during the data migration period. However, they cannot be used to run jobs or use other compute resources. Data will not be migrated automatically, so users must transfer any necessary data to the Early Access Phase 2 environment themselves. Note that Early Access Phase 2 accounts and data are expected to remain available for continued use in the subsequent production operation.
 
 ## Usage Fees
 
