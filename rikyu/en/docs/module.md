@@ -1,14 +1,19 @@
 # Module Environment
 
-This system provides the following development environments as modules using the NVIDIA HPC Software Development Kit.
+This system provides the following development environments as modules.
 
 | Module name | Description |
 | ----------- | ----------- |
+| `cuda` | CUDA Toolkit environment. Provides `nvcc` and the CUDA libraries together under `CUDA_HOME`. |
 | `nvhpc` | Standard NVIDIA HPC SDK environment including MPI. |
 | `nvhpc-nompi` | NVIDIA HPC SDK environment without MPI. Suitable when you prepare and use another MPI yourself. |
 | `nvhpc-hpcx` | Environment combining `nvhpc` with HPC-X. Suitable when using HPC-X MPI in an InfiniBand/RDMA environment. |
 | `nvhpc-hpcx-cuda13` | Includes HPC-X like `nvhpc-hpcx`, but the CUDA version is fixed to CUDA 13. |
 | `nvhpc-byo-compiler` | Environment for using a compiler prepared by the user, such as the system GCC. BYO stands for "Bring Your Own". |
+
+!!! note
+
+    A name with the minor version omitted, such as `cuda/13.3`, points to the latest version in that series. What it points to changes as new versions are added, so specify the full version, such as `cuda/13.3.1`, when you need to pin it. Either way, `module list` shows the full version name.
 
 ## `module` Command
 
@@ -35,14 +40,20 @@ Example output:
 
 ```text
 ------------------------ /shared/software/modulefiles ------------------------
-   nvhpc-byo-compiler/26.3    nvhpc-hpcx-cuda13/26.3    nvhpc-hpcx/26.3
-   nvhpc-nompi/26.3    nvhpc/26.3
+   cuda/12.9.2             (12.9)      nvhpc-hpcx/26.3  (D)
+   cuda/13.2.2             (D:13.2)    nvhpc-hpcx/26.5
+   cuda/13.3.1             (13.3)      nvhpc-nompi/26.3 (D)
+   nvhpc-byo-compiler/26.3 (D)         nvhpc-nompi/26.5
+   nvhpc-byo-compiler/26.5             nvhpc/26.3       (D)
+   nvhpc-hpcx-cuda13/26.3  (D)         nvhpc/26.5
+   nvhpc-hpcx-cuda13/26.5
 
 ------------------------ /usr/share/lmod/lmod/modulefiles --------------------
    Core/lmod    Core/settarg (D)
 
   Where:
-   D:  Default Module
+   Aliases:  Aliases exist: foo/1.2.3 (1.2) means that "module load foo/1.2" will load foo/1.2.3
+   D:        Default Module
 
 If the avail list is too long consider trying:
 

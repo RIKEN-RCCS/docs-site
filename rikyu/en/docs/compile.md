@@ -47,6 +47,27 @@ nvc++ --version
 nvfortran --version
 ```
 
+### CUDA Toolkit
+
+The CUDA Toolkit provides the CUDA compiler `nvcc` and the CUDA libraries such as cuBLAS. It is a module independent of NVHPC, and it does not override `CC`, `CXX`, or `FC`, which makes it suitable for using CUDA from programs built with GCC and for builds that refer to `CUDA_HOME`.
+
+Available compilers:
+
+| Language | Command |
+|----------|---------|
+| CUDA C/C++ | `nvcc` |
+
+Checking the version:
+
+```bash
+module load cuda
+nvcc --version
+```
+
+!!! note
+
+    Choose between `nvhpc` and `cuda` according to your purpose. Load `nvhpc` to use `nvc`, `nvc++`, or `nvfortran` (for OpenACC and similar), and load `cuda` to use only `nvcc` and the CUDA libraries while building with GCC. If you load both, running `module load cuda` after `module load nvhpc` gives priority to `cuda`. Add `export NVHPC_CUDA_HOME=$CUDA_HOME` only when you want `nvc++` or `nvfortran` to use the CUDA from the `cuda` module.
+
 ## Compiling
 
 Compiling is the process of generating an executable program from source code. The basic development steps are as follows.
@@ -337,7 +358,23 @@ mpirun -np 4 ./sample
 
 ### Compiling with CUDA
 
-To use CUDA related features, you need the CUDA compiler and libraries. With NVHPC, you can enable CUDA features by specifying the `-cuda` option.
+To compile a `.cu` file containing CUDA kernels, use `nvcc` from the `cuda` module. To enable CUDA features in the NVHPC compilers, specify the `-cuda` option.
+
+#### nvcc
+
+```bash
+module load cuda
+nvcc -arch=sm_100 sample.cu -o sample
+```
+
+The CUDA libraries such as cuBLAS are included under `CUDA_HOME`, so you can use them just by specifying the link option.
+
+```bash
+module load cuda
+nvcc -arch=sm_100 sample.cu -o sample -lcublas
+```
+
+If you use CMake, `find_package(CUDAToolkit)` is resolved through the `CUDAToolkit_ROOT` set by the `cuda` module.
 
 #### C
 
@@ -369,6 +406,8 @@ nvc -cuda -gpu=cc100 sample.c -o sample
 ```
 
 If the `-gpu` option is omitted, code is generated for the GPU of the node where the compilation is performed. On this system, both the login nodes and the compute nodes are equipped with GB200, so code for `cc100` is normally generated even when the option is omitted.
+
+When compiling with `nvcc`, use `-arch=sm_100` to specify the same generation.
 
 You can check the Compute Capability of the installed GPUs in the `Default Target` field of the `nvaccelinfo` command.
 

@@ -47,6 +47,27 @@ nvc++ --version
 nvfortran --version
 ```
 
+### CUDA Toolkit
+
+CUDA Toolkitは、CUDAコンパイラ`nvcc`とcuBLASなどのCUDAライブラリを提供します。NVHPCとは独立したモジュールで、`CC`、`CXX`、`FC`を上書きしないため、GCCでビルドするプログラムからCUDAを利用する場合や、`CUDA_HOME`を参照するビルドに適しています。
+
+利用できるコンパイラ：
+
+| 言語 | コマンド |
+|------|---------|
+| CUDA C/C++ | `nvcc` |
+
+バージョン確認：
+
+```bash
+module load cuda
+nvcc --version
+```
+
+!!! note
+
+    `nvhpc`と`cuda`は用途で選び分けます。`nvc`、`nvc++`、`nvfortran`（OpenACCなど）を使う場合は`nvhpc`を、`nvcc`とCUDAライブラリだけを使いGCCでビルドする場合は`cuda`を読み込みます。両方を読み込む場合は`module load nvhpc`のあとに`module load cuda`を実行すると`cuda`側が優先されます。`nvc++`や`nvfortran`に`cuda`モジュールのCUDAを使わせる場合のみ、`export NVHPC_CUDA_HOME=$CUDA_HOME`を追加してください。
+
 ## コンパイル
 
 コンパイルとは、ソースコードから実行可能なプログラムを生成する処理です。基本的な開発手順は次のとおりです。
@@ -337,7 +358,23 @@ mpirun -np 4 ./sample
 
 ### CUDAによるコンパイル
 
-CUDA関連機能を利用する場合は、CUDAコンパイラおよびライブラリの利用が必要です。NVHPCでは`-cuda`オプションを指定することでCUDA機能を有効化できます。
+CUDAカーネルを記述した`.cu`ファイルをコンパイルするには、`cuda`モジュールの`nvcc`を使用します。NVHPCのコンパイラでCUDA機能を有効にする場合は`-cuda`オプションを指定します。
+
+#### nvcc
+
+```bash
+module load cuda
+nvcc -arch=sm_100 sample.cu -o sample
+```
+
+cuBLASなどのCUDAライブラリは`CUDA_HOME`以下に含まれているため、リンクオプションを指定するだけで利用できます。
+
+```bash
+module load cuda
+nvcc -arch=sm_100 sample.cu -o sample -lcublas
+```
+
+CMakeを使う場合は、`cuda`モジュールが設定する`CUDAToolkit_ROOT`により`find_package(CUDAToolkit)`が解決されます。
 
 #### C言語
 
@@ -369,6 +406,8 @@ nvc -cuda -gpu=cc100 sample.c -o sample
 ```
 
 `-gpu`オプションを省略した場合は、コンパイルを実行したノードのGPUに合わせたコードが生成されます。本システムではログインノードと計算ノードのいずれもGB200を搭載しているため、通常は省略しても`cc100`向けのコードが生成されます。
+
+`nvcc`でコンパイルする場合は、同じ世代の指定に`-arch=sm_100`を使用します。
 
 搭載GPUのCompute Capabilityは`nvaccelinfo`コマンドの`Default Target`欄で確認できます。
 

@@ -4,6 +4,11 @@ Only changes that affect how you use the system are listed here (internal config
 
 ## August 2026
 
+### 2026-08-26
+
+- **[Software]** Added the CUDA Toolkit as the `cuda` module (12.9, 13.2, and 13.3; `module load cuda` loads 13.2).
+- **[Software]** Added XPMEM, a mechanism for sharing memory between processes on a node. Collective communication is faster (applied to all nodes).
+
 ### 2026-08-25
 
 - **[Generative AI]** Started offering the new model `qwen3.8-27b`. It accepts image input.

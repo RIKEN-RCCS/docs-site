@@ -1,14 +1,19 @@
 # モジュール環境
 
-本システムでは、NVIDIA HPC Software Development Kitを利用した次の開発環境をモジュールとして提供しています。
+本システムでは、次の開発環境をモジュールとして提供しています。
 
 | モジュール名   | 説明                                     |
 | -------------- | ---------------------------------------- |
+| `cuda`         | CUDA Toolkit環境です。`nvcc`とCUDAライブラリを`CUDA_HOME`以下にまとめて提供します。 |
 | `nvhpc`        | MPIを含む標準的なNVIDIA HPC SDK環境です。 |
 | `nvhpc-nompi`  | MPIを含まないNVIDIA HPC SDK環境です。別のMPIを自分で用意して使用する場合に適しています。 |
 | `nvhpc-hpcx`   | `nvhpc`にHPC-Xを組み合わせた環境です。InfiniBand/RDMA環境でHPC-XのMPIを使う場合に適しています。 |
 | `nvhpc-hpcx-cuda13` | `nvhpc-hpcx`と同様にHPC-Xを含みますが、使用するCUDAバージョンがCUDA 13に固定されています。 |
 | `nvhpc-byo-compiler` | システムのGCCなど、利用者が用意したコンパイラを使うための環境です。BYOは「Bring Your Own」の略です。 |
+
+!!! note
+
+    `cuda/13.3`のようにマイナーバージョンを省略した名前は、その系列の最新版を指します。更新により指す先が変わるため、バージョンを固定したい場合は`cuda/13.3.1`のように最後まで指定してください。どちらで指定しても`module list`にはバージョンを最後まで含んだ名前が表示されます。
 
 ## `module`コマンド
 
@@ -35,14 +40,20 @@ module avail
 
 ```text
 ------------------------ /shared/software/modulefiles ------------------------
-   nvhpc-byo-compiler/26.3    nvhpc-hpcx-cuda13/26.3    nvhpc-hpcx/26.3
-   nvhpc-nompi/26.3    nvhpc/26.3
+   cuda/12.9.2             (12.9)      nvhpc-hpcx/26.3  (D)
+   cuda/13.2.2             (D:13.2)    nvhpc-hpcx/26.5
+   cuda/13.3.1             (13.3)      nvhpc-nompi/26.3 (D)
+   nvhpc-byo-compiler/26.3 (D)         nvhpc-nompi/26.5
+   nvhpc-byo-compiler/26.5             nvhpc/26.3       (D)
+   nvhpc-hpcx-cuda13/26.3  (D)         nvhpc/26.5
+   nvhpc-hpcx-cuda13/26.5
 
 ------------------------ /usr/share/lmod/lmod/modulefiles --------------------
    Core/lmod    Core/settarg (D)
 
   Where:
-   D:  Default Module
+   Aliases:  Aliases exist: foo/1.2.3 (1.2) means that "module load foo/1.2" will load foo/1.2.3
+   D:        Default Module
 
 If the avail list is too long consider trying:
 
