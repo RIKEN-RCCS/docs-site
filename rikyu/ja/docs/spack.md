@@ -471,6 +471,64 @@ spack uninstall /HASH
 
     パブリック・インスタンス側のパッケージは削除しないでください。自分のプライベート・インスタンスでインストールしたパッケージだけを削除対象にしてください。
 
+## ml-linux-aarch64 スタックの利用 { #ml-linux-aarch64 }
+
+本システムでは、標準のソフトウェア群とは別に、Arm環境における機械学習・AI・データサイエンス分野のパッケージ群を統合的に検証・提供している `ml-linux-aarch64` スタック環境を利用できます。
+
+### 専用環境の読み込み { #ml-linux-aarch64-load }
+
+`ml-linux-aarch64` スタックを利用する場合は、通常のパブリック・インスタンスとは別の専用パスに用意された環境設定スクリプトを読み込んでください。
+
+`bash`または`zsh`を使っている場合は、次を実行します。
+
+```bash
+. /shared/software/ml-linux-aarch64/env.sh
+```
+
+`csh`または`tcsh`を使っている場合は、次を実行します。
+
+```bash
+source /shared/software/ml-linux-aarch64/env.sh
+```
+
+### 利用時の注意点 { #ml-linux-aarch64-notes }
+
+- **シェルの分離:** 通常のパブリック・インスタンス用パスやプライベート・インスタンスのキャッシュ・設定と同時に読み込むと、 concretizer の依存関係解決や環境変数に競合が生じる原因になります。利用する際は、必ず新しく立ち上げたシェルで本環境のみを読み込んでください。
+- **パッケージの確認:** 本スタックで提供されているパッケージの一覧やビルド済み構成は、環境をロードした状態で次を実行して確認してください。
+
+```bash
+spack find -lx
+-- linux-ubuntu24.04-aarch64 / %c,cxx=clang@18.1.8 --------------
+rvdltfy py-jaxlib@0.10.1  35firrg py-tensorflow@2.20.0
+
+-- linux-ubuntu24.04-aarch64 / %c,cxx=gcc@13.3.0 ----------------
+26dq6yh py-scikit-learn@1.9.0  dvrmjfz py-tensorflow-metadata@1.17.2  rujxraz py-torch@2.12.0  kjorvey py-torch-nvidia-apex@24.04.01  rcjt7fg py-torchaudio@2.11.0  62r7jr7 py-torchvision@0.27.0
+
+-- linux-ubuntu24.04-aarch64 / %cxx=gcc@13.3.0 ------------------
+vfsb26o py-transformers@4.57.0
+
+-- linux-ubuntu24.04-aarch64 / no compilers ---------------------
+5qmndhd py-botorch@0.8.4  2omptwj py-kornia@0.8.3                       yjzhzb4 py-tensorboard@2.20.0             nbebl2h py-timm@1.0.24            zmw5kt2 py-vector-quantize-pytorch@0.3.9
+4z67epj py-gpytorch@1.13  2hcpwjx py-lightning@2.6.5                    jiiecon py-tensorboardx@2.6.2.2           aglujkh py-torch-geometric@2.5.3
+gf4b375 py-jax@0.10.1     ucsotkz py-pytorch-lightning@2.6.1            j45akk5 py-tensorflow-datasets@4.4.0      stxjtil py-torchgeo@0.9.0
+ootk7uq py-keras@3.14.1   7ce5zk3 py-segmentation-models-pytorch@0.5.0  vbl5kb5 py-tensorflow-probability@0.25.0  aowxp5a py-torchmetrics@1.9.0
+
+-- linux-ubuntu24.04-neoverse_v2 / %c,cxx=gcc@13.3.0 ------------
+b7qoi5i llvm@18.1.8
+==> 27 installed packages
+```
+
+### アプリケーションの実行 { #ml-linux-aarch64-run }
+
+環境設定スクリプトを読み込むと、必要なパッケージ群（Python等）へのパスが自動的に通るように構成されています。そのため、個別の `spack load` は不要です。
+
+そのまま `srun` や `sbatch` 等のジョブ投入コマンドから実行してください。
+
+**実行例:**
+```bash
+srun -p gpu -N1 -G 1 -t 00:10:00 python -c "import torch; print(torch.cuda.is_available())"
+```
+
 ## トラブルシューティング { #troubleshooting }
 
 | 症状 | 主な原因 | 対処 |
@@ -497,3 +555,4 @@ spack find -lx PACKAGE_NAME
 ```
 
 ジョブで問題が出る場合は、ジョブID、ジョブスクリプト、標準出力、標準エラーも添えてください。
+
