@@ -485,12 +485,6 @@ spack uninstall /HASH
 . /shared/software/ml-linux-aarch64/env.sh
 ```
 
-`csh`または`tcsh`を使っている場合は、次を実行します。
-
-```bash
-source /shared/software/ml-linux-aarch64/env.sh
-```
-
 ### 利用時の注意点 { #ml-linux-aarch64-notes }
 
 - **シェルの分離:** 通常のパブリック・インスタンス用パスやプライベート・インスタンスのキャッシュ・設定と同時に読み込むと、 concretizer の依存関係解決や環境変数に競合が生じる原因になります。利用する際は、必ず新しく立ち上げたシェルで本環境のみを読み込んでください。
