@@ -471,6 +471,65 @@ spack uninstall /HASH
 
     Do not delete packages in the public instance. Delete only packages that you installed in your private instance.
 
+## Using the ml-linux-aarch64 Stack { #ml-linux-aarch64 }
+
+In addition to the standard software set, the system provides the `ml-linux-aarch64` stack, a set of machine learning, AI, and data science packages for the Arm environment that are verified and provided together.
+
+### Load the Dedicated Environment { #ml-linux-aarch64-load }
+
+To use the `ml-linux-aarch64` stack, load the environment setup script provided in a dedicated path separate from the regular public instance.
+
+If you use `bash` or `zsh`, run the following.
+
+```bash
+. /shared/software/ml-linux-aarch64/env.sh
+```
+
+!!! note
+
+    Loading this environment together with the regular public instance paths or the cache and settings of a private instance can cause conflicts in the concretizer's dependency resolution and in environment variables. Always load only this environment in a freshly started shell.
+
+### Check Provided Packages { #ml-linux-aarch64-find }
+
+To check the list of packages provided by this stack and their build configurations, run the following with the environment loaded.
+
+```bash
+spack find -lx
+```
+
+Example output:
+
+```text
+-- linux-ubuntu24.04-aarch64 / %c,cxx=clang@18.1.8 --------------
+rvdltfy py-jaxlib@0.10.1  35firrg py-tensorflow@2.20.0
+
+-- linux-ubuntu24.04-aarch64 / %c,cxx=gcc@13.3.0 ----------------
+26dq6yh py-scikit-learn@1.9.0  dvrmjfz py-tensorflow-metadata@1.17.2  rujxraz py-torch@2.12.0  kjorvey py-torch-nvidia-apex@24.04.01  rcjt7fg py-torchaudio@2.11.0  62r7jr7 py-torchvision@0.27.0
+
+-- linux-ubuntu24.04-aarch64 / %cxx=gcc@13.3.0 ------------------
+vfsb26o py-transformers@4.57.0
+
+-- linux-ubuntu24.04-aarch64 / no compilers ---------------------
+5qmndhd py-botorch@0.8.4  2omptwj py-kornia@0.8.3                       yjzhzb4 py-tensorboard@2.20.0             nbebl2h py-timm@1.0.24            zmw5kt2 py-vector-quantize-pytorch@0.3.9
+4z67epj py-gpytorch@1.13  2hcpwjx py-lightning@2.6.5                    jiiecon py-tensorboardx@2.6.2.2           aglujkh py-torch-geometric@2.5.3
+gf4b375 py-jax@0.10.1     ucsotkz py-pytorch-lightning@2.6.1            j45akk5 py-tensorflow-datasets@4.4.0      stxjtil py-torchgeo@0.9.0
+ootk7uq py-keras@3.14.1   7ce5zk3 py-segmentation-models-pytorch@0.5.0  vbl5kb5 py-tensorflow-probability@0.25.0  aowxp5a py-torchmetrics@1.9.0
+
+-- linux-ubuntu24.04-neoverse_v2 / %c,cxx=gcc@13.3.0 ------------
+b7qoi5i llvm@18.1.8
+==> 27 installed packages
+```
+
+### Run Applications { #ml-linux-aarch64-run }
+
+Loading the environment setup script automatically sets the paths to the required packages (such as Python). Run your program directly from job submission commands such as `srun` or `sbatch`.
+
+Example:
+
+```bash
+srun --gpus=1 --time=00:10:00 python -c "import torch; print(torch.cuda.is_available())"
+```
+
 ## Troubleshooting { #troubleshooting }
 
 | Symptom | Main cause | Action |
