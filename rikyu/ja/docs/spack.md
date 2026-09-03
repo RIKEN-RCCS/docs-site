@@ -485,13 +485,21 @@ spack uninstall /HASH
 . /shared/software/ml-linux-aarch64/env.sh
 ```
 
-### 利用時の注意点 { #ml-linux-aarch64-notes }
+!!! note
 
-- **シェルの分離:** 通常のパブリック・インスタンス用パスやプライベート・インスタンスのキャッシュ・設定と同時に読み込むと、 concretizer の依存関係解決や環境変数に競合が生じる原因になります。利用する際は、必ず新しく立ち上げたシェルで本環境のみを読み込んでください。
-- **パッケージの確認:** 本スタックで提供されているパッケージの一覧やビルド済み構成は、環境をロードした状態で次を実行して確認してください。
+    通常のパブリック・インスタンス用パスやプライベート・インスタンスのキャッシュ・設定と同時に読み込むと、concretizerの依存関係解決や環境変数に競合が生じる原因になります。利用する際は、必ず新しく立ち上げたシェルで本環境のみを読み込んでください。
+
+### 提供パッケージを確認する { #ml-linux-aarch64-find }
+
+本スタックで提供されているパッケージの一覧やビルド済み構成は、環境を読み込んだ状態で次を実行して確認してください。
 
 ```bash
 spack find -lx
+```
+
+出力例：
+
+```text
 -- linux-ubuntu24.04-aarch64 / %c,cxx=clang@18.1.8 --------------
 rvdltfy py-jaxlib@0.10.1  35firrg py-tensorflow@2.20.0
 
@@ -514,13 +522,12 @@ b7qoi5i llvm@18.1.8
 
 ### アプリケーションの実行 { #ml-linux-aarch64-run }
 
-環境設定スクリプトを読み込むと、必要なパッケージ群（Python等）へのパスが自動的に通るように構成されています。そのため、個別の `spack load` は不要です。
+環境設定スクリプトを読み込むと、必要なパッケージ群（Python等）へのパスが自動的に通るように構成されています。そのまま `srun` や `sbatch` 等のジョブ投入コマンドから実行してください。
 
-そのまま `srun` や `sbatch` 等のジョブ投入コマンドから実行してください。
+実行例:
 
-**実行例:**
 ```bash
-srun -p gpu -N1 -G 1 -t 00:10:00 python -c "import torch; print(torch.cuda.is_available())"
+srun --gpus=1 --time=00:10:00 python -c "import torch; print(torch.cuda.is_available())"
 ```
 
 ## トラブルシューティング { #troubleshooting }
@@ -549,4 +556,3 @@ spack find -lx PACKAGE_NAME
 ```
 
 ジョブで問題が出る場合は、ジョブID、ジョブスクリプト、標準出力、標準エラーも添えてください。
-
