@@ -21,6 +21,7 @@ nav = [
   { "Open Composerの使い方" = "composer.md" },
   { "Slurmの使い方" = "slurm.md" },
   { "Spackの使い方" = "spack.md" },
+  { "S3ファイルシステムの使い方" = "s3.md" },
   { "生成AIサービス" = "genai.md" },
   { "システムアップデート履歴" = "changelog.md" },
   { "お問い合わせ" = "contact.md" },
