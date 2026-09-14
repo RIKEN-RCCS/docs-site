@@ -2,7 +2,25 @@
 
 Only changes that affect how you use the system are listed here (internal configuration changes and maintenance work are not included). Items marked "rolling out" take effect on each compute node as it is restarted.
 
+## September 2026
+
+### 2026-09-12
+
+- **\[Generative AI\]** Started offering the new model `deepseek-v4.1-flash`. It accepts image input.
+
+### 2026-09-04
+
+- **\[Portal\]** The portal now shows notices about outages and maintenance on every page.
+
+### 2026-09-02
+
+- **\[Generative AI\]** Started offering the new model `glm-5.3`.
+
 ## August 2026
+
+### 2026-08-27
+
+- **\[Generative AI\]** Started offering the new model `glm-5.3-flash`. It accepts image input.
 
 ### 2026-08-26
 
