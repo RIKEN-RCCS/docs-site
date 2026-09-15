@@ -31,3 +31,19 @@
 現在の利用状況を確認したい場合は、次の請求システムを参照してください。
 
 [請求システム](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+
+## 謝辞
+
+本システムを利用して得られた研究成果を論文などで発表する際は、次の例を参考に謝辞を記載してください。「（の一部）」は、研究成果の一部に本システムを利用した場合に記載してください。
+
+日本語：
+
+```text
+本研究成果（の一部）は、理化学研究所のスーパーコンピュータ「理究」を利用して得られたものです。
+```
+
+英語：
+
+```text
+This research used computational resources of the supercomputer RIKYU provided by the RIKEN Center for Computational Science.
+```

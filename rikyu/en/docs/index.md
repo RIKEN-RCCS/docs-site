@@ -31,3 +31,11 @@ The usage fee for this system is 300 yen per GPU hour. For example, using 4 GPUs
 To check your current usage, refer to the billing system below.
 
 [Billing System](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+
+## Acknowledgments
+
+When you publish research results obtained using this system, such as in papers, include an acknowledgment based on the following example.
+
+```text
+This research used computational resources of the supercomputer RIKYU provided by the RIKEN Center for Computational Science.
+```
