@@ -1,11 +1,5 @@
 # Welcome
 
-!!! warning "Deletion of Early Access Phase 1 Accounts"
-
-    Accounts issued during Early Access Phase 1 (accounts beginning with `ea`) will be deleted on Monday, September 14, 2026. When these accounts are deleted, all data stored in them will also be deleted.
-
-    If you have any data you need, complete a backup or data migration by Sunday, September 13, 2026. Please note that accounts and data cannot be recovered after deletion.
-
 !!! info
 
     Early Access Phase 2 for production operation is currently underway. Early Access Phase 2 is scheduled to continue until the end of September 2026.
