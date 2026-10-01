@@ -28,7 +28,7 @@
 
 ## 謝辞
 
-本システムを利用して得られた研究成果を論文などで発表する際は、次の例を参考に謝辞を記載してください。「（の一部）」は、研究成果の一部に本システムを利用した場合に記載してください。
+本システムを利用して得られた研究成果を論文などで発表する際は、次の例を参考に謝辞を記載してください。「（の一部）」「(in part)」は、研究成果の一部に本システムを利用した場合に記載してください。
 
 日本語：
 
@@ -39,5 +39,5 @@
 英語：
 
 ```text
-This research used computational resources of the supercomputer RIKYU provided by the RIKEN Center for Computational Science.
+This research used (in part) computational resources of the supercomputer RIKYU provided by the RIKEN Center for Computational Science.
 ```

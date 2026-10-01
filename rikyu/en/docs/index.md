@@ -28,8 +28,8 @@ To check your current usage, refer to the RIKYU Portal.
 
 ## Acknowledgments
 
-When you publish research results obtained using this system, such as in papers, include an acknowledgment based on the following example.
+When you publish research results obtained using this system, such as in papers, include an acknowledgment based on the following example. Include "(in part)" if this system was used for only part of the research results.
 
 ```text
-This research used computational resources of the supercomputer RIKYU provided by the RIKEN Center for Computational Science.
+This research used (in part) computational resources of the supercomputer RIKYU provided by the RIKEN Center for Computational Science.
 ```
