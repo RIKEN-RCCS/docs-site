@@ -2,6 +2,12 @@
 
 Only changes that affect how you use the system are listed here (internal configuration changes and maintenance work are not included). Items marked "rolling out" take effect on each compute node as it is restarted.
 
+## October 2026
+
+### 2026-10-01
+
+- Stated that storage and the generative AI service are free of charge for the time being.
+
 ## September 2026
 
 ### 2026-09-12

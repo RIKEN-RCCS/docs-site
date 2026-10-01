@@ -22,9 +22,9 @@
 
 本システムの利用料金は300円/GPU時間です。例えば、4 GPUを5時間利用した場合の利用料金は、4 GPU &times; 5時間 &times; 300円 = 6,000円です。利用料金には、別途消費税がかかります。利用料金は後払いで、早期アクセスフェーズ2の終了後に一括請求されます。
 
-現在の利用状況を確認したい場合は、次の請求システムを参照してください。
+現在の利用状況を確認したい場合は、理究ポータルを参照してください。
 
-[請求システム](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+[理究ポータル](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## 謝辞
 

@@ -22,9 +22,9 @@ To apply for an account on this system, use the RIKYU Account Application System
 
 The usage fee for this system is 300 yen per GPU hour. For example, using 4 GPUs for 5 hours costs 4 GPUs &times; 5 hours &times; 300 yen = 6,000 yen. Consumption tax is charged separately. Usage fees are billed in arrears as a lump sum after the end of Early Access Phase 2.
 
-To check your current usage, refer to the billing system below.
+To check your current usage, refer to the RIKYU Portal.
 
-[Billing System](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+[RIKYU Portal](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 ## Acknowledgments
 

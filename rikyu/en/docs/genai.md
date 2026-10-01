@@ -167,6 +167,6 @@ The names of the settings differ between applications, but any application that 
 
 ## Usage Fees
 
-The generative AI service is free of charge during Early Access Phase 2.
+The generative AI service is free of charge for the time being.
 
 The usage fee described in [Welcome](index.md) (300 JPY per GPU hour) applies to compute jobs run with Slurm; the generative AI service is not subject to it. You can check your API usage on the usage page of the RIKYU Portal.

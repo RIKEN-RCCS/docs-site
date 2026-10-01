@@ -131,7 +131,7 @@ If you need more than 100 TB, the PI or SubPI should request it with a ticket us
 
 !!! note
 
-    Charges based on the additional capacity are planned, but no charges will be incurred during Early Access Phase 2. The fees are currently under review.
+    Charges based on the additional capacity are planned, but no charges will be incurred for the time being. The fees are currently under review.
     
 ### Home Area
 
