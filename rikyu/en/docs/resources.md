@@ -1,6 +1,6 @@
 # Job Resources
 
-Specify the number of GPUs when submitting a job. <span class="text-marker">The supported GPU counts are 1, 2, 3, 4, 8, 12, and 16</span>. The number of allocated nodes, the maximum number of CPU cores, and the maximum memory amount depend on the number of GPUs.
+Specify the number of GPUs when submitting a job. <span class="text-marker">The supported GPU counts are 1, 2, 3, and multiples of 4</span>. There is no upper limit on the number of GPUs or nodes per job. The number of allocated nodes, the maximum number of CPU cores, and the maximum memory amount depend on the number of GPUs.
 
 <div class="spec-table">
 <table>
@@ -15,24 +15,24 @@ Specify the number of GPUs when submitting a job. <span class="text-marker">The 
     <tr>
       <td style="text-align: right;">1</td>
       <td rowspan="4">1</td>
-      <td>36</td>
+      <td>32</td>
       <td>400 GB</td>
-      <td rowspan="7">96 hours</td>
+      <td rowspan="8">96 hours</td>
     </tr>
     <tr>
       <td style="text-align: right;">2</td>
-      <td>72</td>
+      <td>64</td>
       <td>800 GB</td>
     </tr>
     <tr>
       <td style="text-align: right;">3</td>
-      <td>108</td>
+      <td>96</td>
       <td>1,200 GB</td>
     </tr>
     <tr>
       <td style="text-align: right;">4</td>
-      <td rowspan="4">144</td>
-      <td rowspan="4">1,600 GB</td>
+      <td rowspan="5">144</td>
+      <td rowspan="5">1,600 GB</td>
     </tr>
      <tr>
       <td style="text-align: right;">8</td>
@@ -46,9 +46,17 @@ Specify the number of GPUs when submitting a job. <span class="text-marker">The 
       <td style="text-align: right;">16</td>
       <td>4</td>
     </tr>
+    <tr>
+      <td style="text-align: right;">20 or more (multiple of 4)</td>
+      <td>GPU count &divide; 4</td>
+    </tr>
   </tbody>
 </table>
 </div>
+
+!!! note
+
+    Even a job that does not use GPUs must specify the number of GPUs (use `--gpus=4N` for N nodes). An upper limit on the number of GPUs per job may also be introduced in the future depending on congestion.
 
 !!! note
 
