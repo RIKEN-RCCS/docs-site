@@ -69,11 +69,9 @@ The key's randomart image is:
 
 ### Registering an SSH Public Key
 
-Register your SSH public key with this system from Open OnDemand. Log in to Open OnDemand from the link below.
+Register your SSH public key from <span class="text-marker">SSH Keys</span> in the RIKYU Portal. Log in to the RIKYU Portal from the button below.
 
-[Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
-
-Launch <span class="text-marker">SSH Public Key</span>. The following screen appears. Enter your SSH public key in the text area under <span class="text-marker">Add a Public Key</span>, then click the <span class="text-marker">Add</span> button. When registration succeeds, the registration information appears under <span class="text-marker">Registered Public Keys</span>.
+[RIKYU Portal](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 <img width="800" alt="SSH public key" src="img/sshpubkey.png">
 

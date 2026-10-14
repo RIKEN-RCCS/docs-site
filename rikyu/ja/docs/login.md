@@ -69,11 +69,9 @@ The key's randomart image is:
 
 ### SSH公開鍵の登録
 
-SSH公開鍵をOpen OnDemandから本システムに登録します。Open OnDemandには次のリンクからログインしてください。
+理究ポータルの<span class="text-marker">SSH鍵</span>からSSH公開鍵を登録します。理究ポータルには下のボタンからログインしてください。
 
-[Open OnDemand](https://ondemand.rikyu.r-ccs.riken.jp){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
-
-<span class="text-marker">SSH Public Key</span>を起動してください。次の画面が表示されますので、<span class="text-marker">Add a Public Key</span>のテキストエリアにご自身のSSH公開鍵を入力し、<span class="text-marker">Add</span>ボタンをクリックしてください。登録が成功すると、<span class="text-marker">Registered Public Keys</span>に登録情報が表示されます。
+[理究ポータル](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
 
 <img width="800" alt="SSH public key" src="img/sshpubkey.png">
 
