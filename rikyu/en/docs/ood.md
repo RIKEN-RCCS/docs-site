@@ -93,25 +93,13 @@ See [Open Composer](composer.md).
 
 | Name                     | Description                  |
 | ------------------------ | ---------------------------- |
-| Delete Passkey           | Delete passkeys              |
 | RIKYU Shell Access       | Web terminal                 |
-| SSH Public Key           | SSH public key registration  |
 
 ### RIKYU Shell Access
 
 You can access a login node over SSH from a web browser and use a command-line interface.
 
 <img width="600" alt="Terminal for Login Node" src="img/shell_access.png">
-
-### SSH Public Key
-
-See [SSH Public Key Registration](login.md#registering-an-ssh-public-key).
-
-### Delete Passkey
-
-You can delete registered passkeys. Click the "Delete" button.
-
-<img width="800" alt="Delete Passkey" src="img/passkey.png" style="border: 1px solid #000;">
 
 ## Interactive Applications
 

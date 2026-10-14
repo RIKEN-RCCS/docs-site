@@ -93,25 +93,13 @@ Home Directoryの各機能は次のとおりです。個別のファイルやデ
 
 |           名前           |            説明          |
 | ------------------------ | -------------------------|
-| Delete Passkey           | パスキーの削除           |
 | RIKYU Shell Access       | Webターミナル            |
-| SSH Public Key           | SSH公開鍵の登録          |
 
 ### RIKYU Shell Access
 
 WebブラウザからログインノードにSSHアクセスし、コマンドラインインタフェースを用いた操作ができます。
 
 <img width="600" alt="Terminal for Login Node" src="img/shell_access.png">
-
-### SSH Public Key
-
-[SSH公開鍵の登録](login.md#ssh)を参照してください。
-
-### Delete Passkey
-
-登録済のPasskeyを削除することができます。「Delete」ボタンをクリックしてください。
-
-<img width="800" alt="Delete Passkey" src="img/passkey.png" style="border: 1px solid #000;">
 
 ## 対話アプリケーション
 

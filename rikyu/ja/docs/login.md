@@ -82,3 +82,15 @@ ssh USER@login.rikyu.r-ccs.riken.jp
 ```
 
 コマンドラインによるジョブの投入方法などについては、[Slurmの使い方](slurm.md)を参照してください。
+
+### パスキーの削除
+
+理究ポータルの<span class="text-marker">アカウントセキュリティ</span>から登録済のパスキーを削除します。理究ポータルには下のボタンからログインしてください。
+
+[理究ポータル](https://portal.rikyu.r-ccs.riken.jp/ja/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+
+<img width="800" alt="Passkey" src="img/passkey2.png">
+
+「Delete」ボタンをクリックしてください。
+
+<img width="800" alt="Delete Passkey" src="img/passkey.png" style="border: 1px solid #000;">

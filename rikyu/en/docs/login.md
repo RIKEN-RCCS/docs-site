@@ -82,3 +82,15 @@ ssh USER@login.rikyu.r-ccs.riken.jp
 ```
 
 For information on submitting jobs from the command line, see [Slurm](slurm.md).
+
+### Deleting a Passkey
+
+Delete registered passkeys from <span class="text-marker">Account Security</span> in the RIKYU Portal. Log in to the RIKYU Portal from the button below.
+
+[RIKYU Portal](https://portal.rikyu.r-ccs.riken.jp/en/){ .md-button .md-button--primary .action-button target="_blank" rel="noopener" }
+
+<img width="800" alt="Passkey" src="img/passkey2.png">
+
+Click the "Delete" button.
+
+<img width="800" alt="Delete Passkey" src="img/passkey.png" style="border: 1px solid #000;">
