@@ -101,7 +101,7 @@ The home area and group area are on shared storage, so they can be used from bot
 </table>
 </div>
 
-The home area uses 2 PB of high-speed storage (SSD), while the group area uses 10 PB of large-capacity storage (HDD). Note that the home area and group area therefore have different performance characteristics.
+The home area uses 1 PB of high-speed storage (SSD), while the group area uses 10 PB of large-capacity storage (HDD). Note that the home area and group area therefore have different performance characteristics.
 
 ## Changing Capacity
 

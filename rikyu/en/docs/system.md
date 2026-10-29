@@ -1,6 +1,6 @@
 # System Overview
 
-This system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, shared storage composed of 2 PB of high-speed storage (SSD) and 10 PB of large-capacity storage (HDD), and an InfiniBand XDR network that connects them at high speed.
+This system consists of 400 compute nodes equipped with NVIDIA GB200 NVL4, shared storage composed of 1 PB of high-speed storage (SSD) and 10 PB of large-capacity storage (HDD), and an InfiniBand XDR network that connects them at high speed.
 
 ## Compute Node Performance
 
@@ -30,7 +30,7 @@ For details on CPU/GPU connections and bandwidth, see the following figure.
 | GPU theoretical performance (FP8) | 15.539 EFLOPS (38.84 PFLOPS &times; 400 nodes) |
 | GPU memory performance | 270.625 TiB, 12.64 PB/s (692.8 GiB, 31.6 TB/s &times; 400 nodes) |
 | CPU memory performance | 375 TiB, 307.2 TB/s (960 GiB, 768 GB/s &times; 400 nodes) |
-| Shared storage | High-speed storage 2 PB (SSD), large-capacity storage 10 PB (HDD) |
+| Shared storage | High-speed storage 1 PB (SSD), large-capacity storage 10 PB (HDD) |
 
 ## Network Topology
 

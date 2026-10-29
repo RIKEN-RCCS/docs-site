@@ -4,6 +4,18 @@ Only changes that affect how you use the system are listed here (internal config
 
 ## October 2026
 
+### 2026-10-25
+
+- **\[Generative AI\]** Started offering the new model `deepseek-v4.1-flash-1017`. It accepts image input. `deepseek-v4.1-flash` remains available.
+
+### 2026-10-06
+
+- **\[Portal\]** You can now register SSH public keys on the portal.
+
+### 2026-10-04
+
+- **\[Slurm\]** Fixed an issue where jobs using more than 24 nodes could not be submitted, and an issue where those jobs were delayed before starting.
+
 ### 2026-10-01
 
 - Stated that storage and the generative AI service are free of charge for the time being.
