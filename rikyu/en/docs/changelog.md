@@ -2,7 +2,22 @@
 
 Only changes that affect how you use the system are listed here (internal configuration changes and maintenance work are not included). Items marked "rolling out" take effect on each compute node as it is restarted.
 
+## November 2026
+
+### 2026-11-01
+
+- **\[System\]** Updated the node kernel to 7.0.0-1024-nvidia-64k (rolling out). There is no change to how you use the system.
+
 ## October 2026
+
+### 2026-10-27
+
+- **\[Portal\]** Added the public "Getting Started" page (eligibility, projects and roles, application process, fees, and more).
+
+### 2026-10-26
+
+- **\[Portal\]** The portal top page and news can now be viewed without logging in. The public pages "System Overview" and "About RIKYU" were also added.
+- **\[Software\]** Added the OpenSSL development files (libssl-dev) to the nodes (rolling out).
 
 ### 2026-10-25
 
