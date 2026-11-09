@@ -24,6 +24,19 @@ nav = [
   { "S3 File System" = "s3.md" },
   { "Generative AI Service" = "genai.md" },
   { "System Update History" = "changelog.md" },
+  { "Regulations and Related Documents" = [
+    { "Regulations for Use of RIKYU" = "rules/regulations.md" },
+    { "RAAS Terms of Service" = "rules/raas-terms.md" },
+    { "Handling of Personal Data" = "rules/personal-data.md" },
+    { "Handling of Shared Research Assets" = "rules/shared-research-assets.md" },
+    { "Handling of Usage Fees" = "rules/fees.md" },
+    { "Billing of Usage Fees" = "rules/billing.md" },
+    { "Pledge (For RIKYU Users)" = "rules/pledge-users.md" },
+    { "Pledge (For Fee-based Access)" = "rules/pledge-fee-based.md" },
+    { "Guidelines for Users' Data" = "rules/user-data.md" },
+    { "Service Level Agreement/Objectives" = "rules/sla.md" },
+    { "Security White Paper" = "rules/security-whitepaper.md" },
+  ] },
   { "Contact" = "contact.md" },
 ]
 

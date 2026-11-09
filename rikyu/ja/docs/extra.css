@@ -362,3 +362,29 @@ html .md-footer-meta.md-typeset a:not(:focus, :hover) {
 [dir="ltr"] .md-nav--integrated > .md-nav__list > .md-nav__item--active .md-nav--secondary {
   border-left: 2px solid var(--md-primary-fg-color);
 }
+
+/* Regulation pages (rules/*). The original numbering (第１条, ２, （１）, (ア),
+   ①, 1.) is kept as text rather than turned into Markdown lists, so the
+   paragraphs sit close together and item groups are indented instead. */
+.md-typeset .rules p {
+  margin: 0.5em 0;
+}
+
+.md-typeset .rules .rules-items {
+  margin-left: 1.5em;
+}
+
+.md-typeset .rules .rules-items p {
+  margin: 0.25em 0;
+}
+
+/* Paragraphs in .md-typeset are justified site-wide, so the alignment is
+   set on the paragraphs themselves rather than on the wrapper. */
+.md-typeset .rules-meta p,
+.md-typeset .rules .rules-end {
+  text-align: right;
+}
+
+.md-typeset .rules .rules-center {
+  text-align: center;
+}

@@ -24,6 +24,19 @@ nav = [
   { "S3ファイルシステムの使い方" = "s3.md" },
   { "生成AIサービス" = "genai.md" },
   { "システムアップデート履歴" = "changelog.md" },
+  { "規約・関連文書" = [
+    { "「理究」利用規則" = "rules/regulations.md" },
+    { "アカウント申請システム（RAAS）利用規約" = "rules/raas-terms.md" },
+    { "利用者の個人に関するデータの取扱について" = "rules/personal-data.md" },
+    { "共有研究資産の取扱について" = "rules/shared-research-assets.md" },
+    { "研究設備の利用料の取扱いについて" = "rules/fees.md" },
+    { "「理究」利用料の請求について" = "rules/billing.md" },
+    { "誓約書（利用者向け）" = "rules/pledge-users.md" },
+    { "誓約書（有償利用）" = "rules/pledge-fee-based.md" },
+    { "データ等の取扱について" = "rules/user-data.md" },
+    { "サービスレベルアグリーメント・目標" = "rules/sla.md" },
+    { "セキュリティホワイトペーパー" = "rules/security-whitepaper.md" },
+  ] },
   { "お問い合わせ" = "contact.md" },
 ]
 
