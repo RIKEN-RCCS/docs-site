@@ -55,7 +55,6 @@ features = [
   "navigation.footer",
   "navigation.instant",
   "navigation.instant.prefetch",
-  "navigation.sections",
   "navigation.top",
   "search.highlight",
   "toc.integrate",
