@@ -46,7 +46,7 @@ Log in to the portal and select <span class="text-marker">API Keys</span> at the
 
     The key is shown only once, right after it is created. It cannot be retrieved again, so save it somewhere safe. If you lose it, revoke that key from the list and create a new one.
 
-One key can be created per project. API usage is billed to the project the key was created for. If you belong to multiple projects, use the key for the project you want to use.
+Each user can create one key for each project they belong to. A key can be used only by the user who created it and cannot be shared with other members of the project. API usage is billed to the project the key was created for. If you belong to multiple projects, use the key for the project you want to use.
 
 !!! warning
 
