@@ -21,12 +21,13 @@ This system provides a generative AI service based on large language models (LLM
 | `deepseek-v4.1-flash`      | 552B+196B  | 1M             | Suited to long inputs; accepts image input     | [deepseek-ai/DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash){ target="_blank" rel="noopener" } |
 | `deepseek-v4.1-flash-1017` | 552B+196B  | 1M             | Updated weights of `deepseek-v4.1-flash`       | [deepseek-ai/DeepSeek-V4.1-Flash-1017](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017){ target="_blank" rel="noopener" } |
 | `kimi-k3`                  | 2.8T       | 928K           | Largest model                                  | [moonshotai/Kimi-K3](https://huggingface.co/moonshotai/Kimi-K3){ target="_blank" rel="noopener" } |
+| `kimi-k3.1-pro`            | 2.8T       | 1M             | Newer version of `kimi-k3`                     | [moonshotai/Kimi-K3.1-Pro](https://huggingface.co/moonshotai/Kimi-K3.1-Pro){ target="_blank" rel="noopener" } |
 
 Parameters are total parameter counts. All models except `qwen3.8-27b` are MoE (Mixture of Experts) models, so the number of parameters actually used to generate a token is smaller. Context length is the maximum number of input tokens accepted by this service, which may differ from the model's native limit.
 
 All models support reasoning and function calling.
 
-In addition to text, `qwen3.8-27b`, `glm-5.3-flash`, `deepseek-v4.1-flash`, and `deepseek-v4.1-flash-1017` also accept image input. The other models are text-only.
+`glm-5.2` and `glm-5.3` accept text only. All other models also accept image input in addition to text.
 
 !!! note
 

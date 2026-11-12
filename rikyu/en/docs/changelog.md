@@ -8,6 +8,12 @@ Only changes that affect how you use the system are listed here (internal config
 
 - **\[System\]** Updated the node kernel to 7.0.0-1024-nvidia-64k (rolling out). There is no change to how you use the system.
 
+## November 2026
+
+### 2026-11-05
+
+- **\[Generative AI\]** Started offering the new model `kimi-k3.1-pro`. It accepts image input.
+
 ## October 2026
 
 ### 2026-10-27

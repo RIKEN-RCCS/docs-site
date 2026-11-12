@@ -21,12 +21,13 @@
 | `deepseek-v4.1-flash`      | 552B+196B    | 1M             | 長い入力に適した、画像入力に対応するモデル | [deepseek-ai/DeepSeek-V4.1-Flash](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash){ target="_blank" rel="noopener" } |
 | `deepseek-v4.1-flash-1017` | 552B+196B    | 1M             | `deepseek-v4.1-flash`の重み更新版        | [deepseek-ai/DeepSeek-V4.1-Flash-1017](https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017){ target="_blank" rel="noopener" } |
 | `kimi-k3`                  | 2.8T         | 928K           | 最大規模のモデル                         | [moonshotai/Kimi-K3](https://huggingface.co/moonshotai/Kimi-K3){ target="_blank" rel="noopener" } |
+| `kimi-k3.1-pro`            | 2.8T         | 1M             | `kimi-k3`の新バージョン                  | [moonshotai/Kimi-K3.1-Pro](https://huggingface.co/moonshotai/Kimi-K3.1-Pro){ target="_blank" rel="noopener" } |
 
 パラメータ数は総パラメータ数です。`qwen3.8-27b`を除く各モデルはMoE（Mixture of Experts）モデルであり、1トークンの生成に実際に使われるパラメータ数はこれより少なくなります。コンテキスト長は、本サービスで入力に指定できるトークン数の上限であり、モデル本来の上限とは異なる場合があります。
 
 いずれのモデルも、推論（reasoning）とFunction Callingに対応しています。
 
-`qwen3.8-27b`、`glm-5.3-flash`、`deepseek-v4.1-flash`、`deepseek-v4.1-flash-1017`は、テキストに加えて画像入力にも対応しています。他のモデルはテキストのみです。
+`glm-5.2`と`glm-5.3`はテキストのみに対応しています。それ以外のモデルは、テキストに加えて画像入力にも対応しています。
 
 !!! note
 
